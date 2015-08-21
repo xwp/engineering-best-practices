@@ -17,9 +17,10 @@ footer[role="contentinfo"] {
 			border-top-right-radius: 100%;
 			border-top-left-radius: 100%;
 			z-index: 10; /* So that it overlays any expanded .top-nav */
-			background: #303030 url("img/10up-icon-reversed.svg") no-repeat center;
+			background: #303030 url("img/x-icon.svg") no-repeat center;
 			-webkit-background-size: 42%;
 			background-size: 42%;
+			background-position: 55% 50%;
 			@include transition(background-size, 150ms, linear);
 		}
 		@include breakpoint($breakpoint-bravo) {
