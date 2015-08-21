@@ -64,7 +64,7 @@ Every project, whether it includes Composer-managed dependencies or not, _must_ 
 
 ```json
 {
-	"name": "10up/{project name}",
+	"name": "xwp/{project name}",
 	"type": "wordpress-plugin",
 	"minimum-stability": "dev",
 	"require-dev": {},
