@@ -1,12 +1,12 @@
-name:          10up Engineering Best Practices
-title:         10up Engineering Best Practices
-description:   Project engineering best practices used by 10up.
-url:           https://10up.github.io/Engineering-Best-Practices/
+name:          XWP Engineering Best Practices
+title:         XWP Engineering Best Practices
+description:   Project engineering best practices used by XWP (h/t 10up).
+url:           https://xwp.github.io/engineering-best-practices/
 author:
-  name:    10up
-  email:   sales@10up.com
-  github:  10up
-  twitter: 10up
+  name:    XWP
+  email:   engage@xwp.co
+  github:  xwp
+  twitter: xwp
 
 markdown:      redcarpet
 permalink:     pretty
@@ -17,6 +17,6 @@ redcarpet:
 sass:
   sass_dir: _includes/_sass
 CONFIG:
-  BASE_PATH: https://10up.github.io/Engineering-Best-Practices
+  BASE_PATH: https://xwp.github.io/engineering-best-practices
 
   ASSET_PATH: false
