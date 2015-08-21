@@ -354,7 +354,7 @@ All functional code should be properly namespaced. We do this to logically organ
 
 ```php
 <?php
-namespace tenup\Utilities\API;
+namespace XWP\Utilities\API;
 
 function do_something() {
   // ...
@@ -368,7 +368,7 @@ If the code is for general release to the WordPress.org theme or plugin reposito
 /**
  * Namespaced class name example.
  */
-class Tenup_Utilities_API {
+class XWP_Utilities_API {
 	public static function do_something() {
 		// ...
 	}
@@ -377,7 +377,7 @@ class Tenup_Utilities_API {
 
 The similar structure of the namespace and the static class will allow for simple onboarding to either style of project (and a quick upgrade to PHP namespaces if and when WordPress raises its minimum version requirements).
 
-Anything declared in the global namespace, including a namespace itself, should be written in such a way as to ensure uniqueness. A namespace like ```tenup``` is (most likely) unique; ```theme``` is not. A simple way to ensure uniqueness is to prefix a declaration with unique prefix.
+Anything declared in the global namespace, including a namespace itself, should be written in such a way as to ensure uniqueness. A namespace like ```XWP``` is (most likely) unique; ```theme``` is not. A simple way to ensure uniqueness is to prefix a declaration with unique prefix.
 
 #### Object Design
 
