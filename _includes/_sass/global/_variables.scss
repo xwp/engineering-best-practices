@@ -59,7 +59,8 @@ $color-error-dark: darken(saturate($color-error-light, 50%), 50%);
 $base-font-size: 1.2rem;
 $base-line-height: 1.4;
 $font-family-serif: 'freight-text-pro', serif;
-$font-family-sans: 'proxima-nova', sans-serif;
+$font-family-sans: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+$font-family-heading: "Roboto Slab", "Times New Roman", Times, Baskerville, Georgia, serif;
 
 // responsive breakpoints
 $wpadminbar-narrow: 782px;

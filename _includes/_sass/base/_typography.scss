@@ -18,11 +18,14 @@ blockquote {
 	color: rgba(140, 138, 138, 1.00);
 }
 
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-family-heading;
+}
+
 h1 {
 	font-size: 3.4rem;
 	line-height: 1.4;
 	// font-family: $font-family-serif;
-	font-family: $font-family-sans;
 	font-weight: 300;
 	font-style: normal;
 	margin: 0px 0px 12px 0px;
@@ -61,6 +64,11 @@ h4 {
 
 h5 {
 	font-size: 1.5rem;
+	font-weight: 300;
+}
+
+h6 {
+	font-size: 1.3rem;
 	font-weight: 300;
 }
 
