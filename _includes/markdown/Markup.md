@@ -211,7 +211,7 @@ Example:
 ```
 
 #### Avoid using inline styles or JavaScript
-These are not easily maintainable and can be easily lost or cause unforeseen conflicts.
+These are not easily maintainable and can be easily lost or cause unforeseen conflicts. For instance, it is common to add `style="display:none"` to an element. Instead of this, HTML5 actually has a specific boolean semantic attribute for this: `hidden`.
 
 <h3 id="accessibility">Accessibility {% include Util/top %}</h3>
 It's important that our clients and their customers are able to use the products that we create for them. Accessibility means creating a web that is accessible to all people: those with disabilities and those without. We must think about people with visual, auditory, physical, speech, cognitive and neurological disabilities and ensure that we deliver the best experience we possibly can to everyone. Accessibility best practices also make content more easily digestible by search engines. Increasingly, basic accessibility can even be a legal requirement. In all cases, an accessible web benefits everyone.
