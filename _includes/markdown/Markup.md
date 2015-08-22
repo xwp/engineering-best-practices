@@ -197,6 +197,8 @@ Good example:
 <script src="script/scripts.js"></script>
 ```
 
+However, you should naturally defer to whatever markup that WordPress generates from when it outputs any scripts or styles that have been enqueued using the dependency system.
+
 <h3 id="classes-ids">Classes &amp; IDs {% include Util/top %}</h3>
 In order to create more maintainable projects, developers should use classes for CSS and IDs for JavaScript. Separating concerns allows markup to be more flexible without risking breaking both styles and any JavaScript that may be attached to the element on which someone is working.
 
