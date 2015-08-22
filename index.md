@@ -8,13 +8,9 @@ layout: default
 subnav:
   - title: Audience
     tag: audience
-  - title: Goal
-    tag: goal
-  - title: Philosophy
-    tag: philosophy
   - title: Contributing
     tag: contributing
-updated: 6 Oct 2014
+updated: Q3 2015
 ---
 
 <div class="toc">
@@ -26,8 +22,6 @@ updated: 6 Oct 2014
 		<h3><a href="{{ HOME_PATH }}#top">Introduction</a></h3>
 		<ul>
 			<li><a href="{{ HOME_PATH }}#audience">Audience</a></li>
-			<li><a href="{{ HOME_PATH }}#goal">Goal</a></li>
-			<li><a href="{{ HOME_PATH }}#philosophy">Philosophy</a></li>
 			<li><a href="{{ HOME_PATH }}#contributing">Contributing</a></li>
 		</ul>
 	</div>
