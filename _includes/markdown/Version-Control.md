@@ -36,23 +36,21 @@ Periodically the `preview` branch will need to get cleaned up and reset to `mast
 
 ###### Complex Feature Branches
 
-In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to enable testing the feature as a cohesive unit and avoid merge conflicts when pushing to ```staging``` and ```master``` it is recommended to create a feature branch to act as a staging area. We do this by branching from ```master``` to create the primary feature branch, and then as necessary, create additional branches from the feature branch for distinct items of work. When individual items are complete, merge back to the feature branch. To pull work from ```master```, merge ```master``` into the feature branch and then merge the feature branch into the individual branches. When all work has been merged back into the feature branch, the feature branch can then be merged into ```staging``` and ```master``` as an entire unit of work.
+In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to enable testing the feature as a cohesive unit and avoid merge conflicts when pushing to ```staging``` and ```master``` it is recommended to create a feature branch to act as a staging area. We do this by branching from ```master``` to create the primary feature branch, and then as necessary, create additional branches from the feature branch for distinct items of work. When individual items are complete, merge back to the feature branch. To pull work from ```master```, merge ```master``` into the feature branch and then merge the feature branch into the individual branches. When all work has been merged back into the feature branch, the feature branch can then be merged into ```preview``` and ```master``` as an entire unit of work.
 
 ##### Working with WordPress.com VIP
 
-In a VIP environment, we want every commit to the theme's Subversion repository to be matched 1:1 with a merge commit on our Beanstalk Git repository. This means we add a step to our deployment above: Create a diff between the branch and ```master``` before merging. We can apply this diff as a patch to the VIP Subversion repository.
-
-Using non-fast-forward merges allows us to easily track various changes back in the history tree.
+Sites hosted by WordPress.com VIP use SVN for version control and deployments. For development, however, we continue to use Git. We do not have SVN commits match 1:1 with the commits in Git, as Git commits are often far more granular than is normal for SVN. Instead, we aim for entire Git feature branch merges to correspond to a single SVN commit. In this way, commits to SVN are analogous Git [squashed commits](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Squashing-Commits).
 
 ##### Backporting VIP
 
 In the event that VIP makes a change to the repository, we'll capture the diff of their changeset and import it to our development repository by:
 
-* Grabbing the diff of their changes
-* Creating a new ```vip-rXXXX``` branch off ```master```
-* Applying the diff to the new branch
-* Merging the branch to ```staging```, using a non-fast-forward merge
-* Merging the branch back to ```master```, again using a non-fast-forward merge
+* Grab a diff of their changes.
+* Create a new temporary branch off ```master```.
+* Apply the patch; if it doesn't apply, reset the branch to the commit where it doesm and re-apply.
+* Commit the changes indicating the Zendesk ticket and the VIP Code Wrangler's' authorship (via `git commit --author`).
+* Cherry-pick the branch into `master`.
 
 ##### Archiving Branches
 
