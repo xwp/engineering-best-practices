@@ -22,15 +22,17 @@ If your commits haven't been pushed yet for others to see, it is a good idea to 
 
 #### Themes
 
-All new development should take place on feature branches that branch off ```master```. When a new feature or bugfix is complete, we will do a non-fast-forward merge (```--no-ff``` flag) from that branch to ```staging``` to verify the feature or fix on the stage environment.
+All new development should take place on feature branches that branch off ```master```. For many projects, when a new feature or bugfix is deemed complete we will do merge from that branch to the```preview``` branch and push to verify the feature or fix on the stage environment before it gets merged into `master` and locked into a path to production. We have the `preview` branch set up to auto-deploy to our preview environment.
 
-When things are absolutely ready to go, we'll deploy the feature or fix by performing a non-fast-forward merge from that branch to ```master```
+When things are absolutely ready to go (i.e. it has passed code review, QA and UAT), we'll then merge the pull request into `master`.
 
 ##### Branching
 
-All theme projects will treat the ```master``` branch as the canonical source for live, production code. Feature branches will branch off ```master``` and should always have ```master``` merged back into them before requesting peer code review and before deploying to any staging environments.
+All theme projects will treat the ```master``` branch as the canonical source for live, production code. Feature branches will branch off ```master```.
 
-All staging branches will branch off ```master``` as well, and should be named ```staging``` or ```stage-{environment}``` for consistency and clarity. Staging branches will never be merged into any other branches. The ```master``` branch can be merged into both staging and feature branches to keep them up-to-date.
+The `preview` branch is a dead-end branch; it should never get merged back into `master` or any other branch. It's purpose is to review changes to feature/bugfix branches before they get merged into `master`. The `preview` branch should always have a superset of the commits that are in `master`.
+
+Periodically the `preview` branch will need to get cleaned up and reset to `master` (via `git checkout preview && git reset --hard master && git push -f`). When this is done, make sure that any open pull request branches get re-merged into `preview`.
 
 ###### Complex Feature Branches
 
