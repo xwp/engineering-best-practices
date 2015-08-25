@@ -6,11 +6,17 @@ The [most popular](http://www.sitepoint.com/best-php-ide-2014-survey-results/) P
 
 <h3 id="local-development">Local Development Environments</h3>
 
-We use [Vagrant](https://www.vagrantup.com/) to build and interact with virtual environments that match production as closely as possible. There are many different Vagrant setups and configurations available. The following setups are the only ones we support internally.
+When starting out, many developers edit PHP files on their local machine and then upload the changes via FTP to their production site to test. This is bad. A slightly better workflow is to have a separate staging server to upload changes to and test there. This is less bad, but still not good. Both of these are examples of cowboy coding.
 
-[Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV) - Our standard Vagrant setup for client sites and local development.
+Proper development workflow is always centered around version control. Code being deployed to a shared environment must always be first committed to version control or else risk being lost or overwritten. In order to test code without first having to commit it, it is essential for all developers to have a local development environment: a web server and database running locally.
 
-[VIP Quickstart](https://github.com/Automattic/vip-quickstart) - A Vagrant setup meant to closely match the WordPress.com VIP environment. If you are working on a VIP project, it is good to have this installed to effectively test your website locally. We only recommend this Vagrant setup for VIP projects.
+There are a variety of solutions out there to get a local development environment up and running (e.g. MAMP and XAMPP), but we've found that [Vagrant](https://www.vagrantup.com/) is a far superior solution. We use Vagrant to build and interact with virtual environments that match production as closely as possible: it allows you to run a Linux server on your Windows or Mac, along with Nginx/Apache, PHP, MySQL, Memcached, etc. There are many different Vagrant setups and configurations available. The following setups are the only ones we support internally:
+
+* [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV) - Our standard Vagrant setup for client sites and local development.
+
+* [VIP Quickstart](https://github.com/Automattic/vip-quickstart) - A Vagrant setup meant to closely match the WordPress.com VIP environment. If you are working on a VIP project, it is good to have this installed to effectively test your website locally. We only recommend this Vagrant setup for VIP projects.
+
+
 
 <h3 id="task-runners">Task Runners {% include Util/top %}</h3>
 
