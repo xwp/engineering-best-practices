@@ -63,11 +63,7 @@ updated: Q3 2015
 	</div>
 
 	<div class="col">
-		<h3><a href="{{ HOME_PATH }}version-control/#top">Version Control</a></h3>
-		<ul>
-			<li><a href="{{ HOME_PATH }}version-control/#structure">Structure</a></li>
-			<li><a href="{{ HOME_PATH }}version-control/#workflows">Workflows</a></li>
-		</ul>
+		<h3><a href="{{ HOME_PATH }}workflows/#top">Workflows</a></h3>
 	</div>
 
 	<div class="col">

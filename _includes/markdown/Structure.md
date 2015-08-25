@@ -60,7 +60,7 @@ Any functions the plugin exposes for use in a theme should be done so through ac
 
 #### General Notes
 
-Every project, whether it includes Composer-managed dependencies or not, _must_ contain a `composer.json` file defining the project so it can in turn be pulled in to _other_ projects via Composer.  For example:
+Every project, whether it includes Composer-managed dependencies or not, _should_ contain a `composer.json` file defining the project so it can in turn be pulled in to _other_ projects via Composer.  For example:
 
 ```json
 {
@@ -90,6 +90,14 @@ Projects generally use three different classes of dependency management:
 Generally, dependencies pulled in via a manager are _not_ committed to the repository, just the `.json` file defining the dependencies. This allows all developers involved to pull down local copies of each library as needed, and keeps the repository fairly clean.
 
 With some projects, using an automated dependency manager won't make sense. In server environments like VIP, running dependency software on the server is impossible. If required repositories are private (i.e. invisible to the clients' in-house developers), expecting the entire team to use a dependency manager is unreasonable. In these cases, the dependency, its version, and the reason for its inclusion in the project outside of a dependency manager should be documented.
+
+#### Versioning
+
+(*XWP Note:* We actually usually do version-control our external libraries, as this makes it easier to keep track of the external dependencies during testing and to manage the production deployments. )
+
+The key philosophy that drives our repository structure is *we don't version control things that are version controlled elsewhere*. This means we don't version control WordPress core files or third party plugins. If we are building a theme, we version control only the theme and deploy to the themes directory. Similarly, if we are building a plugin, we version control only the plugin and deploy to the plugins directory. Rather than version control third party libraries, we use [package managers](/Engineering-Best-Practices/tools/#package-managers) to include those dependencies. There are of course exceptions to this.
+
+The counter argument to this philosophy is "what if the latest version of ______ breaks the site? How will we revert to a working state if we don't version control WordPress core and plugins?". WordPress core is backwards compatible, and we believe in trusting it the same way we trust PHP or MySQL. Similarly, we only install and recommend plugins that we trust. These best practices coupled with our talented engineers gives us confidence that our code will work with core and plugin updates. We still test major updates to plugins and core on staging first. If we discover code in core or a plugin that has issues, we try our best to correct that code and push the changes upstream giving back to the open source community.
 
 <h3 id="file-organization">File Organization {% include Util/top %}</h3>
 
