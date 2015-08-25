@@ -26,7 +26,14 @@ We use [Vagrant](https://www.vagrantup.com/) to build and interact with virtual 
 
 <h3 id="version-control">Version Control {% include Util/top %}</h3>
 
-[Git](http://git-scm.com) - We use Git for version control. We encourage people to use the command line for interacting with Git. GUI’s are permitted but will not be supported internally.
+[Git](http://git-scm.com) - We use Git for version control. It is _critical_ that you are comfortable with Git: read [the book](https://git-scm.com/book/en/v2)! We encourage people to use the command line for interacting with Git. GUI’s are permitted but will not be supported internally. For more information on Git:
+
+* [Hello World | GitHub Guides](https://guides.github.com/activities/hello-world/)
+* [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
+* [Forking Projects | GitHub Guides](https://guides.github.com/activities/forking/)
+* [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
+
+[GitHub](https://github.com/) & [BitBucket](https://bitbucket.org/) - Our Git repos are primarily hosted in projects on GitHub, though some clients use BitBucket (or Stash). The pull request is the fundamental tool that these services provide which allows for code to be peer reviewed and for automated checks to be performed (via Travis CI). They also provide webooks so that we can automate deployments to our preview environments and notify our Slack channels of activity.
 
 [SVN](https://subversion.apache.org/) - We use SVN, but only in the context of WordPress.com VIP. Again, we encourage people to use the command line as we do not support GUI's internally.
 
