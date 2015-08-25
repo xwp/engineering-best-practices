@@ -28,7 +28,9 @@ Any functions the plugin exposes for use in a theme should be done so through ac
 
 #### General Notes
 
-Every project, whether it includes Composer-managed dependencies or not, _should_ contain a `composer.json` file defining the project so it can in turn be pulled in to _other_ projects via Composer.  For example:
+Each theme/plugin/site repo should include a copy of the [wp-dev-lib](https://github.com/xwp/wp-dev-lib) submodule, along with the config files for PHPCS, JSHint, JSCS, Travis CI, and other tools. Follow the [readme](https://github.com/xwp/wp-dev-lib#readme) for installation and configuration instructions.
+
+Every project, whether it includes Composer-managed dependencies or not, can contain a `composer.json` file defining the project so it can in turn be pulled in to other projects via Composer.  For example:
 
 ```json
 {
