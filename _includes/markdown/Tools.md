@@ -10,7 +10,9 @@ We use [Vagrant](https://www.vagrantup.com/) to build and interact with virtual 
 
 <h3 id="task-runners">Task Runners {% include Util/top %}</h3>
 
-[Grunt](http://gruntjs.com/) - Grunt is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification. Grunt is the only taskrunner we currently use on company and client projects.
+[Grunt](http://gruntjs.com/) - Grunt is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification.
+
+[Gulp](http://gulpjs.com/) - Another task runner also built on Node which is a newer alternative to Grunt. See [comparison](https://medium.com/@preslavrachev/gulp-vs-grunt-why-one-why-the-other-f5d3b398edc4).
 
 <h3 id="package-managers">Package/Dependency Managers</h3>
 
