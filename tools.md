@@ -6,6 +6,8 @@ group: navigation
 weight: 2
 layout: default
 subnav:
+  - title: Editors
+    tag: editors
   - title: Local Development Environments
     tag: local-development
   - title: Task Runners

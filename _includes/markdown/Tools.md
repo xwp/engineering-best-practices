@@ -1,5 +1,9 @@
 The following are the tools we use. This list will grow and change over time and is not meant to be comprehensive. Generally, we encourage or require these tools to be used in favor of other ones. Rules governing tools to be used and packaged with a client site will be much stricter than those used on internal projects.
 
+<h3 id="editors">Editors (IDEs)</h3>
+
+The [most popular](http://www.sitepoint.com/best-php-ide-2014-survey-results/) PHP editor (IDE) is [PhpStorm](https://www.jetbrains.com/phpstorm/). It also has extensive support for JavaScript, CSS, HTML, Twig, and (with a plugin) Bash. We highly recommend adopting PhpStorm as well for consistency across our team and so that we can collaborate on optimal configuration and maximizing the features.
+
 <h3 id="local-development">Local Development Environments</h3>
 
 We use [Vagrant](https://www.vagrantup.com/) to build and interact with virtual environments that match production as closely as possible. There are many different Vagrant setups and configurations available. The following setups are the only ones we support internally.
