@@ -44,19 +44,31 @@ The location where other engineers can retrieve developer API keys (i.e. Basecam
 
 <h3 id="modular-code">Modular Code</h3>
 
-Every project, whether a plugin a theme or a standalone library, should be coded to be reusable and modular.
-
-#### Plugins
-
-If the code for a project is split off into a functionality plugin, it should be done in such a way that the theme can function when the functionality plugin is disabled, broken, or missing. Each plugin should operate within its own namespace, both in terms of code isolation and in terms of internationalization.
-
-Any functions the plugin exposes for use in a theme should be done so through actions and filters - the plugin should contain multiple calls to `add_filter()` and `add_action()` as the hooks themselves will be defined in the theme.
+Every project-whether a plugin, a theme, or a standalone library—should be coded to be reusable and modular. The line between a theme and a plugin is often fuzzy in the WordPress community, but there should be a clear distinction between the two.
 
 #### Themes
 
- Any theme dependencies on functionality plugins should be built with the use of `do_action()` or `apply_filters()`.
+Themes should only handle presentation: templates, layouts, styles, and configuration (registering sidebars, menu locations, theme support, etc).
 
-**In short,** changing to the default theme should not trigger errors on a site. Nor should disabling a functionality plugin - every piece of code should be decoupled and use standard WordPress paradigms (hooks) for interacting with one another.
+Any site-specific configuration that isn't directly related to a theme should go into a site-specific plugin (e.g. a `mu-plugin`). This doesn't apply to sites on WordPress.com VIP, plugins are usually bundled with the theme and `mu-plugin`s aren't supported.
+
+Any theme dependencies on functionality plugins should be built with the use of `do_action()` or `apply_filters()`. Changing to the default theme should not trigger errors on a site; the theme can function when the functionality plugin is disabled, broken, or missing. Nor should disabling a functionality plugin - every piece of code should be decoupled and use standard WordPress paradigms (hooks) for interacting with one another.
+
+Any logic in the theme's `functions.php` should be simple and directly related to presentation; any other logic should be put into a plugin (e.g. post types, taxonomies, rewrite rules).
+
+#### Plugins
+
+A site's custom functionality should be provided by plugins. Plugins should be as generic and reusable as possible. Plugins should do one thing and do them well.
+
+Each plugin should operate within its own namespace, both in terms of code isolation and in terms of internationalization.
+
+Any site-specific configuration for a plugin should be added to a special `mu-plugin` that is specifically designated for this purpose.
+
+Plugins should be standalone yet extensible. Plugins should provide extension hooks that allow other plugins to build upon their functionality. As such, plugins can have dependencies, although they should not cause an error if activated without the dependent plugin being active.
+
+Plugins should have unit tests.
+
+Any functions the plugin exposes for use in a theme should be done so through actions and filters - the plugin should contain multiple calls to `add_filter()` and `add_action()` as the hooks themselves will be defined in the theme.
 
 #### General Notes
 
