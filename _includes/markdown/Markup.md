@@ -17,6 +17,9 @@ Websites should be written using the least amount of markup that accomplishes th
 
 We test our markup against the [W3C validator](http://validator.w3.org/) to ensure that it is well formed and provides a fairly consistent experience across browsers.
 
+#### Following WordPress Standards
+
+WordPress Core has [coding standards for HTML](https://make.wordpress.org/core/handbook/best-practices/coding-standards/html/). These should be followed for consistency across projects.
 
 #### Optimize Readability
 We often work with large codebases. As such, it's important to optimize markup for human readability. This allows developers to quickly rotate in and out of projects, eases onboarding processes, and improves code maintainability.

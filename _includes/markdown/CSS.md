@@ -8,6 +8,10 @@ Our websites are built mobile first, using performant CSS. Well structured CSS y
 
 Syntax and formatting are keys to a maintainable project. By keeping our code style consistent, we not only help ourselves debug faster but we're also lessening the burden on those who will have to maintain our code (maybe ourselves too!)
 
+#### Following WordPress Standards
+
+WordPress Core has [coding standards for CSS](https://make.wordpress.org/core/handbook/best-practices/coding-standards/css/). These should be followed for consistency across projects.
+
 #### CSS Syntax
 
 CSS syntax is not strict and will accept a lot of variations, but for the sake of legibility and fast debugging, we follow basic code styles:
