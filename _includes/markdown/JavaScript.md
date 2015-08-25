@@ -4,7 +4,7 @@ Writing performant code is absolutely critical. Poorly written JavaScript can si
 
 #### Only Load Libraries You Need
 
-JavaScript libraries should only be loaded on the page when needed. jquery-1.11.1.min.js is 96 KB. This isn't a huge deal on desktop but can add up quickly on mobile when we start adding a bunch of libraries. Loading a large number of libraries also increases the chance of conflictions.
+JavaScript libraries should only be loaded on the page when needed. `jquery-1.11.1.min.js` is 96 KB. This isn't a huge deal on desktop but can add up quickly on mobile when we start adding a bunch of libraries. Loading a large number of libraries also increases the chance of conflicts.
 
 #### Use jQuery Wisely
 
@@ -171,9 +171,11 @@ We conform to [WordPress JavaScript coding standards](http://make.wordpress.org/
 
 We conform to the [WordPress JavaScript Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/).
 
+Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate checks for coding standards violations. Include the [`.jshintrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jshintrc) and [`.jscsrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jscsrc) from [wp-dev-lib](https://github.com/xwp/wp-dev-lib)into your theme/plugin/site repo to configure these linters; these tools can then be run automatically by the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook and [Travis CI build](https://github.com/xwp/wp-dev-lib#travis).
+
 <h3 id="unit-and-integration-testing">Unit and Integration Testing {% include Util/top %}</h3>
 
-We generally employ unit and integration tests only when building applications that are meant to be distributed. Writing tests for client themes usually does not offer a huge amount of value (there are of course exceptions to this). When we do write tests, we use [Mocha](http://mochajs.org).
+We generally employ unit and integration tests only when building applications that are meant to be distributed. Writing tests for client themes usually does not offer a huge amount of value (there are of course exceptions to this).
 
 <h3 id="libraries">Libraries {% include Util/top %}</h3>
 

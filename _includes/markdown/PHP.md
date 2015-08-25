@@ -618,9 +618,9 @@ if ( ! empty( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'my_a
 
 <h3 id="code-style">Code Style & Documentation {% include Util/top %}</h3>
 
-We follow the official WordPress [coding](http://make.wordpress.org/core/handbook/coding-standards/php/) and [documentation](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/) standards. The [WordPress Coding Standards for PHP_CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) will find many common violations and flag risky code for manual review.
+We follow the official WordPress [coding](http://make.wordpress.org/core/handbook/coding-standards/php/) and [documentation](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/) standards. The [WordPress Coding Standards for PHP_CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) will find many common violations and flag risky code for manual review. Note that there are pre-defined standards for `WordPress-Core`, `WordPress-VIP`, `WordPress-Docs` and a grab bag in `WordPress-Extra`. You will probably want to customize the PHPCS ruleset for your project: [wp-dev-lib](https://github.com/xwp/wp-dev-lib) will look for a `phpcs.ruleset.xml` to use for the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook and [Travis CI build](https://github.com/xwp/wp-dev-lib#travis).
 
-That said, we highly value verbose commenting/documentation throughout any/all code, with an emphasis on docblock long descriptions which state 'why' the code is there and 'what' exactly the code does in human-readable prose. As a general rule of thumb; a manager should be able to grok your code by simply reading the docblock and inline comments.
+We highly value verbose commenting/documentation throughout any/all code, with an emphasis on docblock long descriptions which state 'why' the code is there and 'what' exactly the code does in human-readable prose. That being said, well-written code should also speak for itself, especially of methods are broken down into their smaller (testable) logical units. [Unit tests](#unit-testing) also provide an opportunity to write documentation in the form of working examples (or intentionally non-working examples).
 
 Example:
 
