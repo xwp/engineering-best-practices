@@ -675,11 +675,59 @@ function protect_post_meta( $protected, $current_meta_key ) {
 
 Unit testing is the automated testing of units of source code against certain assertions. The goal of unit testing is to write test cases with assertions that test if a unit of code is truly working as intended. If an assertion fails, a potential issue is exposed, and code needs to be revised.
 
-By definition, unit tests do not have dependencies on outside systems; in other words, only your code (a single unit of code) is being tested. Integration testing works similarly to unit tests but assumptions are tested against systems of code, moving parts, or an entire application. The phrases unit testing and integration testing are often misused to reference one another especially in the context of WordPress.
+By definition, unit tests do not have dependencies on outside systems; in other words, only your code (a single unit of code) is being tested. Integration testing works similarly to unit tests but assumptions are tested against systems of code, moving parts, or an entire application. The phrases unit testing and integration testing are often misused to reference one another especially in the context of WordPress, since the PHPUnit tests in WordPress itself are a mix of unit and integration tests.
 
-We generally employ unit and integration tests only when building applications that are meant to be distributed. Building tests for client themes does usually not offer a huge amount of value (there are of course exceptions to this). When we do write tests, we use PHPUnit which is the WordPress standard library.
+Unit tests should be written for all plugins, whether they are for public distribution or for private client projects. As noted in [modular code](/structure/#modular-code), themes should be devoid of functional logic and so they are not applicable for unit tests.
 
-Read more at the [PHPUnit homepage](https://phpunit.de/) and [automated testing for WordPress](http://make.wordpress.org/core/handbook/automated-testing/)
+Read more at the [PHPUnit homepage](https://phpunit.de/) and [automated testing for WordPress](http://make.wordpress.org/core/handbook/automated-testing/).
+
+The [wp-dev-lib](https://github.com/xwp/wp-dev-lib) project includes a PHPUnit [bootstrap](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin-bootstrap.php) and [`phpunit.xml`](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin.xml) for plugins which facilitates writing tests in the VIP Quickstart environment for WordPress.com.
+
+It is always a challenge to ensure that unit tests have complete testing coverage for a plugin. It is often not worthwhile to require 100% coverage, but rather to focus on testing the key parts of the plugin's logic (as opposed to testing basic things like metabox registration).
+
+Since a plugin's PHP code should be comprised of classes, a convenient way to organize PHPUnit tests is to have *one test case class per plugin class, and one (at least) test method per plugin class method*. Use the plugin class and method in the naming for the unit test class and test method, also including the a PhpDoc `@see` tag to explicitly list out the method that is being tested. For instance, given a plugin `Foo` that has a class `Bar` in a file `php/class-bar.php`:
+
+```php
+<?php
+namespace Foo;
+
+class Bar {
+
+	/**
+	 * @return int
+	 */
+	public function baz() {
+		/* ... */
+		return $quux;
+	}
+}
+```
+
+This can have a corresponding unit test case in `tests/test-bar.php`:
+
+```php
+<?php
+namespace Foo;
+
+class Test_Bar extends  \WP_UnitTestCase {
+
+	/**
+	 * @see Bar::baz()
+	 */
+	function test_baz() {
+		$foo = new Foo();
+		$this->assertInternalType( 'int', $foo->baz() );
+		// ...
+	}
+
+}
+```
+
+In addition to organizing unit tests with this class/method correspondence, PHPUnit itself has powerful code coverage analytics that it can generate in a beautiful report (for example, see the [Customizer unit test report](http://xwp.github.io/wp-customize-tests/dashboard.html)). The wp-dev-lib `phpunit.xml` also includes a `filter` configuration for restricting the list of PHP files to just those in the plugin when running the code coverage report which can be generated via:
+
+```bash
+phpunit --coverage-html code-coverage-report/
+```
 
 <h3 id="libraries">Libraries and Frameworks {% include Util/top %}</h3>
 
