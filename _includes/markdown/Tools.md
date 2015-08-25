@@ -33,12 +33,26 @@ We use [Vagrant](https://www.vagrantup.com/) to build and interact with virtual 
 * [Forking Projects | GitHub Guides](https://guides.github.com/activities/forking/)
 * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
-[GitHub](https://github.com/) & [BitBucket](https://bitbucket.org/) - Our Git repos are primarily hosted in projects on GitHub, though some clients use BitBucket (or Stash). The pull request is the fundamental tool that these services provide which allows for code to be peer reviewed and for automated checks to be performed (via Travis CI). They also provide webooks so that we can automate deployments to our preview environments and notify our Slack channels of activity.
+[GitHub](https://github.com/) & [BitBucket](https://bitbucket.org/) - Our Git repos are primarily hosted in projects on GitHub, though some clients use BitBucket (or Stash). The pull request is the fundamental tool that these services provide which allows for code to be peer reviewed and for automated checks to be performed (via Travis CI). They also provide webhooks so that we can automate deployments to our preview environments and notify our Slack channels of activity.
 
 [SVN](https://subversion.apache.org/) - We use SVN, but only in the context of WordPress.com VIP. Again, we encourage people to use the command line as we do not support GUI's internally.
 
-<h3 id="command-line">Command Line Tools</h3>
+<h3 id="command-line">Command Line</h3>
 
-[WP-CLI](http://wp-cli.org) - A command line interface for WordPress. This is an extremely powerful tool that allows us to do imports, exports, run custom scripts, and more via the command line. Often this is the only way we can affect a large database (WordPress.com VIP or WPEngine). This tool is installed by default on VVV and VIP Quickstart.
+The mouse is the enemy. The book [Pragmatic Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer) highlights the inefficiencies of interacting with a computer via a mouse. A workflow can be drastically sped up via keyboard commands. But think beyond “keyboard shortcuts” and the convoluted finger gymnastics they often involve (Ctrl-Alt-Command-Shift-A…). Think instead about the code you might write from your keyboard every day in PHP:
+
+```php
+wp_insert_post( array( 'post_title' => 'Hello World' ) );
+```
+
+These commands are articulated in computer language, here interpreted by PHP. It's not really optimized, however, for repetitive commands you write over and over and over again. Another language is, however: Bash. When you open your computer's Terminal (e.g. [iTerm2](http://iterm2.com/)) you are being dropped onto a Bash prompt: an interpreter for code written in the Bash programming language.
+
+```bash
+git commit -m "First commit"
+```
+
+When all of your instructions are composed of commands that are read by an interpreter like PHP or Bash, then you can turn your little commands into scripts to automate your repetitive tasks, such as setting up a whole brand new WordPress install, or syncing a database down from production and translating its hostnames.
+
+For WordPress, there is a de facto tool for interfacing with WP from the command line: [WP-CLI](http://wp-cli.org). Becoming familiar with the commands available, and even writing your own commands, can greatly speed up your development workflow and allow you to script tasks for others to run without having to share a long complicated set of manual instructions. This is an extremely powerful tool that allows us to do imports, exports, run custom scripts, and more via the command line. Often this is the only way we can affect a large database (WordPress.com VIP or WPEngine). This tool is installed by default on VVV and VIP Quickstart.
 
 
