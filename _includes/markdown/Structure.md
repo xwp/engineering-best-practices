@@ -12,6 +12,8 @@ Any theme dependencies on functionality plugins should be built with the use of 
 
 Any logic in the theme's `functions.php` should be simple and directly related to presentation; any other logic should be put into a plugin (e.g. post types, taxonomies, rewrite rules).
 
+Take a look at our [Config-Driven WP](https://github.com/xwp/config-driven-wp) project for some (dated) examples for a common approach we take for normalizing the theme's configuration into a [`config.php`](https://github.com/xwp/config-driven-wp/blob/master/docroot/wp-content/themes/radio/config.php) array which then be cleanly merged with a child theme's configuration array.
+
 #### Plugins
 
 A site's custom functionality should be provided by plugins. Plugins should be as generic and reusable as possible. Plugins should do one thing and do them well.
@@ -25,6 +27,8 @@ Plugins should be standalone yet extensible. Plugins should provide extension ho
 Plugins should have unit tests.
 
 Any functions the plugin exposes for use in a theme should be done so through actions and filters - the plugin should contain multiple calls to `add_filter()` and `add_action()` as the hooks themselves will be defined in the theme.
+
+Use our [`wp-foo-bar`](https://github.com/xwp/wp-foo-ba) plugin scaffold for initializing new plugins.
 
 #### General Notes
 
