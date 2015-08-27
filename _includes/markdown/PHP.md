@@ -683,7 +683,9 @@ Unit tests should be written for all plugins, whether they are for public distri
 
 Read more at the [PHPUnit homepage](https://phpunit.de/) and [automated testing for WordPress](http://make.wordpress.org/core/handbook/automated-testing/).
 
-The [wp-dev-lib](https://github.com/xwp/wp-dev-lib) project includes a PHPUnit [bootstrap](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin-bootstrap.php) and [`phpunit.xml`](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin.xml) for plugins which facilitates writing tests in the VIP Quickstart environment for WordPress.com.
+The [wp-dev-lib](https://github.com/xwp/wp-dev-lib) project includes a PHPUnit [bootstrap](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin-bootstrap.php) and [`phpunit.xml`](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin.xml) for plugins which facilitates writing tests in the VIP Quickstart environment for WordPress.com. The [`pre-commit` hook](https://github.com/xwp/wp-dev-lib/blob/master/pre-commit) should be installed so that PHPUnit can run whenever a commit is made (note this can be bypassed via the `--no-verify` arg to `git-commit`). Travis CI should also be configured to automatically run the PHPUnit tests for the code in the pull request so that GitHub can indicate whether the tests pass.
+
+Write your plugins in a way that makes them testable. This means organizing your plugin into classes that incorporate the dependency injection pattern. Write methods that are small as possible, that do one thing and do it well. Shy away interacting with global variables. A functions should be a black box that takes an input and returns an output. You can then test the outputs for any given inputs.
 
 It is always a challenge to ensure that unit tests have complete testing coverage for a plugin. It is often not worthwhile to require 100% coverage, but rather to focus on testing the key parts of the plugin's logic (as opposed to testing basic things like metabox registration).
 
