@@ -2,6 +2,13 @@
 
 Writing performant code is absolutely critical, especially at the enterprise level. There are a number of strategies and best practices we must employ to ensure our code is optimized for high-traffic situations.
 
+There are drastically different constraints when developing a high-traffic Enterprise-scale WordPress site as opposed to a site for a small business hosted on a shared server. High-performance WordPress code imposes additional constraints on what you can and cannot do, and forces you to find optimization paths for your code. A lot of good resources for getting up to speed on Enterprise-scale WordPress development can be found on the [WordPress.com VIP docs](http://vip.wordpress.com/documentation/), since VIP is focused on very high scale WordPress sites:
+
+* [Caching | WordPress VIP Docs](http://vip.wordpress.com/documentation/caching/)
+* [Code Review: What We Look For | WordPress VIP Docs](http://vip.wordpress.com/documentation/code-review-what-we-look-for/)
+* [Best Practices | WordPress VIP Docs](http://vip.wordpress.com/documentation/best-practices/)
+* [VIP Developer Orientation](http://vip.wordpress.com/2014/07/10/vip-developer-orientation/)
+
 #### Efficient Database Queries
 
 When querying the database in WordPress, you should generally use a [```WP_Query```](http://codex.wordpress.org/Class_Reference/WP_Query) object. ```WP_Query``` objects take a number of useful arguments and do things behind-the-scenes that other database access methods such as [```get_posts()```](https://developer.wordpress.org/reference/functions/get_posts/) do not.
