@@ -433,6 +433,7 @@ In terms of [Object-Oriented Programming](http://en.wikipedia.org/wiki/Object-or
 #### Structure and Patterns
 
 * Use our [`wp-foo-bar`](https://github.com/xwp/wp-foo-ba) plugin scaffold for initializing new plugins.
+* Use the dependency injection pattern in your plugin's object-oriented architecture.
 * Put all plugin PHP code inside of a `php` directory. All plugin code should be encapsulated in classes, and so each file in this directory should follow the pattern `class-foo-bar.php` (for class `Foo_Bar`) according to WordPress naming conventions.
 * Singletons are not advised. There is little justification for this pattern in practice and they cause more maintainability problems than they fix.
 * Class inheritance should be used where possible to produce [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself) code and share previously-developed components throughout the application.
