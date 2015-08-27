@@ -687,7 +687,7 @@ Unit testing is the automated testing of units of source code against certain as
 
 By definition, unit tests do not have dependencies on outside systems; in other words, only your code (a single unit of code) is being tested. Integration testing works similarly to unit tests but assumptions are tested against systems of code, moving parts, or an entire application. The phrases unit testing and integration testing are often misused to reference one another especially in the context of WordPress, since the PHPUnit tests in WordPress itself are a mix of unit and integration tests.
 
-Unit tests should be written for all plugins, whether they are for public distribution or for private client projects. As noted in [modular code](/structure/#modular-code), themes should be devoid of functional logic and so they are not applicable for unit tests.
+Unit tests should be written for all plugins, whether they are for public distribution or for private client projects. As noted in [modular code](../structure/#modular-code), themes should be devoid of functional logic and so they are not applicable for unit tests.
 
 Read more at the [PHPUnit homepage](https://phpunit.de/) and [automated testing for WordPress](http://make.wordpress.org/core/handbook/automated-testing/).
 
@@ -740,6 +740,8 @@ In addition to organizing unit tests with this class/method correspondence, PHPU
 ```bash
 phpunit --coverage-html code-coverage-report/
 ```
+
+See also [JS Unit Testing](../javascript/#unit-and-integration-testing).
 
 <h3 id="libraries">Libraries and Frameworks {% include Util/top %}</h3>
 

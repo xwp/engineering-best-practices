@@ -175,7 +175,9 @@ Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate check
 
 <h3 id="unit-and-integration-testing">Unit and Integration Testing {% include Util/top %}</h3>
 
-We generally employ unit and integration tests only when building applications that are meant to be distributed. Writing tests for client themes usually does not offer a huge amount of value (there are of course exceptions to this).
+WordPress Core uses QUnit as its unit testing framework. The maturity of the QUnit tests in Core are far removed from the PHPUnit tests as JavaScript has only recently started to take a first-row seat in WordPress's codebase. Since it is used by WordPress Core, we recommend using QUnit for writing JS unit tests for plugins. For more information, see the related [Make/Core post](https://make.wordpress.org/core/2013/09/13/javascript-unit-tests-for-core/).
+
+For more information on unit testing in general and specfiic recommendations for PHP unit tests, see [PHP Unit Testing](../php/#unit-testing).
 
 <h3 id="libraries">Libraries {% include Util/top %}</h3>
 
