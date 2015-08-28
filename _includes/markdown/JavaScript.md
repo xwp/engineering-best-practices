@@ -105,7 +105,7 @@ jQuery( '#menu' ).on( 'click', 'li', function() {
 
 The non-jQuery method is as usual [more performant](http://jsperf.com/jquery-vs-non-jquery-event-delegation). You may be wondering why we don't just add one listener to ```<body>``` for all our events. Well, we want the event to *bubble up the DOM as little as possible* for [performance reasons](http://jsperf.com/event-delegation-distance). This would also be pretty messy code to write.
 
-<h3 id="design-patterns">Design Patterns {% include Util/top %}</h3>
+### Design Patterns
 
 Standardizing the way we structure our JavaScript allows us to collaborate more effectively with one another. Using intelligent design patterns improves maintainability, code readability, and even helps to prevent bugs.
 
@@ -165,7 +165,7 @@ jQuery( '.menu' ).on( 'click', function() {
 Another example in JavaScript is ```escape()``` and ```unescape()```. These functions were deprecated. Instead we should use ```encodeURI()```, ```encodeURIComponent()```, ```decodeURI()```, and ```decodeURIComponent()```.
 
 
-<h3 id="code-style">Code Style & Documentation {% include Util/top %}</h3>
+### Code Style & Documentation
 
 We conform to [WordPress JavaScript coding standards](http://make.wordpress.org/core/handbook/coding-standards/javascript/).
 
@@ -173,13 +173,13 @@ We conform to the [WordPress JavaScript Documentation Standards](https://make.wo
 
 Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate checks for coding standards violations; note that JSCS also supports [automatically-fixing](http://jscs.info/overview#cli) some of the issues it identifies. Include the [`.jshintrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jshintrc) and [`.jscsrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jscsrc) from [wp-dev-lib](https://github.com/xwp/wp-dev-lib) into your theme/plugin/site repo to configure these linters; these tools can then be run automatically by the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook and [Travis CI build](https://github.com/xwp/wp-dev-lib#travis).
 
-<h3 id="unit-and-integration-testing">Unit and Integration Testing {% include Util/top %}</h3>
+### Unit and Integration Testing
 
 WordPress Core uses QUnit as its unit testing framework. The maturity of the QUnit tests in Core are far removed from the PHPUnit tests as JavaScript has only recently started to take a first-row seat in WordPress's codebase. Since it is used by WordPress Core, we recommend using QUnit for writing JS unit tests for plugins. For more information, see the related [Make/Core post](https://make.wordpress.org/core/2013/09/13/javascript-unit-tests-for-core/).
 
 For more information see the see the [workflows section on unit testing](../workflows/#unit-and-integration-testing), and see also [PHP Unit Testing](../php/#unit-testing).
 
-<h3 id="libraries">Libraries {% include Util/top %}</h3>
+### Libraries
 
 There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of commonly-used libraries used:
 

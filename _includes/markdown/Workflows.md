@@ -1,6 +1,6 @@
 We consider standardizing a workflow to be a very important part of the development process. Utilizing an effective workflow ensures efficient collaboration and quicker project onboarding. For this reason we use the following workflows company-wide both for internal and client projects.
 
-<h3 id="automated-testing">Automated Testing {% include Util/top %}</h3>
+### Automated Testing
 
 The number one line of defense for good quality code that adheres to best practices and coding standards is *automated testing*. Your code must adhere to the coding standards for [PHP](../php/#code-style), [JS](../javascript/#code-style), [HTML](../markup/), and [CSS](../css/#syntax-formatting)
 
@@ -31,7 +31,7 @@ Write your (plugin) code in a way that makes it testable. It is much easier to w
 
 It is always a challenge to ensure that unit tests have complete testing coverage for a plugin. It is often not worthwhile to require 100% coverage, but rather to focus on testing the key parts of the plugin's logic (as opposed to testing basic things like metabox registration).
 
-<h3 id="code-review">Code Review {% include Util/top %}</h3>
+### Code Review
 
 Nobody is perfect. Even the most experienced engineer can forget some detail. We try to mitigate this as much as possible with [automated testing](#automated-testing), but code checkers can only catch low-hanging fruit. A fellow engineer is really needed to do a review of the changes before it gets sent along for QA and the client. With a fresh pair of eyes, a peer code reviewer can easily spot things that don't make sense or implementations that don't satisfy the requirements as stated in the issue being addressed (e.g. in JIRA), as interpreted by the reviewer.
 
@@ -49,7 +49,7 @@ Since we are a distributed team working across many timezones, we have the advan
 
 This does not mean that pull requests should not be opened before they are in a mergable state. Not at all. It is very good to *open your PRs early*, but leave them unassigned and marked as WIP (work in progress): this WIP PR provides a way for the engineer to solicit feedback during development to make sure they are going down the right track.
 
-<h3 id="qa">QA {% include Util/top %}</h3>
+### QA
 
 Since developers have a [local development environment](../tools/#local-development) powered by Vagrant, code reviewers will be able to QA of the changes on their machines with confidence that it will work properly if pushed directly to production (with the big caveat that the content from the production database probably wouldn't be used in testing).
 
@@ -65,7 +65,7 @@ Again, the `preview` branch is a dead-end branch; it should never get merged bac
 
 For sites hosted on *Pantheon*, this is part of the [their platform](https://pantheon.io/docs/articles/sites/code/using-the-pantheon-workflow/): all sites have a dev environment, test (preview/staging) environment, and live (production) environment. We still house our Pantheon site projects on GitHub, but [configure Travis CI](https://github.com/xwp/pantheon-wordpress-upstream/blob/master/.travis.yml) to automatically push code from GitHub to the Pantheon dev environment after Travis CI passes all of the [code checks](../tools/#code-checkers) (in `after_success`). We can also set up Travis CI to automatically pick up pushes to the `preview` branch and push them to a Pantheon `preview` [multidev environment](https://pantheon.io/docs/articles/sites/multidev/), which will allow us to keep features from being merged into `master` before they have passed QA.
 
-<h3 id="version-control">Version Control {% include Util/top %}</h3>
+### Version Control
 
 We version control all projects using [Git](http://git-scm.com/). Version control allows us to track codebase history, maintain parallel tracks of development, and collaborate without stomping out each others changes.
 

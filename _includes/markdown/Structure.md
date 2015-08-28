@@ -1,4 +1,4 @@
-<h3 id="modular-code">Modular Code</h3>
+### Modular Code
 
 Every project-whether a plugin, a theme, or a standalone library—should be coded to be reusable and modular. The line between a theme and a plugin is often fuzzy in the WordPress community, but there should be a clear distinction between the two.
 
@@ -53,7 +53,7 @@ Every project, whether it includes Composer-managed dependencies or not, can con
 
 When code is being reused between projects, it should be abstracted into a standalone library that those projects can pull in through Composer. Generally, code is client- or project-specific, but if it's abstract enough to be reused we want to capture that and maintain the code in one place rather than copy-pasting it between repositories.
 
-<h3 id="dependencies">Dependencies {% include Util/top %}</h3>
+### Dependencies
 
 Projects generally use three different classes of dependency management:
 
@@ -73,7 +73,7 @@ The key philosophy that drives our repository structure is *we don't version con
 
 The counter argument to this philosophy is "what if the latest version of ______ breaks the site? How will we revert to a working state if we don't version control WordPress core and plugins?". WordPress core is backwards compatible, and we believe in trusting it the same way we trust PHP or MySQL. Similarly, we only install and recommend plugins that we trust. These best practices coupled with our talented engineers gives us confidence that our code will work with core and plugin updates. We still test major updates to plugins and core on staging first. If we discover code in core or a plugin that has issues, we try our best to correct that code and push the changes upstream giving back to the open source community.
 
-<h3 id="file-organization">File Organization {% include Util/top %}</h3>
+### File Organization
 
 Project structure unity across projects improves engineering efficiency and maintainability. We believe the following structure is segmented enough to keep projects organized—and thus maintainable—but also flexible and open ended enough to enable engineers to comfortably modify as necessary. All projects should derive from this structure:
 
@@ -137,7 +137,7 @@ The `scss` folder is described seperately, below to improve readability:
 |  |- editor-styles.scss
 ```
 
-<h3 id="integrations">Third-Party Integrations</h3>
+### Third-Party Integrations
 
 Any and all third-party integrations need to be documented in an `INTEGRATIONS.md` file at the root of the project repository. This file includes a list of third-party services, which components of the project those services power, how the project interacts with the remote APIs, and when the interaction is triggered.
 

@@ -4,7 +4,7 @@ There is perhaps no better way to improve our own respective workflows than to l
 
 What follows are some of the tools we use. This list will grow and change over time and is not meant to be comprehensive. Generally, we encourage or require these tools to be used in favor of other ones.
 
-<h3 id="editors">Editors (IDEs)</h3>
+### Editors (IDEs)
 
 The [most popular](http://www.sitepoint.com/best-php-ide-2014-survey-results/) PHP editor (IDE) is [PhpStorm](https://www.jetbrains.com/phpstorm/). It also has extensive support for JavaScript, CSS, HTML, Twig, and (with a plugin) Bash. We highly recommend adopting PhpStorm as well for consistency across our team and so that we can collaborate on optimal configuration and maximizing the features.
 
@@ -17,7 +17,7 @@ Also see the PhpStorm docs for integrating our [code checkers](#code-checkers):
 * [JSCS](https://www.jetbrains.com/phpstorm/help/jscs.html)
 * [PHP Mess Detector](https://www.jetbrains.com/phpstorm/help/mess-detector.html) ([under investigation](https://github.com/xwp/wp-dev-lib/issues/4))
 
-<h3 id="code-checkers">Code Checkers</h3>
+### Code Checkers
 
 The following should all be integrated into [wp-dev-lib](https://github.com/xwp/wp-dev-lib) and pre-configured there for use in your plugin or site project; they should integrated into your IDE, be run automatically before committing via the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook, and also run after pushing to a pull request via [Travis CI](https://github.com/xwp/wp-dev-lib#travis):
 
@@ -30,7 +30,7 @@ The following should all be integrated into [wp-dev-lib](https://github.com/xwp/
 
 Any additional references to code checker tools elsewhere in these best practices should be amended to this list.
 
-<h3 id="local-development">Local Development Environments</h3>
+### Local Development Environments
 
 When starting out, many developers edit PHP files on their local machine and then upload the changes via FTP to their production site to test. This is bad. A slightly better workflow is to have a separate staging server to upload changes to and test there. This is less bad, but still not good. Both of these are examples of cowboy coding.
 
@@ -44,19 +44,19 @@ There are a variety of solutions out there to get a local development environmen
 
 
 
-<h3 id="task-runners">Task Runners {% include Util/top %}</h3>
+### Task Runners
 
 [Grunt](http://gruntjs.com/) - Grunt is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification.
 
 [Gulp](http://gulpjs.com/) - Another task runner also built on Node which is a newer alternative to Grunt. See [comparison](https://medium.com/@preslavrachev/gulp-vs-grunt-why-one-why-the-other-f5d3b398edc4).
 
-<h3 id="package-managers">Package/Dependency Managers</h3>
+### Package/Dependency Managers
 
 [Bower](http://bower.io/) - A good tool to manage front end packages. Usually everything we need is bundled with WordPress. Sometimes we need something like "Chosen.js" that isn’t included. Bower is a good way to manage external libraries like that but is not necessary on most projects.
 
 [Composer](https://getcomposer.org) - We use Composer for managing PHP dependencies. Usually everything we need is bundled with WordPress. Sometimes we need external libraries like "Patchwork". Composer is a great way to manage those external libraries but is not necessary on most projects
 
-<h3 id="version-control">Version Control {% include Util/top %}</h3>
+### Version Control
 
 [Git](http://git-scm.com) - We use Git for version control. It is _critical_ that you are comfortable with Git: read [the book](https://git-scm.com/book/en/v2)! We encourage people to use the command line for interacting with Git. GUI’s are permitted but will not be supported internally. For more information on Git:
 
@@ -69,7 +69,7 @@ There are a variety of solutions out there to get a local development environmen
 
 [SVN](https://subversion.apache.org/) - We use SVN, but only in the context of WordPress.com VIP. Again, we encourage people to use the command line as we do not support GUI's internally.
 
-<h3 id="command-line">Command Line</h3>
+### Command Line
 
 The mouse is the enemy. The book [Pragmatic Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer) highlights the inefficiencies of interacting with a computer via a mouse. A workflow can be drastically sped up via keyboard commands. But think beyond “keyboard shortcuts” and the convoluted finger gymnastics they often involve (Ctrl-Alt-Command-Shift-A…). Think instead about the code you might write from your keyboard every day in PHP:
 

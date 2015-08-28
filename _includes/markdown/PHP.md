@@ -351,7 +351,7 @@ Writing information to the database is at the core of any website you build. Her
 
 * Certain options are "autoloaded" or put into the object cache on each page load. When [creating or updating options](http://codex.wordpress.org/Options_API), you can pass an ```$autoload``` argument to [```add_option()```](https://developer.wordpress.org/reference/functions/add_option/). If your option is not going to get used often, it probably shouldn't be autoloaded. Unfortunately, [```update_option()```](https://developer.wordpress.org/reference/functions/update_option/) automatically sets ```autoload``` to ```true``` so you have to use a combination of [```delete_option()```](https://developer.wordpress.org/reference/functions/delete_option/) and ```add_option()``` to accomplish this.
 
-<h3 id="design-patterns">Design Patterns {% include Util/top %}</h3>
+### Design Patterns
 
 Using a common set of design patterns while working with PHP code is the easiest way to ensure the maintainability of a project. This section addresses standard practices that set a low barrier for entry to new developers on the project.
 
@@ -448,7 +448,7 @@ In terms of [Object-Oriented Programming](http://en.wikipedia.org/wiki/Object-or
 * Hidden dependencies (API functions, super-globals, etc) should be documented in the docblock of every function/method or property.
 * Avoid registering hooks in the `__construct` method. Doing so tightly couples the hooks to the instantiation of the class and is less flexible than registering the hooks via a separate method. Unit testing becomes much more difficult as well.
 
-<h3 id="security">Security {% include Util/top %}</h3>
+### Security
 
 Security in the context of web development is a huge topic. This section only addresses some of the things we can do at the server-side code level.
 
@@ -626,7 +626,7 @@ if ( ! empty( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'my_a
 ?>
 ```
 
-<h3 id="code-style">Code Style & Documentation {% include Util/top %}</h3>
+### Code Style & Documentation
 
 We follow the official WordPress [coding](http://make.wordpress.org/core/handbook/coding-standards/php/) and [documentation](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/) standards.
 
@@ -683,7 +683,7 @@ function protect_post_meta( $protected, $current_meta_key ) {
 ?>
 ```
 
-<h3 id="unit-testing">Unit and Integration Testing {% include Util/top %}</h3>
+### Unit and Integration Testing
 
 For fundamentals and a general overview of unit tests, see the [workflows section on unit testing](../workflows/#unit-and-integration-testing); also see specifics on [PHP unit testing](../php/#unit-testing) and [JS unit testing](../javascript/#unit-and-integration-testing).
 
@@ -734,6 +734,6 @@ phpunit --coverage-html code-coverage-report/
 
 See also [JS Unit Testing](../javascript/#unit-and-integration-testing).
 
-<h3 id="libraries">Libraries and Frameworks {% include Util/top %}</h3>
+### Libraries and Frameworks
 
 Generally, we do not use PHP frameworks or libraries that do not live within WordPress for general theme and plugin development. WordPress APIs provide us with 99 percent of the functionality we need from database management to sending emails. There are frameworks and libraries we use for themes and plugins that are being distributed or open-sourced to the public such as PHPUnit.
