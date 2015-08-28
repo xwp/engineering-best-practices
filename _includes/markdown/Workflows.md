@@ -40,9 +40,9 @@ In the event that VIP makes a change to the repository, we'll capture the diff o
 
 * Grab a diff of their changes.
 * Create a new temporary branch off ```master```.
-* Apply the patch; if it doesn't apply, reset the branch to the commit where it doesm and re-apply.
-* Commit the changes indicating the Zendesk ticket and the VIP Code Wrangler's' authorship (via `git commit --author`).
-* Cherry-pick the branch into `master`.
+* Apply the patch; if it doesn't apply, reset the branch to the commit where it doesn't and re-apply, or just manually fix the conflicts.
+* Commit the changes indicating the Zendesk ticket and the VIP Code Wrangler's authorship (via `git commit --author="John Smith <john.smith@automattic.com>"`).
+* Cherry-pick the commit into `master` and delete the temporary branch.
 
 ##### Branch Cleanup
 
