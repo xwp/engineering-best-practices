@@ -171,7 +171,7 @@ We conform to [WordPress JavaScript coding standards](http://make.wordpress.org/
 
 We conform to the [WordPress JavaScript Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/).
 
-Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate checks for coding standards violations. Include the [`.jshintrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jshintrc) and [`.jscsrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jscsrc) from [wp-dev-lib](https://github.com/xwp/wp-dev-lib) into your theme/plugin/site repo to configure these linters; these tools can then be run automatically by the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook and [Travis CI build](https://github.com/xwp/wp-dev-lib#travis).
+Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate checks for coding standards violations; note that JSCS also supports [automatically-fixing](http://jscs.info/overview#cli) some of the issues it identifies. Include the [`.jshintrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jshintrc) and [`.jscsrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jscsrc) from [wp-dev-lib](https://github.com/xwp/wp-dev-lib) into your theme/plugin/site repo to configure these linters; these tools can then be run automatically by the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook and [Travis CI build](https://github.com/xwp/wp-dev-lib#travis).
 
 <h3 id="unit-and-integration-testing">Unit and Integration Testing {% include Util/top %}</h3>
 
