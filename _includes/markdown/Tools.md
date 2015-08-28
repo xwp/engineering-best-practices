@@ -1,4 +1,8 @@
-The following are the tools we use. This list will grow and change over time and is not meant to be comprehensive. Generally, we encourage or require these tools to be used in favor of other ones. Rules governing tools to be used and packaged with a client site will be much stricter than those used on internal projects.
+The quality of a contributor's work can be reliably tied the quality of their tools. Your editor (IDE), local dev environment, code linters, unit testers, compilers, shell scripts, and other tools can all have a profound impact on your efficiency and quality. So it's important to always be thinking about how your workflow can be improved. What are your pain points? What is tedious? What are things that you often miss or forget to do? As much as possible, when you identify these improvements look for ways to automate their solutions with scripts; if a script isn't possible, at least come up with checklists which you can follow: reduce your mental load.
+
+There is perhaps no better way to improve our own respective workflows than to learn from each other by watching how each other works. So next time you're having a meetup, please do look over your colleague's shoulder to see what you can glean from them and suggest back to improve their workflow as well.
+
+What follows are some of the tools we use. This list will grow and change over time and is not meant to be comprehensive. Generally, we encourage or require these tools to be used in favor of other ones.
 
 <h3 id="editors">Editors (IDEs)</h3>
 
