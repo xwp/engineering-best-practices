@@ -59,7 +59,7 @@ Since the QA team most likely doesn't have a local development environment, and 
 
 For projects hosting on *WordPress.com VIP*, the [Quickstart environment](https://vip.wordpress.com/documentation/quickstart/) they provide for local development (via Vagrant) is also designed to be [provisioned on AWS EC2 instance](https://vip.wordpress.com/documentation/quickstart/staging-environment/), and so this is what we use. We install a given site's theme into this Quickstart environment by cloning it from GitHub. Now, the `master` branch for these site repos corresponds to what is currently in SVN, which makes this branch not suitable for our preview environment.
 
-So we have standardized on each theme repo having a `preview` branch which is what is checked out on the preview server. When new commits appear in the `preview` branch, a GitHub webhook kicks in and pings the server to checkout the latest from this branch via `git fetch && git checkout origin/preview`. Note that new commits should not be made directly to the `preview` branch. Commits should only ever be made to feature branches off of `master`. When a feature branch is ready for QA, it can be merged into `preview` so that it will appear on the preview environment. The pull request for the feature branch into `master` will remain open until it passes QA.
+So we have standardized on each theme repo having a `preview` branch which is what is checked out on the preview server. When new commits appear in the `preview` branch, a GitHub webhook kicks in and pings the server to checkout the latest from this branch via `git fetch && git checkout origin/preview`. Note that new commits should not be made directly to the `preview` branch. Commits should only ever be made to feature branches off of `master`. When a feature branch is ready for QA, it can be merged into `preview` so that it will appear on the preview environment. The pull request for the feature branch into `master` will remain open until it passes QA. (Protip: Don't merge feature branches into `preview` by means of pull requests since this just adds GitHub notification noise and the PRs would be merged immediately anyway without code review; so instead, do the merges directly from the command line, even [use a script to make it easy](https://gist.github.com/westonruter/dd264e10b1e2c2388a6a).)
 
 Again, the `preview` branch is a dead-end branch; it should never get merged back into `master` or any other branch. It's purpose is to review changes to feature/bugfix branches before they get merged into `master`. The `preview` branch should always have a superset of the commits that are in `master`. Periodically the `preview` branch will need to get cleaned up and reset to `master` (via `git checkout preview && git reset --hard master && git push -f`). When this is done, make sure that any open pull request branches get re-merged into `preview`.
 
@@ -73,29 +73,33 @@ We version control all projects using [Git](http://git-scm.com/). Version contro
 
 Commits should be small and independent items of work. Distinct items of work are essential in keeping features separate, which will aid in reversing or rolling back commits if necessary or pushing specific features forward.
 
+#### Branches
+
+All projects will treat the ```master``` branch as the canonical source for live, released, stable, production code.
+
+Projects may have a `develop` branch off of `master` where feature branches get merged and integrated before being merged into `master`. So feature branches would be made off of `develop` if it is used in a project, but otherwise feature branches would be made off of `master`. Take a look at [understanding](https://guides.github.com/introduction/flow/) the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) which is a more simplified than a more traditional [Git branching model](http://nvie.com/posts/a-successful-git-branching-model/). Compare these to help decide whether a `develop` branch is appropriate in your project.
+
+In addition to the `master`, `develop`, and feature branches, we also utilize a `preview` branch for [QA](#qa).
+
 #### Merges
 
-In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a long-in-development feature is complete to merge ```master``` into it.
+In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a long-in-development feature is complete to merge ```master``` into it. All merging should be done by means of pull requests, so you don't need to worry about non-fast-forward (`--no-ff`) merges; this doesn't apply for the `preview` branch, which is a throw-away branch anyway.
 
 If your commits haven't been pushed yet for others to see, it can be a good idea to update your branch from `master` by means of `git rebase master`. This prevents your branch from getting cluttered with merge commits from `master`. Be careful if you rebase commits after having pushed to a remote, as if others have the feature branch on their machines, they will likely get ugly merge conflicts when they try to update their feature branch. This is because `git-rebase` rewrites the history. (These same cautions go for using `git commit --amend`.)
 
-#### Themes
-
-All new development should take place on feature branches that branch off ```master```. For many projects, when a new feature or bugfix is deemed complete we will do merge from that branch to the```preview``` branch and push to verify the feature or fix on the stage environment before it gets merged into `master` and locked into a path to production. We have the `preview` branch set up to auto-deploy to our preview environment.
-
 When things are absolutely ready to go (i.e. it has passed code review, QA and UAT), we'll then merge the pull request into `master`.
 
-##### Branching
-
-All theme projects will treat the ```master``` branch as the canonical source for live, production code. Feature branches will branch off ```master```.
-
-For more information on the `preview` branch, see [QA](#qa).
+When a merge is made into `master` and the project uses [semantic versioning](http://semver.org/), then the merge should be accompanied by a Git *tag*.
 
 ###### Complex Feature Branches
 
-In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to enable testing the feature as a cohesive unit and avoid merge conflicts when pushing to ```staging``` and ```master``` it is recommended to create a feature branch to act as a staging area. We do this by branching from ```master``` to create the primary feature branch, and then as necessary, create additional branches from the feature branch for distinct items of work. When individual items are complete, merge back to the feature branch. To pull work from ```master```, merge ```master``` into the feature branch and then merge the feature branch into the individual branches. When all work has been merged back into the feature branch, the feature branch can then be merged into ```preview``` and ```master``` as an entire unit of work.
+In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to enable testing the feature as a cohesive unit and avoid merge conflicts when pushing to ```preview``` and ```master``` it is recommended to create a feature branch to act as a staging area: this is the primary feature branch. Then, as necessary, create additional branches from the feature branch for distinct items of work. When individual items are complete, merge back to the feature branch. To pull work from ```master```, merge ```master``` into the feature branch and then merge the feature branch into the individual branches. When all work has been merged back into the feature branch, the feature branch can then be merged into ```preview``` and ```master``` as an entire unit of work.
 
-##### Working with WordPress.com VIP
+##### Branch Cleanup
+
+This workflow will inevitably build up a large list of branches in the repository. To prevent a large number of unused branches living in the repository, we'll delete them after feature development is complete. Since all feature branches should get merged by means of pull requests, there will be a persistent reference to the original branch in the pull request. So after merging the pull request, delete the branch from Git. It can be restored later via the pull request.
+
+#### Working with WordPress.com VIP
 
 Sites hosted by WordPress.com VIP use SVN for version control and deployments. For development, however, we continue to use Git. We do not have SVN commits match 1:1 with the commits in Git, as Git commits are often far more granular than is normal for SVN. Instead, we aim for entire Git feature branch merges to correspond to a single SVN commit. In this way, commits to SVN are analogous Git [squashed commits](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Squashing-Commits).
 
@@ -109,20 +113,6 @@ In the event that VIP makes a change to the repository, we'll capture the diff o
 * Commit the changes indicating the Zendesk ticket and the VIP Code Wrangler's authorship (via `git commit --author="John Smith <john.smith@automattic.com>"`).
 * Cherry-pick the commit into `master` and delete the temporary branch.
 
-##### Branch Cleanup
+### Deploying Plugins
 
-This workflow will inevitably build up a large list of branches in the repository. To prevent a large number of unused branches living in the repository, we'll archive them after feature development is complete. Since all feature branches should get merged by means of pull requests, there will be a persistent reference to the original branch in the pull request. So after merging the pull request, delete the branch from Git. It can be restored later via the pull request.
-
-#### Plugins
-
-Unlike theme development, the ```master``` branch represents a stable, released, versioned product. Ongoing development will happen on a ```develop``` branch, which is itself branched off ```master```.
-
-##### Branching
-
-New features should be branched off ```develop``` and, once complete, merged back into ```develop``` using a non-fast-forward merge.
-
-##### Deploying
-
-When a new version is complete and ready to ship, update version slugs on ```develop```, then merge ```develop``` back to ```master``` (using a non-fast-forward merge). Tag the merge commit with the version number being released so we can keep track of where new versions land.
-
-Once a version is tagged and released, the tag must never be removed. If there is a problem with the project requiring a re-deployment, create a new version and tag to reflect the change.
+When a new version is complete and ready to ship, update version slugs on ```develop```, then merge ```develop``` back to ```master``` (using a non-fast-forward merge). You can tag the merge commit with the version number being released so we can keep track of where new versions land. You can use the [`svn-push`](https://github.com/xwp/wp-dev-lib/blob/master/svn-push) script in [wp-dev-lib](https://github.com/xwp/wp-dev-lib) to facilitate the syncing of plugins to WordPress.org. This integration can be even [automated by Travis CI](https://github.com/xwp/wp-dev-lib/issues/106).
