@@ -8,6 +8,19 @@ What follows are some of the tools we use. This list will grow and change over t
 
 The [most popular](http://www.sitepoint.com/best-php-ide-2014-survey-results/) PHP editor (IDE) is [PhpStorm](https://www.jetbrains.com/phpstorm/). It also has extensive support for JavaScript, CSS, HTML, Twig, and (with a plugin) Bash. We highly recommend adopting PhpStorm as well for consistency across our team and so that we can collaborate on optimal configuration and maximizing the features.
 
+<h3 id="code-checkers">Code Checkers</h3>
+
+The following should all be integrated into [wp-dev-lib](https://github.com/xwp/wp-dev-lib) and pre-configured there for use in your plugin or site project; they should integrated into your IDE, be run automatically before committing via the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook, and also run after pushing to a pull request via [Travis CI](https://github.com/xwp/wp-dev-lib#travis):
+
+* **[PHP_CodeSniffer WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)** for [PHP coding standards](../php/#code-style).
+* **[PHP MD](http://phpmd.org/) ([experimental](https://github.com/xwp/wp-dev-lib/issues/4))** for higher-level [PHP coding checks](../php/#code-style).
+* **[PHPUnit](https://phpunit.de/)** for [PHP unit testing](../php/#unit-testing).
+* **[JSHint](http://jshint.com/)** for basic [code style](../javascript/#code-style) reporting.
+* **[JSCS](http://jscs.info/)** for comprehensive [code style](../javascript/#code-style) reporting and fixing.
+* **[QUnit](https://qunitjs.com/)** for [JS unit testing](../javascript/#unit-and-integration-testing).
+
+Any additional references to code checker tools elsewhere in these best practices should be amended to this list.
+
 <h3 id="local-development">Local Development Environments</h3>
 
 When starting out, many developers edit PHP files on their local machine and then upload the changes via FTP to their production site to test. This is bad. A slightly better workflow is to have a separate staging server to upload changes to and test there. This is less bad, but still not good. Both of these are examples of cowboy coding.
