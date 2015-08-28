@@ -49,9 +49,19 @@ This does not mean that pull requests should not be opened before they are in a 
 
 <h3 id="qa">QA {% include Util/top %}</h3>
 
-Preview server.
+Since developers have a [local development environment](../tools/#local-development) powered by Vagrant, code reviewers will be able to QA of the changes on their machines with confidence that it will work properly if pushed directly to production (with the big caveat that the content from the production database probably wouldn't be used in testing).
 
-...
+As noted in [code review](#code-review), when there is dedicated QA team involved in a project, the code reviewer should not do in-depth validation that the changes satisfy the requirements since this is the QA responsibility. They are also equipped to do all the cross-browser testing.
+
+Since the QA team most likely doesn't have a local development environment, and neither should they be expected to, it is critical for there to be an external preview environment available where code changes can be deployed for review before the code gets pushed to production.
+
+For projects hosting on *WordPress.com VIP*, the [Quickstart environment](https://vip.wordpress.com/documentation/quickstart/) they provide for local development (via Vagrant) is also designed to be [provisioned on AWS EC2 instance](https://vip.wordpress.com/documentation/quickstart/staging-environment/), and so this is what we use. We install a given site's theme into this Quickstart environment by cloning it from GitHub. Now, the `master` branch for these site repos corresponds to what is currently in SVN, which makes this branch not suitable for our preview environment.
+
+So we have standardized on each theme repo having a `preview` branch which is what is checked out on the preview server. When new commits appear in the `preview` branch, a GitHub webhook kicks in and pings the server to checkout the latest from this branch via `git fetch && git checkout origin/preview`. Note that new commits should not be made directly to the `preview` branch. Commits should only ever be made to feature branches off of `master`. When a feature branch is ready for QA, it can be merged into `preview` so that it will appear on the preview environment. The pull request for the feature branch into `master` will remain open until it passes QA.
+
+Again, the `preview` branch is a dead-end branch; it should never get merged back into `master` or any other branch. It's purpose is to review changes to feature/bugfix branches before they get merged into `master`. The `preview` branch should always have a superset of the commits that are in `master`. Periodically the `preview` branch will need to get cleaned up and reset to `master` (via `git checkout preview && git reset --hard master && git push -f`). When this is done, make sure that any open pull request branches get re-merged into `preview`.
+
+For sites hosted on *Pantheon*, this is part of the [their platform](https://pantheon.io/docs/articles/sites/code/using-the-pantheon-workflow/): all sites have a dev environment, test (preview/staging) environment, and live (production) environment. We still house our Pantheon site projects on GitHub, but [configure Travis CI](https://github.com/xwp/pantheon-wordpress-upstream/blob/master/.travis.yml) to automatically push code from GitHub to the Pantheon dev environment after Travis CI passes all of the [code checks](../tools/#code-checkers) (in `after_success`). We can also set up Travis CI to automatically pick up pushes to the `preview` branch and push them to a Pantheon `preview` [multidev environment](https://pantheon.io/docs/articles/sites/multidev/), which will allow us to keep features from being merged into `master` before they have passed QA.
 
 <h3 id="version-control">Version Control {% include Util/top %}</h3>
 
@@ -77,9 +87,7 @@ When things are absolutely ready to go (i.e. it has passed code review, QA and U
 
 All theme projects will treat the ```master``` branch as the canonical source for live, production code. Feature branches will branch off ```master```.
 
-The `preview` branch is a dead-end branch; it should never get merged back into `master` or any other branch. It's purpose is to review changes to feature/bugfix branches before they get merged into `master`. The `preview` branch should always have a superset of the commits that are in `master`.
-
-Periodically the `preview` branch will need to get cleaned up and reset to `master` (via `git checkout preview && git reset --hard master && git push -f`). When this is done, make sure that any open pull request branches get re-merged into `preview`.
+For more information on the `preview` branch, see [QA](#qa).
 
 ###### Complex Feature Branches
 
