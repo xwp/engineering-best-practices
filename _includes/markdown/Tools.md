@@ -8,6 +8,15 @@ What follows are some of the tools we use. This list will grow and change over t
 
 The [most popular](http://www.sitepoint.com/best-php-ide-2014-survey-results/) PHP editor (IDE) is [PhpStorm](https://www.jetbrains.com/phpstorm/). It also has extensive support for JavaScript, CSS, HTML, Twig, and (with a plugin) Bash. We highly recommend adopting PhpStorm as well for consistency across our team and so that we can collaborate on optimal configuration and maximizing the features.
 
+Please refer to [WordPress Development using PhpStorm](https://confluence.jetbrains.com/display/PhpStorm/WordPress+Development+using+PhpStorm), and also see the [PhpStorm Docs & Demos](https://www.jetbrains.com/phpstorm/documentation/).
+
+Also see the PhpStorm docs for integrating our [code checkers](#code-checkers):
+
+* [PHP Code Sniffer](https://www.jetbrains.com/phpstorm/help/code-sniffer.html)
+* [JSHint](https://www.jetbrains.com/phpstorm/help/jshint.html)
+* [JSCS](https://www.jetbrains.com/phpstorm/help/jscs.html)
+* [PHP Mess Detector](https://www.jetbrains.com/phpstorm/help/mess-detector.html) ([under investigation](https://github.com/xwp/wp-dev-lib/issues/4))
+
 <h3 id="code-checkers">Code Checkers</h3>
 
 The following should all be integrated into [wp-dev-lib](https://github.com/xwp/wp-dev-lib) and pre-configured there for use in your plugin or site project; they should integrated into your IDE, be run automatically before committing via the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook, and also run after pushing to a pull request via [Travis CI](https://github.com/xwp/wp-dev-lib#travis):
