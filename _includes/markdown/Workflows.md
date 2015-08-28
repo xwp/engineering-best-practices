@@ -1,6 +1,58 @@
-We version control all projects using [Git](http://git-scm.com/). Version control allows us to track codebase history, maintain parallel tracks of development, and collaborate without stomping out each others changes.
-
 We consider standardizing a workflow to be a very important part of the development process. Utilizing an effective workflow ensures efficient collaboration and quicker project onboarding. For this reason we use the following workflows company-wide both for internal and client projects.
+
+<h3 id="automated-testing">Automated Testing {% include Util/top %}</h3>
+
+The number one line of defense for good quality code that adheres to best practices and coding standards is *automated testing*. Your code must adhere to the coding standards for [PHP](../php/#code-style), [JS](../javascript/#code-style), [HTML](../markup/), and [CSS](../css/#syntax-formatting)
+
+Configure your [IDE integration for code checkers](../tools/#editors). Our repos should each include the [wp-dev-lib](https://github.com/xwp/wp-dev-lib) which includes a [`pre-commit`](https://github.com/xwp/wp-dev-lib/blob/master/pre-commit) hook that runs before a commit is made, blocking it it encounters issues (note this can be bypassed via the `--no-verify` arg to `git-commit`). The `pre-commit` hook is not installed automatically when a Git repo is cloned. To install it you just run:
+
+```bash
+git submodule update --init && cd .git/hooks && ln -s ../../dev-lib/pre-commit . && cd -
+```
+
+Travis CI should also be configured to automatically run the PHPUnit tests for the code in the pull request so that GitHub can indicate whether the tests pass. Ask your friendly GitHub admin to set this up for you.
+
+<h4 id="unit-and-integration-testing"> Unit and Integration Testing</h4>
+
+Unit testing is the automated testing of units of source code against certain assertions. The goal of unit testing is to write test cases with assertions that test if a unit of code is truly working as intended. If an assertion fails, a potential issue is exposed, and code needs to be revised.
+
+For specifics on how to write tests, see [PHP unit testing](../php/#unit-testing) and [JS unit testing](../javascript/#unit-and-integration-testing).
+
+By definition, unit tests do not have dependencies on outside systems; in other words, only your code (a single unit of code) is being tested. Integration testing works similarly to unit tests but assumptions are tested against systems of code, moving parts, or an entire application. The phrases unit testing and integration testing are often misused to reference one another especially in the context of WordPress, since the tests in WordPress itself are a mix of unit and integration tests.
+
+Unit tests should be written for all plugins, whether they are for public distribution or for private client projects. As noted in [modular code](../structure/#modular-code), themes should be devoid of functional logic and so they are not applicable for unit tests.
+
+Write your (plugin) code in a way that makes it testable. It is much easier to write unit tests while (or even before, à la [TDD](https://en.wikipedia.org/wiki/Test-driven_development)) you write your functional code. Unit tests help guide best practices for code architecture: testable code is more often well-architected code.
+
+* Organize your plugin code into objects that incorporate the [dependency injection pattern](http://jasonpolites.github.io/tao-of-testing/ch3-1.1.html); this allows unit tests to supply mocks for the objects that aren't specifically being tested.
+* Write methods that are small as possible, that do one thing and do it well.
+* Shy away interacting with global variables, though in WordPress this is often a painful reality we have to just live with.
+* A functions should be a black box that takes an input and returns an output. You can then test the outputs for any given inputs.
+
+It is always a challenge to ensure that unit tests have complete testing coverage for a plugin. It is often not worthwhile to require 100% coverage, but rather to focus on testing the key parts of the plugin's logic (as opposed to testing basic things like metabox registration).
+
+<h3 id="code-review">Code Review {% include Util/top %}</h3>
+
+Nobody is perfect. Even the most experienced engineer can forget some detail. We try to mitigate this as much as possible with [automated testing](#automated-testing), but code checkers can only catch low-hanging fruit. A fellow engineer is really needed to do a review of the changes before it gets sent along for QA and the client. With a fresh pair of eyes, a peer code reviewer can easily spot things that don't make sense or implementations that don't satisfy the requirements as stated in the issue being addressed (e.g. in JIRA), as interpreted by the reviewer.
+
+The code reviewer shouldn't necessarily be testing the code in depth and making sure it satisfies all of the requirements: when a testing (QA) team is involved in a project this is their responsibility. In any case, the key thing is that code should be reviewed by a colleague at least once before it gets sent along for client review (or WordPress.com VIP commit), and especially before it goes to production.
+
+Code review should especially identify security and performance issues (as would get raised by WordPress VIP) that may not be apparent through testing at QA level or not easy for a tester to articulate. For WordPress.com, identifying technical issues that violate VIP's [requirements](https://vip.wordpress.com/documentation/code-review-what-we-look-for/) will speed up the deployment process since Zendesk tickets will be less-frequently opened for needed fixes; this makes our friends at VIP happy and it makes clients happy since commits will be deployed sooner and even in line with a timetable they have.
+
+Code review is also an opportunity for ensuring that another engineers on the project team have familiarity with the code being contributed, thus increasing the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) and improving our ability/availability to maintain the codebase.
+
+Code reviewers should make sure that unit tests are included, and that they cover the key changes introduced in the branch. The `pre-commit` hook and Travis CI will have already checked the coding conventions and whether any included unit tests are failing.
+
+
+<h3 id="qa">QA {% include Util/top %}</h3>
+
+Preview server.
+
+...
+
+<h3 id="version-control">Version Control {% include Util/top %}</h3>
+
+We version control all projects using [Git](http://git-scm.com/). Version control allows us to track codebase history, maintain parallel tracks of development, and collaborate without stomping out each others changes.
 
 #### Commits
 
@@ -8,9 +60,9 @@ Commits should be small and independent items of work. Distinct items of work ar
 
 #### Merges
 
-In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a feature is complete to merge ```master``` into it.
+In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a long-in-development feature is complete to merge ```master``` into it.
 
-If your commits haven't been pushed yet for others to see, it is a good idea to update your branch from `master` by means of `git rebase master`. This prevents your branch from getting cluttered with merge commits from `master`. Be careful if you rebase commits after having pushed to a remote, as if others have the feature branch on their machines, they will likely get ugly merge conflicts when they try to update their feature branch. This is because `git-rebase` rewrites the history. (These same cautions go for using `git commit --amend`.)
+If your commits haven't been pushed yet for others to see, it can be a good idea to update your branch from `master` by means of `git rebase master`. This prevents your branch from getting cluttered with merge commits from `master`. Be careful if you rebase commits after having pushed to a remote, as if others have the feature branch on their machines, they will likely get ugly merge conflicts when they try to update their feature branch. This is because `git-rebase` rewrites the history. (These same cautions go for using `git commit --amend`.)
 
 #### Themes
 

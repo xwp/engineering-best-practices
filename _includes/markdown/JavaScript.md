@@ -177,7 +177,7 @@ Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate check
 
 WordPress Core uses QUnit as its unit testing framework. The maturity of the QUnit tests in Core are far removed from the PHPUnit tests as JavaScript has only recently started to take a first-row seat in WordPress's codebase. Since it is used by WordPress Core, we recommend using QUnit for writing JS unit tests for plugins. For more information, see the related [Make/Core post](https://make.wordpress.org/core/2013/09/13/javascript-unit-tests-for-core/).
 
-For more information on unit testing in general and specfiic recommendations for PHP unit tests, see [PHP Unit Testing](../php/#unit-testing).
+For more information see the see the [workflows section on unit testing](../workflows/#unit-and-integration-testing), and see also [PHP Unit Testing](../php/#unit-testing).
 
 <h3 id="libraries">Libraries {% include Util/top %}</h3>
 

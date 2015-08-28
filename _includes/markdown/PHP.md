@@ -685,35 +685,26 @@ function protect_post_meta( $protected, $current_meta_key ) {
 
 <h3 id="unit-testing">Unit and Integration Testing {% include Util/top %}</h3>
 
-Unit testing is the automated testing of units of source code against certain assertions. The goal of unit testing is to write test cases with assertions that test if a unit of code is truly working as intended. If an assertion fails, a potential issue is exposed, and code needs to be revised.
-
-By definition, unit tests do not have dependencies on outside systems; in other words, only your code (a single unit of code) is being tested. Integration testing works similarly to unit tests but assumptions are tested against systems of code, moving parts, or an entire application. The phrases unit testing and integration testing are often misused to reference one another especially in the context of WordPress, since the PHPUnit tests in WordPress itself are a mix of unit and integration tests.
-
-Unit tests should be written for all plugins, whether they are for public distribution or for private client projects. As noted in [modular code](../structure/#modular-code), themes should be devoid of functional logic and so they are not applicable for unit tests.
+For fundamentals and a general overview of unit tests, see the [workflows section on unit testing](../workflows/#unit-and-integration-testing); also see specifics on [PHP unit testing](../php/#unit-testing) and [JS unit testing](../javascript/#unit-and-integration-testing).
 
 Read more at the [PHPUnit homepage](https://phpunit.de/) and [automated testing for WordPress](http://make.wordpress.org/core/handbook/automated-testing/).
 
-The [wp-dev-lib](https://github.com/xwp/wp-dev-lib) project includes a PHPUnit [bootstrap](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin-bootstrap.php) and [`phpunit.xml`](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin.xml) for plugins which facilitates writing tests in the VIP Quickstart environment for WordPress.com. The [`pre-commit` hook](https://github.com/xwp/wp-dev-lib/blob/master/pre-commit) should be installed so that PHPUnit can run whenever a commit is made (note this can be bypassed via the `--no-verify` arg to `git-commit`). Travis CI should also be configured to automatically run the PHPUnit tests for the code in the pull request so that GitHub can indicate whether the tests pass.
+The [wp-dev-lib](https://github.com/xwp/wp-dev-lib) project includes a PHPUnit [bootstrap](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin-bootstrap.php) and [`phpunit.xml`](https://github.com/xwp/wp-dev-lib/blob/master/phpunit-plugin.xml) for plugins which facilitates writing tests in the VIP Quickstart environment for WordPress.com. Read more about [wp-dev-lib and automated testing](../workflows/#automated-testing).
 
-Write your plugins in a way that makes them testable. This means organizing your plugin into classes that incorporate the dependency injection pattern. Write methods that are small as possible, that do one thing and do it well. Shy away interacting with global variables. A functions should be a black box that takes an input and returns an output. You can then test the outputs for any given inputs.
-
-It is always a challenge to ensure that unit tests have complete testing coverage for a plugin. It is often not worthwhile to require 100% coverage, but rather to focus on testing the key parts of the plugin's logic (as opposed to testing basic things like metabox registration).
-
-Since a plugin's PHP code should be comprised of classes, a convenient way to organize PHPUnit tests is to have *one test case class per plugin class, and one (at least) test method per plugin class method*. Use the plugin class and method in the naming for the unit test class and test method, also including the a PhpDoc `@see` tag to explicitly list out the method that is being tested. For instance, given a plugin `Foo` that has a class `Bar` in a file `php/class-bar.php`:
+On the topic of test coverage: since a plugin's PHP code should be comprised of classes, a convenient way to organize PHPUnit tests is to have *one test case class per plugin class, and one (at least) test method per plugin class method*. Use the plugin class and method in the naming for the unit test class and test method, also including the a PhpDoc `@see` tag to explicitly list out the method that is being tested. For instance, given a plugin `Foo` that has a class `Bar` in a file `php/class-bar.php`:
 
 ```php
 <?php
 namespace Foo;
 
 class Bar {
-
-	/**
-	 * @return int
-	 */
-	public function baz() {
-		/* ... */
-		return $quux;
-	}
+    /**
+     * @return int
+     */
+    public function baz() {
+        /* ... */
+        return $quux;
+    }
 }
 ```
 
@@ -724,16 +715,14 @@ This can have a corresponding unit test case in `tests/test-bar.php`:
 namespace Foo;
 
 class Test_Bar extends  \WP_UnitTestCase {
-
-	/**
-	 * @see Bar::baz()
-	 */
-	function test_baz() {
-		$foo = new Foo();
-		$this->assertInternalType( 'int', $foo->baz() );
-		// ...
-	}
-
+    /**
+     * @see Bar::baz()
+     */
+    function test_baz() {
+        $foo = new Foo();
+        $this->assertInternalType( 'int', $foo->baz() );
+        // ...
+    }
 }
 ```
 
