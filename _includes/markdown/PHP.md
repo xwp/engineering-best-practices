@@ -340,7 +340,7 @@ Writing information to the database is at the core of any website you build. Her
 
 * Store information in the correct place. See the "Appropriate Data Storage" section.
 
-* Certain options are "autoloaded" or put into the object cache on each page load. When [creating or updating options](http://codex.wordpress.org/Options_API), you can pass an ```$autoload``` argument to [```add_option()```](https://developer.wordpress.org/reference/functions/add_option/). If your option is not going to get used often, it probably shouldn't be autoloaded. Unfortunately, [```update_option()```](https://developer.wordpress.org/reference/functions/update_option/) automatically sets ```autoload``` to ```true``` so you have to use a combination of [```delete_option()```](https://developer.wordpress.org/reference/functions/delete_option/) and ```add_option()``` to accomplish this.
+* Certain options are "autoloaded" or put into the object cache on each page load. When [creating or updating options](http://codex.wordpress.org/Options_API), you can pass an ```$autoload``` argument to [```add_option()```](https://developer.wordpress.org/reference/functions/add_option/) or [```update_option()```](https://developer.wordpress.org/reference/functions/update_option/). Beware that all options are forcibly autoloaded on WordPress.com, and the sum of all options cannot exceed 1MB or the site will crash. VIP will warn you if the sum of options reaches 750KB. Be careful with widgets on WordPress.com since they are stored in options by default (see [Widget Posts functionality](https://wordpress.org/plugins/customize-widgets-plus/)).
 
 ### Design Patterns
 
