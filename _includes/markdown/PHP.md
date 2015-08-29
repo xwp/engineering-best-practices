@@ -115,7 +115,6 @@ Here are a few key points:
       'category_name' => 'cat-slug',
       'tag' => 'tag-slug',
     ));
-    ?>
     ```
 
 ##### WP\_Query vs. get\_posts() vs. query\_posts()
@@ -170,7 +169,6 @@ function prefix_get_top_commented_posts() {
     }
     return $top_commented_posts;
 }
-?>
 ```
 
 In the above example, the cache is checked for an object with the 10 most commented posts and would generate the list in case the object is not in the cache yet. Generally, calls to ```WP_Query``` other than the main query should be cached.
@@ -226,7 +224,6 @@ function prefix_get_top_commented_posts( $force_refresh = false ) {
     }
     return $top_commented_posts;
 }
-?>
 ```
 
 With this implementation, you can keep the cache object forever and don't need to add an expiration for the object as you would create a new cache entry whenever it is required. Just keep in mind that some external caches (like Memcache) can invalidate cache objects without any input from WordPress.
@@ -290,7 +287,6 @@ function prefix_do_api() {
 	}
 }
 add_action( 'template_redirect', 'prefix_do_api' );
-?>
 ```
 
 ##### Cache Remote Requests
@@ -316,7 +312,6 @@ function prefix_get_posts_from_other_blog() {
     }
     return $posts;
 }
-?>
 ```
 
 ```prefix_get_posts_from_other_blog()``` can be called to get posts from a third-party and will handle caching internally.
@@ -465,7 +460,6 @@ Here's an example of validating an integer stored in post meta:
 if ( ! empty( $_POST['user_id'] ) ) {
     update_post_meta( $post_id, 'key', absint( $_POST['user_id'] ) );
 }
-?>
 ```
 
 ```$_POST['user_id']``` is validated using [```absint()```](https://developer.wordpress.org/reference/functions/absint/) which ensures an integer >= 0. Without validation (or sanitization), ```$_POST['user_id']``` could be used maliciously to inject harmful code or data into the database.
@@ -477,7 +471,6 @@ Here is an example of sanitizing a text field value that will be stored in the d
 if ( ! empty( $_POST['special_heading'] ) ) {
     update_option( 'option_key', sanitize_text_field( $_POST['special_heading'] ) );
 }
-?>
 ```
 
 Since ```update_option()``` is storing in the database, the value must be sanitized (or validated). The example uses the [```sanitize_text_field()```](https://developer.wordpress.org/reference/functions/sanitize_text_field/) function, which is appropriate for sanitizing general text fields.
@@ -619,7 +612,6 @@ When the form request is processed, the nonce must be verified:
 if ( ! empty( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'my_action_name' ) ) {
     // Nonce is valid!
 }
-?>
 ```
 
 ### Code Style & Documentation
@@ -676,7 +668,6 @@ function protect_post_meta( $protected, $current_meta_key ) {
     // Return the (possibly) modified $protected variable
     return $protected;
 }
-?>
 ```
 
 ### Unit and Integration Testing
