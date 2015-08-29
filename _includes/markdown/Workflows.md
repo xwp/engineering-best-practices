@@ -12,7 +12,7 @@ git submodule update --init && cd .git/hooks && ln -s ../../dev-lib/pre-commit .
 
 Travis CI should also be configured to automatically run the PHPUnit tests for the code in the pull request so that GitHub can indicate whether the tests pass. Ask your friendly GitHub admin to set this up for you.
 
-<h4 id="unit-and-integration-testing"> Unit and Integration Testing</h4>
+#### Unit and Integration Testing
 
 Unit testing is the automated testing of units of source code against certain assertions. The goal of unit testing is to write test cases with assertions that test if a unit of code is truly working as intended. If an assertion fails, a potential issue is exposed, and code needs to be revised.
 
@@ -30,6 +30,8 @@ Write your (plugin) code in a way that makes it testable. It is much easier to w
 * A functions should be a black box that takes an input and returns an output. You can then test the outputs for any given inputs.
 
 It is always a challenge to ensure that unit tests have complete testing coverage for a plugin. It is often not worthwhile to require 100% coverage, but rather to focus on testing the key parts of the plugin's logic (as opposed to testing basic things like metabox registration).
+
+When the issue being worked on us is a defect, a best practice is to first write a failing unit test that demonstrates the bug, and then fix the code so that the unit test passes.
 
 ### Code Review
 
