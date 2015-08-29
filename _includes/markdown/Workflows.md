@@ -53,7 +53,7 @@ This does not mean that pull requests should not be opened before they are in a 
 
 ### QA
 
-Since developers have a [local development environment](../tools/#local-development) powered by Vagrant, code reviewers will be able to QA of the changes on their machines with confidence that it will work properly if pushed directly to production (with the big caveat that the content from the production database probably wouldn't be used in testing).
+Since developers have a [local development environment](../tools/#local-development-environments) powered by Vagrant, code reviewers will be able to QA of the changes on their machines with confidence that it will work properly if pushed directly to production (with the big caveat that the content from the production database probably wouldn't be used in testing).
 
 As noted in [code review](#code-review), when there is dedicated QA team involved in a project, the code reviewer should not do in-depth validation that the changes satisfy the requirements since this is the QA responsibility. They are also equipped to do all the cross-browser testing.
 
@@ -123,7 +123,7 @@ When a new version is complete and ready to ship, update version slugs on ```dev
 
 For plugin projects we generally just use GitHub issues, but for client projects and internal sites we almost always use *JIRA* for issue tracking.
 
-Our normal workflow consists of the following JIRA statuses, where a ticket will generally transition from start to finish, although some backtracking does happen, for instance an ticket moving to QA but then getting sent back for development. The JIRA workflow is:
+Our normal workflow consists of the following JIRA workflow, where a ticket will generally transition from start to finish, although some backtracking does happen, for instance an ticket moving to QA but then getting sent back for development. The JIRA workflow is:
 
 1. *To Do*: Issue has not been worked on yet.
 1. *In Development*: Issue is assigned to an engineer and work is being done.
