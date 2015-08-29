@@ -30,11 +30,10 @@ Here are a few key points:
 
     ```php
     <?php
-    // Query for 500 posts.
-    new WP_Query( array(
-      'posts_per_page' => 500,
+    // Query for 100 posts.
+    $query = new WP_Query( array(
+      'posts_per_page' => 100,
     ));
-    ?>
     ```
 
 * Do not use ```$wpdb``` or ```get_posts()``` unless you have good reason.
@@ -48,10 +47,9 @@ Here are a few key points:
     ```php
     <?php
     // Skip SQL_CALC_FOUND_ROWS for performance (no pagination).
-    new WP_Query( array(
+    $query = new WP_Query( array(
       'no_found_rows' => true,
     ));
-    ?>
     ```
 
 * Avoid using ```post__not_in```.
@@ -76,7 +74,6 @@ Here are a few key points:
             the_title();
         endwhile;
     endif;
-    ?>
     ```
     
     Instead of:
@@ -88,8 +85,7 @@ Here are a few key points:
         'posts_per_page' => 30,
         'post__not_in' => $posts_to_exclude
     ) );
-    ?>
-    ```	
+    ```
     
     See [WordPress VIP](https://vip.wordpress.com/documentation/performance-improvements-by-removing-usage-of-post__not_in/).
     
@@ -115,7 +111,7 @@ Here are a few key points:
     ```php
     <?php
     // Query for posts with both a particular category and tag.
-    new WP_Query( array(
+    $query = new WP_Query( array(
       'category_name' => 'cat-slug',
       'tag' => 'tag-slug',
     ));
