@@ -242,7 +242,7 @@ Batcache is aimed at preventing a flood of traffic from breaking your site. It d
 
 Although this plugin has a lot of benefits, it also has a couple of code design requirements:
 
-* As the rendered HTML of your pages might be cached you cannot rely on server side logic related to ```$_SERVER```, ```$_COOKIE``` or other values that are unique to a particular user.
+* As the rendered HTML of your pages might be cached you cannot rely on server side logic related to ```$_SERVER```, ```$_COOKIE``` or other values that are unique to a particular user. (There is a workaround here that should be sparingly-used: [`vary_cache_on_function()`](https://vip.wordpress.com/documentation/caching/batcache/vary_cache_on_function/).)
 * You can however implement cookie or other user based logic on the front-end (eg. with JavaScript)
 
 Batcache does not cache logged in users (based on WordPress login cookies), so keep this in mind the performance implications for subscription sites (like BuddyPress). Batcache also treats the query string as part of the URL which means the use of query strings for tracking campaigns (common with Google Analytics) can render page caching ineffective.  Also beware that while WordPress VIP uses batcache, there are specific rules and conditions on VIP that do not apply to the open source version of the plugin.
