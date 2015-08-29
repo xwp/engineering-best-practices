@@ -26,7 +26,7 @@ Here are a few key points:
 
 * Do not use ```posts_per_page => -1```.
 
-    This is a performance hazard. What if we have 100,000 posts? This could crash the site. If you are writing a widget, for example, and just want to grab all of a custom post type, determine a reasonable upper limit for your situation.
+    This is a performance hazard. What if we have 100,000 posts? This could crash the site. If you are writing a widget, for example, and just want to grab all of a custom post type, determine a reasonable upper limit for your situation. See [VIP requirement](https://vip.wordpress.com/documentation/code-review-what-we-look-for/#no-limit-queries).
 
     ```php
     <?php
