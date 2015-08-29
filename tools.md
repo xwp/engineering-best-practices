@@ -5,20 +5,22 @@ nav: Tools
 group: navigation
 weight: 2
 layout: default
+updated: 2015-08-29 05:22:17Z
 subnav:
-  - title: Editors
-    tag: editors
+  - title: Editors (IDEs)
+    tag: editors-ides
+  - title: Code Checkers
+    tag: code-checkers
   - title: Local Development Environments
-    tag: local-development
+    tag: local-development-environments
   - title: Task Runners
     tag: task-runners
   - title: Package/Dependency Managers
-    tag: package-managers
+    tag: package-dependency-managers
   - title: Version Control
     tag: version-control
-  - title: Command Line Tools
+  - title: Command Line
     tag: command-line
-updated: 6 Oct 2014
 ---
 
 <div class="docs-section">

@@ -5,6 +5,7 @@ nav: Structure
 group: navigation
 weight: 2
 layout: default
+updated: 2015-08-29 05:22:17Z
 subnav:
   - title: Modular Code
     tag: modular-code
@@ -13,8 +14,13 @@ subnav:
   - title: File Organization
     tag: file-organization
   - title: Third-Party Integrations
-    tag: integrations
-updated: 23 June 2015
+    tag: third-party-integrations
+  - title: Scheduling
+    tag: scheduling
+  - title: Integration Points
+    tag: integration-points
+  - title: Development API
+    tag: development-api
 ---
 
 <div class="docs-section">

@@ -5,20 +5,22 @@ nav: CSS
 group: navigation
 weight: 2
 layout: default
+updated: 2015-08-29 05:22:17Z
 subnav:
   - title: Philosophy
     tag: philosophy
   - title: Syntax and Formatting
-    tag: syntax-formatting
+    tag: syntax-and-formatting
   - title: Documentation
     tag: documentation
   - title: Performance
     tag: performance
-  - title: Responsive Websites
+  - title: Responsive websites
     tag: responsive-websites
   - title: Frameworks
     tag: frameworks
-updated: 23 April 2015
+  - title: Further reading
+    tag: further-reading
 ---
 
 <div class="docs-section">
