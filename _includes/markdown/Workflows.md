@@ -116,3 +116,19 @@ In the event that VIP makes a change to the repository, we'll capture the diff o
 ### Deploying Plugins
 
 When a new version is complete and ready to ship, update version slugs on ```develop```, then merge ```develop``` back to ```master``` (using a non-fast-forward merge). You can tag the merge commit with the version number being released so we can keep track of where new versions land. You can use the [`svn-push`](https://github.com/xwp/wp-dev-lib/blob/master/svn-push) script in [wp-dev-lib](https://github.com/xwp/wp-dev-lib) to facilitate the syncing of plugins to WordPress.org. This integration can be even [automated by Travis CI](https://github.com/xwp/wp-dev-lib/issues/106).
+
+### Issue Lifecycle
+
+For plugin projects we generally just use GitHub issues, but for client projects and internal sites we almost always use *JIRA* for issue tracking.
+
+Our normal workflow consists of the following JIRA statuses, where a ticket will generally transition from start to finish, although some backtracking does happen, for instance an ticket moving to QA but then getting sent back for development. The JIRA workflow is:
+
+1. *To Do*: Issue has not been worked on yet.
+1. *In Development*: Issue is assigned to an engineer and work is being done.
+1. *Code Review*: Engineer has finished the work and has opened a pull request, re-assigning the issue to a peer for review.
+1. *QA*: Feature branch has been merged into `preview` and is now on the preview server, and issue is assigned to testers for verification.
+1. *UAT*: Issue is assigned to client for review.
+1. *Queued for Deployment*: Issue has passed client review and the PR can be merged into `master`.
+1. *In VIP Review*: (WordPress.com VIP only) Code for issue has been committed to SVN and is now in the deploy queue.
+1. *Production*: Issue has been deployed. QA and client can re-verify.
+1. *Done*: Issue is closed.

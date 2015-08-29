@@ -73,6 +73,9 @@ subnav:
 			<li>
 				<a href="workflows/#deploying-plugins">Deploying Plugins</a>
 			</li>
+			<li>
+				<a href="workflows/#issue-lifecycle">Issue Lifecycle</a>
+			</li>
 		</ul>
 	</div>
 	<div class='col'>
