@@ -577,7 +577,7 @@ Here's an example:
 
 Instead of using the generic [```__()```](https://developer.wordpress.org/reference/functions/__/) function, something like [```esc_html__()```](https://developer.wordpress.org/reference/functions/esc_html__/) might be more appropriate. Instead of using the generic [```_e()```](https://developer.wordpress.org/reference/functions/_e/) function, [```esc_html_e()```](https://developer.wordpress.org/reference/functions/esc_html_e/) would instead be used.
 
-There are many escaping situations not covered in this section. Everyone should explore the [WordPress codex article](http://codex.wordpress.org/Validating_Sanitizing_and_Escaping_User_Data#Escaping:_Securing_Output) on escaping output to learn more.
+There are many escaping situations not covered in this section. Everyone should explore the [WordPress codex article](http://codex.wordpress.org/Validating_Sanitizing_and_Escaping_User_Data#Escaping:_Securing_Output) on escaping output to learn more. See also  VIP's [The Importance of Escaping All The Things](https://vip.wordpress.com/2014/06/20/the-importance-of-escaping-all-the-things/). Also, be sure that your PHP_CodeSniffer ruleset includes the `WordPress.XSS.EscapeOutput` rule since it can help catch many areas where late-escaping is not being followed.
 
 #### Nonces
 
@@ -587,7 +587,7 @@ The purpose of a nonce is to make each request unique so an action cannot be rep
 
 WordPress' [implementation](http://codex.wordpress.org/WordPress_Nonces) of nonces are not strictly numbers used once, though they serve an equal purpose.
 
-The literal WordPress definition of nonces is "A cryptographic token tied to a specific action, user, and window of time.". This means that while the number is not a true nonce, the resulting number *is* specifically tied to the action, user, and window of time for which it was generated.
+The literal WordPress definition of nonces is "A cryptographic token tied to a specific action, user, and window of time." This means that while the number is not a true nonce, the resulting number *is* specifically tied to the action, user, and window of time for which it was generated.
 
 Let's say you want to trash a post with `ID` 1. To do that, you might visit this URL: ```http://example.com/wp-admin/post.php?post=1&action=trash```
 
