@@ -18,5 +18,4 @@ cd .git/hooks && ln -s ../../bin/update-toc.php pre-commit && cd -
 ## License
 
 This code is shamelessly forked from [10up's own Engineering Best Practices](https://github.com/10up/Engineering-Best-Practices/). As such, it is a derivative work. Why re-invent the wheel, right?
-Released under MIT by, and copyright 2014 by 10up.
-
+Released under [MIT license](LICENSE.md). Copyright 2014 by 10up; [modifications](https://github.com/10up/Engineering-Best-Practices/compare/gh-pages...xwp:gh-pages) copyright 2015 by XWP.

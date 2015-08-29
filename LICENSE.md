@@ -1,6 +1,7 @@
 The MIT License (MIT)
 
-Copyright (c) 2015 10up, XWP
+Original work Copyright (c) 2014 10up  
+Derivative work Copyright (c) 2015 XWP
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
