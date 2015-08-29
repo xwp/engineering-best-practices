@@ -142,6 +142,39 @@ window.console.log( typeof window.i !== 'undefined' ); // false
 
 Notice how ```i``` was not exposed to the ```window``` object.
 
+A common pattern for encapsulating some JS functionality is:
+
+```javascript
+/* global _fooExports */
+/* exported Foo */
+var Foo = (function( $ ) {
+
+	var self = {
+		bar: 1,
+		baz: 2
+	};
+	if ( 'undefined' !== typeof _fooExports ) {
+		$.extend( self, _fooExports );
+	}
+
+	self.init = function( config ) {
+		$.extend( self, config || {} );
+		/* ... */
+	};
+
+	// Bootstrap when DOM ready.
+	$( function() {
+		self.init();
+	} );
+
+	return self;
+})( jQuery );
+```
+
+The `_fooExports` is a variable which is exported from PHP by `wp_localize_script()` (or the like).
+
+Note that it is better if the bootstrap is not done here but rather is decoupled by `Foo.init()` being called elsewhere.
+
 #### Use Modern Functions, Methods, and Properties
 
 It's important we use language features that are intended to be used. This means not using deprecated functions, methods, or properties. Whether we are using a JavaScript or a library such as jQuery or Underscore, we should not use deprecated features. Using deprecated features can have negative effects on performance, security, maintainability, and compatibility.
