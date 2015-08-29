@@ -430,7 +430,7 @@ In terms of [Object-Oriented Programming](http://en.wikipedia.org/wiki/Object-or
 
 #### Structure and Patterns
 
-* Use our [`wp-foo-bar`](https://github.com/xwp/wp-foo-ba) plugin scaffold for initializing new plugins.
+* You can use the [`wp-foo-bar`](https://github.com/xwp/wp-foo-ba) plugin scaffold for initializing new plugins.
 * Use the dependency injection pattern in your plugin's object-oriented architecture.
 * Put all plugin PHP code inside of a `php` directory. All plugin code should be encapsulated in classes, and so each file in this directory should follow the pattern `class-foo-bar.php` (for class `Foo_Bar`) according to WordPress naming conventions.
 * Singletons are not advised. There is little justification for this pattern in practice and they cause more maintainability problems than they fix.
@@ -485,8 +485,10 @@ Special care must be taken to ensure queries are properly prepared and sanitized
 <?php
 global $wpdb;
 
-$wpdb->get_results( $wpdb->prepare( "SELECT id, name FROM $wpdb->posts WHERE ID='%d'", absint( $post_id ) ) );
-?>
+$wpdb->get_results( $wpdb->prepare(
+    "SELECT id, name FROM $wpdb->posts WHERE ID = %d",
+    absint( $post_id )
+) );
 ```
 
 ```$wpdb->prepare()``` behaves like ```sprintf()``` and essentially calls ```mysqli_real_escape_string()``` on each argument. ```mysqli_real_escape_string()``` escapes characters like ```'``` and ```"``` which prevents many SQL injection attacks.
@@ -498,9 +500,11 @@ Here is another example:
 ```php
 <?php
 global $wpdb;
-
-$wpdb->insert( $wpdb->posts, array( 'post_content' => wp_kses_post( $post_content ), array( '%s' ) );
-?>
+$wpdb->insert(
+    $wpdb->posts,
+    array( 'post_content' => wp_kses_post( $post_content ),
+    array( '%s' ),
+) );
 ```
 
 ```$wpdb->insert()``` creates a new row in the database. ```$post_content``` is being passed into the ```post_content``` column. The third argument lets us specify a format for our values ```sprintf()``` style. Forcing the value to be a string using the ```%s``` specifier prevents many SQL injections attacks. However, ```wp_kses_post()``` still needs to be called on ```$post_content``` as someone could inject harmful JavaScript otherwise.
@@ -609,7 +613,7 @@ When the form request is processed, the nonce must be verified:
 ```php
 <?php
 // Verify the nonce to continue.
-if ( ! empty( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'my_action_name' ) ) {
+if ( ! check_ajax_referer( 'my_action_name', '_wpnonce', false ) ) {
     // Nonce is valid!
 }
 ```
