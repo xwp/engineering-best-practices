@@ -75,6 +75,10 @@ We version control all projects using [Git](http://git-scm.com/). Version contro
 
 Commits should be small and independent items of work. Distinct items of work are essential in keeping features separate, which will aid in reversing or rolling back commits if necessary or pushing specific features forward.
 
+Do not wait more than a day to push commits. _Push early and push often._ Not only is it important to show progress for our work, it's also important for collaboration: when you sign off another developer may want to pick up where you left off, but this is not possible if you have not pushed up your latest work in progress.
+
+Try to keep your commits as logically self-contained as possible. If you have made a lot of changes which you have not committed yet, you can step through the changes via `git add -p` to selectively stage chunks for committing. In this way you can group your changes into commits. Using `git add -p` is also just plain handy to stage changes for commit in general because it helps prevent accidentally committing something you do not intend; for the same reason, `git commit -a` should be avoided because you don't have the explicit step to review what you are committing. Remember you can do `git diff --staged` right before commit for one last review.
+
 #### Branches
 
 All projects will treat the ```master``` branch as the canonical source for live, released, stable, production code.
