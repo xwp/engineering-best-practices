@@ -430,7 +430,7 @@ In terms of [Object-Oriented Programming](http://en.wikipedia.org/wiki/Object-or
 
 #### Structure and Patterns
 
-* You can use the [`wp-foo-bar`](https://github.com/xwp/wp-foo-ba) plugin scaffold for initializing new plugins.
+* You can use the [`wp-foo-bar`](https://github.com/xwp/wp-foo-bar) plugin scaffold for initializing new plugins.
 * Use the dependency injection pattern in your plugin's object-oriented architecture.
 * Put all plugin PHP code inside of a `php` directory. All plugin code should be encapsulated in classes, and so each file in this directory should follow the pattern `class-foo-bar.php` (for class `Foo_Bar`) according to WordPress naming conventions.
 * Singletons are not advised. There is little justification for this pattern in practice and they cause more maintainability problems than they fix.
@@ -559,7 +559,7 @@ If you need to escape such that HTML is permitted (but not harmful JavaScript), 
 </div>
 ```
 
-```wp_kses_*``` functions should be used sparingly as they have bad performance due to a large number of regular expression matching attempts. If you find yourself using ```wp_kses_*```, it's worth evaluating what you are doing as whole.
+```wp_kses_*``` functions should be used sparingly as they have bad performance due to a large number of regular expression matching attempts. If you find yourself using ```wp_kses_*```, it's worth evaluating what you are doing as a whole.
 
 Are you providing a meta box for users to enter arbitrary HTML? Perhaps you can generate the HTML programmatically and provide the user with a few options to customize.
 
@@ -624,7 +624,7 @@ We follow the official WordPress [coding](http://make.wordpress.org/core/handboo
 
 The [WordPress Coding Standards for PHP_CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) will find many common violations and flag risky code for manual review. Note that there are pre-defined standards for `WordPress-Core`, `WordPress-VIP`, `WordPress-Docs` and a grab bag in `WordPress-Extra`. You will probably want to customize the PHPCS ruleset for your project: [wp-dev-lib](https://github.com/xwp/wp-dev-lib) will look for a `phpcs.ruleset.xml` to use for the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook and [Travis CI build](https://github.com/xwp/wp-dev-lib#travis). Please also be aware of the PHP_CodeSniffer-bundled tool [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically#using-the-php-code-beautifier-and-fixer) (PHP Code Beautifier and Fixer) which also automatically fixes many WordPress Coding Standard violations.
 
-We highly value verbose commenting/documentation throughout any/all code, with an emphasis on docblock long descriptions which state 'why' the code is there and 'what' exactly the code does in human-readable prose. That being said, well-written code should also speak for itself, especially of methods are broken down into their smaller (testable) logical units. [Unit tests](#unit-testing) also provide an opportunity to write documentation in the form of working examples (or intentionally non-working examples).
+We highly value verbose commenting/documentation throughout any/all code, with an emphasis on docblock long descriptions which state 'why' the code is there and 'what' exactly the code does in human-readable prose. That being said, well-written code should also speak for itself, especially if methods are broken down into their smaller (testable) logical units. [Unit tests](#unit-testing) also provide an opportunity to write documentation in the form of working examples (or intentionally non-working examples).
 
 Example:
 

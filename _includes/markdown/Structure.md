@@ -28,7 +28,7 @@ Plugins should have unit tests.
 
 Any functions the plugin exposes for use in a theme should be done so through actions and filters - the plugin should contain multiple calls to `add_filter()` and `add_action()` as the hooks themselves will be defined in the theme.
 
-Use our [`wp-foo-bar`](https://github.com/xwp/wp-foo-ba) plugin scaffold for initializing new plugins.
+Use our [`wp-foo-bar`](https://github.com/xwp/wp-foo-bar) plugin scaffold for initializing new plugins.
 
 #### General Notes
 
