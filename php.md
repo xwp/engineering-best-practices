@@ -5,7 +5,7 @@ nav: PHP
 group: navigation
 weight: 2
 layout: default
-updated: 2015-08-29 06:51:26Z
+updated: 2015-10-08 06:01:31Z
 subnav:
   - title: Performance
     tag: performance

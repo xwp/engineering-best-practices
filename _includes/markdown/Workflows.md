@@ -25,13 +25,13 @@ Unit tests should be written for all plugins, whether they are for public distri
 Write your (plugin) code in a way that makes it testable. It is much easier to write unit tests while (or even before, à la [TDD](https://en.wikipedia.org/wiki/Test-driven_development)) you write your functional code. Unit tests help guide best practices for code architecture: testable code is more often well-architected code.
 
 * Organize your plugin code into objects that incorporate the [dependency injection pattern](http://jasonpolites.github.io/tao-of-testing/ch3-1.1.html); this allows unit tests to supply mocks for the objects that aren't specifically being tested.
-* Write methods that are small as possible, that do one thing and do it well.
+* Write methods that are as small as possible, that do one thing and do it well.
 * Shy away interacting with global variables, though in WordPress this is often a painful reality we have to just live with.
-* A functions should be a black box that takes an input and returns an output. You can then test the outputs for any given inputs.
+* A function should be a black box that takes an input and returns an output. You can then test the outputs for any given inputs.
 
 It is always a challenge to ensure that unit tests have complete testing coverage for a plugin. It is often not worthwhile to require 100% coverage, but rather to focus on testing the key parts of the plugin's logic (as opposed to testing basic things like metabox registration).
 
-When the issue being worked on us is a defect, a best practice is to first write a failing unit test that demonstrates the bug, and then fix the code so that the unit test passes.
+When the issue being worked on is a defect, a best practice is to first write a failing unit test that demonstrates the bug, and then fix the code so that the unit test passes.
 
 ### Code Review
 
