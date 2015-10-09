@@ -12,7 +12,7 @@ Any theme dependencies on functionality plugins should be built with the use of 
 
 Any logic in the theme's `functions.php` should be simple and directly related to presentation; any other logic should be put into a plugin (e.g. post types, taxonomies, rewrite rules).
 
-Take a look at our [Config-Driven WP](https://github.com/xwp/config-driven-wp) project for some (dated) examples for a common approach we take for normalizing the theme's configuration into a [`config.php`](https://github.com/xwp/config-driven-wp/blob/master/docroot/wp-content/themes/radio/config.php) array which then be cleanly merged with a child theme's configuration array.
+Take a look at our [Config-Driven WP](https://github.com/xwp/config-driven-wp) project for some (dated) examples for a common approach we take for normalizing the theme's configuration into a [`config.php`](https://github.com/xwp/config-driven-wp/blob/master/docroot/wp-content/themes/radio/config.php) array. The config array can then be cleanly merged with a child theme's configuration array.
 
 #### Plugins
 
