@@ -69,7 +69,7 @@ For sites hosted on *Pantheon*, this is part of the [their platform](https://pan
 
 ### Version Control
 
-We version control all projects using [Git](http://git-scm.com/). Version control allows us to track codebase history, maintain parallel tracks of development, and collaborate without stomping out each others changes.
+We version control all projects using [Git](http://git-scm.com/). Version control allows us to track codebase history, maintain parallel tracks of development, and collaborate without stomping out each other's changes.
 
 #### Commits
 
