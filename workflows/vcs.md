@@ -1,11 +1,8 @@
----
-description: >-
-  We version control all projects at XWP using Git. Version control allows us to
-  track codebase history, maintain parallel tracks of development, and
-  collaborate without stomping out each other’s change
----
-
 # Version Control
+
+{% hint style="danger" %}
+We version control all projects at XWP using Git. Version control allows us to track codebase history, maintain parallel tracks of development, and collaborate without stomping out each other’s change
+{% endhint %}
 
 ## Structure and Package Management
 
