@@ -1,6 +1,6 @@
 # Tools
 
-### Philosophy
+## Philosophy
 
 The quality of a contributor's work can be reliably tied to the quality of their tools. Your editor \(IDE\), local development environment, code linters, unit testers, compilers, shell scripts, and other tools can all have a profound impact on your efficiency and quality. So it's important to always be thinking about how your tools and workflow can be improved.
 
@@ -12,7 +12,7 @@ As much as possible, when you identify improvements, try and look for ways to au
 
 The following are tools we use at XWP. This list will grow and change over time and is not meant to be comprehensive. Generally, we encourage, and in some cases require, these tools to be used in favor of other ones. Rules governing tools to be used and packaged with a client site will be much stricter than those used on internal projects.
 
-### Editors \(IDEs\)
+## Editors \(IDEs\)
 
 Our recommended PHP editor \(IDE\) is [PhpStorm](https://www.jetbrains.com/phpstorm/), there is also another that is becoming more and more wide spread as of late, which is [VS Code](https://code.visualstudio.com/) and is also a great alternative. They both have extensive support for JavaScript, CSS, HTML, Markdown, Twig, and Bash to name a few. We highly recommend adopting PhpStorm for consistency across our team and so that we can collaborate on optimal configuration and maximizing the features.
 
@@ -24,7 +24,7 @@ Also see the PhpStorm docs for integrating our [code checkers](tools.md#code-che
 * [ESLint](https://www.jetbrains.com/help/phpstorm/eslint.html)
 * [JSCS](https://www.jetbrains.com/phpstorm/help/jscs.html)
 
-### Code Checkers
+## Code Checkers
 
 The following should all be integrated into [`wp-dev-lib`](https://github.com/xwp/wp-dev-lib) and pre-configured there for use in your plugin or site project; they should integrated into your IDE, be run automatically before committing via the [`pre-commit`](https://github.com/xwp/wp-dev-lib#automate) hook, and also run after pushing to a pull request via [Travis CI](https://github.com/xwp/wp-dev-lib#travis-ci):
 
@@ -36,7 +36,7 @@ The following should all be integrated into [`wp-dev-lib`](https://github.com/xw
 
 Any additional references to code checker tools elsewhere in these best practices should be amended to this list.
 
-### Local Development Environments <a id="local-development"></a>
+## Local Development Environments
 
 When starting out, many developers edit PHP files on their local machine and then upload the changes via FTP to their production site to test. This is bad! A slightly better workflow is to have a separate staging server to upload changes to and test there. This is less bad, but still not good. Both of these are examples of cowboy coding.
 
@@ -70,13 +70,13 @@ There are a variety of solutions out there to get a local development environmen
 * **WordPress VIP Classic** For classic VIP sites we have a private repository called `wordpress-vip` that provided a good starting place for those project. It's based on VVV 2.0+ but is not used much anymore now that new sites are setup on VIP Go. Any clients still on the legacy system will already have a development environment available to you when you onboard to the project.
 * **VVV** [Varying Vagrant Vagrants](https://varyingvagrantvagrants.org/) \(VVV\) use to be our standard Vagrant setup for client sites and local development. However, over the past few years has become used much less due to its slow provisioning.
 
-### Scaffolding
+## Scaffolding
 
 * [`wp-dev-lib`](https://github.com/xwp/wp-dev-lib)  This is a development library that is great for adding coding standards, linting and automated testing even to legacy projects since checks are applied only to new code by default.
 * **Gutenberg Plugin** The [`block-extend`](https://github.com/xwp/block-extend) plugin has been developed as a starter for creating Gutenberg centric plugins and is also used during candidate coding challenges.
 * **Customizer Plugin** Our template plugin for scaffolding WordPress plugins called [`wp-foo-bar`](https://github.com/xwp/wp-foo-bar) has historically been used to scaffold Customizer centric plugins for both our clients and Core. However, it has not been kept up-to-date this past year with all the new shinny development and editorial tools coming into play. It either needs to be updated or deprecated. It's likely that the [`block-extend`](https://github.com/xwp/block-extend) plugin will somehow be merged back into this scaffolding.
 
-### Task Runners <a id="task-runners"></a>
+## Task Runners
 
 [Grunt](http://gruntjs.com/) - Grunt is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification. Grunt is our default task runner and has a great community of plugins and solutions we use for on company and client projects.
 
@@ -84,7 +84,7 @@ There are a variety of solutions out there to get a local development environmen
 
 [Webpack](https://webpack.github.io/) - Webpack is a bundler for JS/CSS. It’s extremely useful when building larger JavaScript applications \(i.e. React.js\).
 
-### Package/Dependency Managers <a id="package-managers"></a>
+## Package/Dependency Managers
 
 [Composer](https://getcomposer.org/) - We use Composer for managing PHP dependencies. Usually everything we need is bundled with WordPress, but sometimes we need external PHP libraries like “Patchwork”. Composer is a great way to manage those external libraries.
 
@@ -92,13 +92,13 @@ When a WordPress install is managed and maintained by an engineering team, and w
 
 [NPM](https://www.npmjs.com/) - We use `npm` for managing JavaScript dependencies and is also great for generating scripts to accommodate our DevOps workflows. For example, we typically create scripts that lint, test, build, deploy, and pretty much handle everything we need to automate our processes.
 
-### Version Control <a id="version-control"></a>
+## Version Control
 
 [Git](https://git-scm.com/) - We use Git for version control. We encourage people to use the command line for interacting with Git. GUIs are permitted but will not be supported internally.
 
 [SVN](https://subversion.apache.org/) - We use SVN, but only in the context of WordPress.com VIP. Again, we encourage people to use the command line as we do not support GUIs internally.
 
-### Command Line Tools <a id="command-line"></a>
+## Command Line Tools
 
 The mouse is the enemy. The book [Pragmatic Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer) highlights the inefficiencies of interacting with a computer via a mouse. A workflow can be drastically sped up via keyboard commands. But think beyond “keyboard shortcuts” and the convoluted finger gymnastics they often involve \(Ctrl-Alt-Command-Shift-A…\). Think instead about the code you might write from your keyboard every day in PHP:
 
@@ -116,7 +116,7 @@ When all of your instructions are composed of commands that are read by an inter
 
 For WordPress, there is a de facto tool for interfacing with WordPress from the command line: [WP-CLI](http://wp-cli.org/). Becoming familiar with the commands available, and even writing your own commands, can greatly speed up your development workflow and allow you to script tasks for others to run without having to share a long complicated set of manual instructions. This is an extremely powerful tool that allows us to do imports, exports, run custom scripts, and more via the command line. Often this is the only way we can affect a large database \(WordPress.com VIP or WPEngine\). This tool should be installed by default in a development environment, if it's not create an issue on GitHub.
 
-### Accessibility Testing <a id="a11y-testing"></a>
+## Accessibility Testing
 
 We use a variety of tools to test our sites for accessibility issues. WebAim has some great resources on [how to evaluate sites](http://webaim.org/articles/screenreader_testing/) with a screen reader.
 
@@ -134,7 +134,7 @@ We’re also a fan of a few browser tools that lend us a hand when it comes to t
 * [Contrast Ratio](https://leaverou.github.io/contrast-ratio/) - A color contrast tool to compare two colors against [levels of conformance](https://www.w3.org/TR/UNDERSTANDING-WCAG20/conformance.html) and see if they pass.
 * [Tanagaru Contrast Finder](http://contrast-finder.tanaguru.com/?lang=en) - Another color contrast tool that tests colors against the levels of conformance, but also provides you with alternatives should your provided colors fail.
 
-### Visual Regression Testing <a id="vrt"></a>
+## Visual Regression Testing
 
 We use visual regression testing to ensure code changes don’t have unforeseen repercussions. This provides a helpful visual aid to check against CSS changes, plugin updates, and third-party script updates.
 

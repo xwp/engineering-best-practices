@@ -1,32 +1,32 @@
 # Markup
 
-### Philosophy <a id="philosophy"></a>
+## Philosophy
 
 We aim to create the best possible experience for both our clients and their customers; not for the sake of using cool, bleeding edge technologies that may not have widespread browser support. Our markup embodies this approach.
 
-#### Principles <a id="principles"></a>
+### Principles
 
 Markup is intended to define the structure and outline of a document and to offer semantic structure for the document’s contents. Markup should not define the look and feel of the content on the page beyond the most basic structural concepts such as headers, paragraphs, and lists.
 
 Our projects are often large and ongoing. As such, it’s imperative that we engineer projects to be maintainable. From a markup perspective, we do this by adhering to the following principles:
 
-#### Semantic <a id="semantic"></a>
+### Semantic
 
 We pride ourselves in writing clean, semantic markup. Semantic markup can be defined as: “the use of HTML markup to reinforce the semantics, or meaning, of the information in web pages rather than merely to define it’s presentation or look. Semantic HTML is processed by traditional web browsers as well as by many other user agents. CSS is used to suggest its presentation to human users” \(definition from Wikipedia - [https://en.wikipedia.org/wiki/Semantic\_HTML](https://en.wikipedia.org/wiki/Semantic_HTML)\).
 
 Semantic elements are elements with clearly defined meaning to both the browser and the developer. Elements like `<header>`, `<nav>`, `<footer>`, or `<article>` do a much better job of explaining the content that is contained within the element than `<span>` or `<div>`. This does not mean that we do not use `<div>`s in our markup, only that we prefer the right tool \(or in this case semantic element\) for the job.
 
-#### Minimal & Valid
+### Minimal & Valid
 
 Websites should be written using the least amount of markup that accomplishes the goal. In the interest of engineering maintainable projects, it’s imperative that two completely different types of readers are accounted for: humans and browsers. Writing minimal markup makes it easier for developers to read and understand in a code editor. Valid markup is easier for browsers to process.
 
 We test our markup against the [W3C validator](https://validator.w3.org/) to ensure that it is well formed and provides a fairly consistent experience across browsers.
 
-#### **Following WordPress Standards**
+### **Following WordPress Standards**
 
 WordPress Core has [coding standards for HTML](https://make.wordpress.org/core/handbook/best-practices/coding-standards/html/). These should be followed for consistency across projects.
 
-#### Optimize Readability
+### Optimize Readability
 
 We often work with large codebases. As such, it’s important to optimize markup for human readability. This allows developers to quickly rotate in and out of projects, eases onboarding processes, and improves code maintainability.
 
@@ -34,7 +34,7 @@ Always use tabs for indentation. Doing this allows developers to set their edito
 
 When mixing PHP and HTML together, indent PHP blocks to match the surrounding HTML code. Closing PHP blocks should match the same indentation level as the opening block. Similarly, keep PHP blocks to a minimum inside markup. Doing this turns the PHP blocks into a type of tag themselves. Use colon syntax for PHP loops and conditionals so that it’s easier to see when a certain loop ends within the block of markup.
 
-#### **Examples**
+### **Examples**
 
 Bad:
 
@@ -58,15 +58,15 @@ Good:
 </ul>
 ```
 
-#### Declaring the Proper Doctype
+### Declaring the Proper Doctype
 
 For all new projects we use HTML5 with the following doctype: `<!DOCTYPE html>`
 
-#### Lowercase Tags
+### Lowercase Tags
 
 Although HTML is not case sensitive, using lowercase tags is our preferred pattern. Again, we’re emphasizing readability and consistency.
 
-#### **Examples**
+### **Examples**
 
 Bad:
 
@@ -80,7 +80,7 @@ Good:
 <div class="featured-image"></div>
 ```
 
-#### Avoid Unnecessary Presentational Markup
+### Avoid Unnecessary Presentational Markup
 
 As part of our mission to write clean, semantic markup, avoid writing unnecessary presentational markup. Markup should always dictate what the content is, and CSS should dictate how the content looks. Mixing these two concerns makes maintaining code more difficult.
 
@@ -88,7 +88,7 @@ By using Sass, we’re able to better extend our classes within our CSS, allowin
 
 This is not to say that multiple classes on an element are unacceptable. Contextual modifier classes are certainly acceptable and encouraged.
 
-#### **Examples**
+### **Examples**
 
 Bad:
 
@@ -103,7 +103,7 @@ Good:
 <nav class="primary-nav open"></nav>
 ```
 
-#### Schema.org Markup <a id="schemaorg-markup"></a>
+### Schema.org Markup
 
 [Schema.org](https://schema.org/) is the result of collaboration between Google, Bing, Yandex, and Yahoo! to provide the information their search engines need to understand content and provide the best search results possible. Adding Schema.org data to your HTML provides search engines with structured data they can use to improve the way pages display in search results.
 
@@ -117,7 +117,7 @@ Schema.org data can be provided in two forms: “microdata” markup added to a 
 
 Schema.org markup should be validated against the [Google Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/u/0/).
 
-### HTML5 Structural Elements <a id="html5-structural-elements"></a>
+## HTML5 Structural Elements
 
 HTML5 structural elements allow us to create a more semantic and descriptive codebase and are used in all of our projects. Instead of using `<div>`s for everything, we can use HTML5 elements like `<header>`, `<footer>`, and `<article>`. They work the same way, in that they’re all block level elements, but improve readability and thus maintainability.
 
@@ -127,7 +127,7 @@ Another misconception is that the `<figure>` element can only be used for images
 
 Finally, not all groups of links on a page need to be in a nav element. The `<nav>` element is primarily intended for sections that consist of major navigation blocks.
 
-#### Examples
+### Examples
 
 Bad:
 
@@ -162,7 +162,7 @@ Good:
 </div>
 ```
 
-#### Type attribute on script and style elements is not necessary in HTML5
+### Type attribute on script and style elements is not necessary in HTML5
 
 Since all browsers expect scripts to be JavaScript and styles to be CSS, you don’t need to include a type attribute. While it isn’t really a mistake, it’s a best practice to avoid this pattern.
 
@@ -180,7 +180,7 @@ Good example:
 <script src="script/scripts.js"></script>
 ```
 
-### Classes & IDs <a id="classes-ids"></a>
+## Classes & IDs
 
 In order to create more maintainable projects, developers should use classes for CSS and IDs for JavaScript. Separating concerns allows markup to be more flexible without risking breaking both styles and any JavaScript that may be attached to the element on which someone is working.
 
@@ -192,15 +192,15 @@ Example:
 <nav id="js-primary-menu" class="primary-menu"></nav>
 ```
 
-#### Avoid using inline styles or JavaScript
+### Avoid using inline styles or JavaScript
 
 These are not easily maintainable and can be easily lost or cause unforeseen conflicts.
 
-### Accessibility <a id="accessibility"></a>
+## Accessibility
 
 It’s important that our clients and their customers are able to use the products that we create for them. Accessibility means creating a web that is accessible to all people: those with disabilities and those without. We must think about people with visual, auditory, physical, speech, cognitive and neurological disabilities and ensure that we deliver the best experience we possibly can to everyone. Accessibility best practices also make content more easily digestible by search engines. Increasingly, basic accessibility can even be a legal requirement. In all cases, an accessible web benefits everyone.
 
-#### Accessibility Standards <a id="accessibility-standards"></a>
+### Accessibility Standards
 
 At a minimum, all XWP projects should pass [WCAG 2.1 Level A Standards](https://www.w3.org/WAI/intro/wcag). A baseline compliance goal of Level A is due to [WCAG guideline 1.4.3](https://www.w3.org/WAI/WCAG20/quickref/#visual-audio-contrast-contrast) which requires a minimum contrast ratio on text and images, as XWP does not always control the design of a project.
 
@@ -208,7 +208,7 @@ For design projects and projects with a global marketplace \(companies with enti
 
 While [Section 508](https://www.section508.gov/) is the US standard, following the guidance of WCAG 2.0 will help a project pass Section 508 and also maintain a consistent internal standard. If a project specifically requires Section 508, additional confirmation testing can be done.
 
-#### States and Properties <a id="states-and-properties"></a>
+### States and Properties
 
 ARIA also allows us to describe certain inherent properties of elements, as well as their various states. Imagine you’ve designed a site where the main content area is split into three tabs. When the user first visits the site, the first tab will be the primary one, but how does a screen reader get to the second tab? How does it know which tab is active? How does it know which element is a tab in the first place?
 
@@ -235,7 +235,7 @@ ARIA attributes can be added dynamically with JavaScript to help add context to 
 
 You can see how effortless it is to make our tabbed interface accessible to screen readers. Be sure to add visibility attributes like `aria-hidden` with JavaScript. If it is added manually in HTML and JavaScript doesn’t load, the content will be completely removed from screen readers.
 
-#### Accessible Forms <a id="accessible-forms"></a>
+### Accessible Forms
 
 Forms are one of the biggest challenges when it comes to accessibility. Fortunately, there are a few key things that we can do to ensure they meet accessibility standards:
 
@@ -245,11 +245,11 @@ Form elements should also be logically grouped using the `<fieldset>` element. G
 
 Finally, we should ensure that all interactive elements are keyboard navigable, providing easy use for people with vision or mobility disabilities \(or those not able to use a mouse\). In general, the tab order should be dictated by a logical source order of elements. If you feel the need to change the tab order of certain elements, it likely indicates that you should rework the markup to flow in a logical order or have a conversation with the designer about updates that can be made to the layout to improve accessibility.
 
-#### Bypass Blocks <a id="bypass-blocks"></a>
+### Bypass Blocks
 
 [Bypass blocks](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-skip.html) are HTML flags within a document that allow users that rely on screen readers, keyboard navigation or other assistive technologies to _bypass_ certain page elements or _skip_ to a specific section of a page with ease. They most often manifest themselves in the form of [skip links](https://webaim.org/techniques/skipnav/) and [ARIA landmark roles](https://www.w3.org/WAI/GL/wiki/Using_ARIA_landmarks_to_identify_regions_of_a_page)
 
-#### **Skip Links**
+### **Skip Links**
 
 Skip links are ideally placed immediately inside of the `<body>` tag so that they are discovered and announced as early as possible.
 
@@ -267,7 +267,7 @@ Skip links make use of CSS to hide them from sighted users while keeping them ac
 
 Due to some browsers [not moving keyboard focus when they move visual focus](https://axesslab.com/skip-links/), it is essential to also enhance this feature with JavaScript. The popular Underscores starter theme [comes bundled with a good option](https://github.com/Automattic/_s/blob/master/js/skip-link-focus-fix.js) that can be used as a starting point.
 
-#### **ARIA Landmark Roles**
+### **ARIA Landmark Roles**
 
 ARIA is a descriptive layer on top of HTML to be used by screen readers. It has no effect on how elements are displayed or behave in browsers. We use these ARIA Landmark Roles \(banner, navigation, main, etc.\) to provide a better experience to users with disabilities. Landmark role are another type of bypass block. Screen readers can see these as major document regions and navigate to them directly without having to parse through all the content in between.
 
@@ -284,7 +284,7 @@ Example:
 <footer role="contentinfo">{ Site Footer }</footer>
 ```
 
-#### Automated Testing <a id="automated-testing"></a>
+### Automated Testing
 
 In most cases, maintaining baseline accessibility requirements for a project can be an automated process. While we can’t test everything, and we still need some manual testing, there are certain tools that allow us to keep our finger on the pulse of a project’s accessibility compliance.
 
@@ -300,7 +300,7 @@ It is easily installed through npm: `npm install pa11y --save-dev` and can be ad
 
 Running this process allows the engineer to be alerted if a code-level or design change violates the project’s accessibility standards.
 
-#### Manual Testing <a id="manual-testing"></a>
+### Manual Testing
 
 Automated testing will often only get you so far; that is why we also recommend getting a human’s eye on the accessibility in a project and executing manual tests alongside any automation. This process is largely done by an engineer reviewing the interface in a browser or screen reader and involves running your project through all of the WCAG guidelines at the compliance level that is applicable to your specific project \(A, AA, or AAA\). The [WCAG Quickref](https://www.w3.org/WAI/WCAG20/quickref/) is a great place to see all these guidelines in one place.
 
@@ -308,21 +308,21 @@ Manual accessibility testing should be run in conjunction with automated testing
 
 Combining automated and manual testing practices allows us to maintain a high level of compliance on all projects and it is critical to the work we do.
 
-### Progressive Enhancement <a id="progressive-enhancement"></a>
+## Progressive Enhancement
 
 Progressive enhancement means building a website that is robust, fault tolerant, and accessible. Progressive enhancement begins with a baseline experience and builds out from there, adding features for browsers that support them. It does not require us to select supported browsers or revert to table-based layouts. Baselines for browser and device support are set on a project-by-project basis.
 
 We employ progressive enhancement to ensure that the sites we build for our clients are accessible to as many users as possible.
 
-#### Polyfills <a id="polyfills"></a>
+### Polyfills
 
 When writing markup that does not have wide browser support, using polyfills can help bring that functionality to those older browsers. Providing support for older browsers is incredibly important to the business objectives of our clients. In an effort to prevent code bloat, we only provide polyfills for features that are functionally critical to a site.
 
-#### Feature Detection <a id="feature-detection"></a>
+### Feature Detection
 
 Feature detection is used to test browser support for new features that do not yet have full support across the board. The concept of feature detection is to test if a feature is supported by the browser and if not supported, conditionality run code to provide a similar experience with browsers that do support the feature. While popular [feature detection libraries](https://modernizr.com/) exist, there are [feature detection techniques](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection#JavaScript) for JavaScript and [@supports](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports) at-rule for CSS that can be utilized.
 
-### SVG <a id="svg"></a>
+## SVG
 
 SVG has become a prevalent means for displaying rich vector graphics. SVG images are great for graphics with well-defined lines and simple color palettes that can be defined algorithmically, e.g. logos, iconography, and illustrations. Here are a few known benefits of SVG:
 
@@ -336,11 +336,11 @@ Be mindful that SVGs have potential limitations as well:
 * SVG is **not** ideal for photographic images or images with complex visual data. In this case, raster formats \(JPG, PNG, GIF\) will be a better choice.
 * Raster images should _not_ be converted to SVG. It will likely result in a raster image being embedded within the SVG document, which will not provide the same affordances \(i.e. CSS manipulation\) as a genuine SVG. For further reading on vector vs. raster formats, and when to use each: [Adding vector graphics to the Web](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Adding_vector_graphics_to_the_Web).
 
-#### SVG Sprites <a id="svg-sprites"></a>
+### SVG Sprites
 
 Combining SVG images in a single file \(usually called `svg-defs.svg`\) has the benefit of helping limit HTTP requests within a document that contains multiple icons. An SVG sprite file can be embedded within a document and referenced within the template source with a `<use>` element. The creation of this icon system should be automated through the build process. Read [Icon Systems with SVG Sprites](https://css-tricks.com/svg-sprites-use-better-icon-fonts/) for more information.
 
-#### SVG embedded in HTML <a id="svg-embedded-in-html"></a>
+### SVG embedded in HTML
 
 When placing an SVG in markup \(i.e. inline\) be sure to use the following guidelines:
 
@@ -367,11 +367,11 @@ When placing an SVG in markup \(i.e. inline\) be sure to use the following guide
 
 * Use [media queries to provide fallbacks for Windows and High Contrast Mode](https://css-tricks.com/accessible-svgs/#article-header-id-20).
 
-#### Optimization <a id="optimization"></a>
+### Optimization
 
 Many tools for creating SVG are notorious for including unnecessary markup. We recommend running all SVG through [SVGO\(MG\)](https://jakearchibald.github.io/svgomg/) or using tooling, like [gulp-svgmin](https://github.com/ben-eb/gulp-svgmin).
 
-#### Further reading: <a id="further-reading"></a>
+### Further reading:
 
 * [SVG Tutorial](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial) - MDN web docs
 * [An Overview of SVG Sprite Creation Techniques](https://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/)

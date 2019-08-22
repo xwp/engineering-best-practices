@@ -1,10 +1,10 @@
 # Agile Scrum
 
-### Agile Ceremonies
+## Agile Ceremonies
 
 For most Teams as a Service projects we recommend following an Agile Scrum methodology to develop software. The following Agile ceremonies and other events should be planned as part of a two week sprint cycle that XWP intends to follow while implementing user stories as defined within JIRA. These ideally have participation from XWP and the client, whether in a meeting synchronous or asynchronously \(e.g., via Zoom, JIRA, or Slack\).
 
-#### **Backlog Grooming**
+### **Backlog Grooming**
 
 **Purpose**: JIRA tickets in the backlog are described by the Product Owner and Project Manager \(XWP\), validated by the client, and then assigned [story points](agile-scrum.md#story-point-reference) \(not specific values as days/hours/etc.\) by XWP using a service like [planning poker](https://www.planningpoker.com/).
 
@@ -14,7 +14,7 @@ For most Teams as a Service projects we recommend following an Agile Scrum metho
 
 **Frequency**: Backlog Grooming will occur throughout the project and is time boxed by the amount of time attendees can devote to it each time.
 
-#### **Sprint Planning**
+### **Sprint Planning**
 
 **Purpose**: The XWP team will commit to the completion of a subset of the highest ranked backlog items. This commitment defines the sprint backlog and is based on the XWP team’s velocity or capacity.
 
@@ -26,7 +26,7 @@ Each XWP team member should fill ~80% of their capacity during planning and leav
 
 **Frequency**: Sprint Planning will occur on the second Wednesday of each two week sprint, will be focused on the upcoming sprint, and will be time boxed to 2 hours.
 
-#### **Daily Standup or Stand Down**
+### **Daily Standup or Stand Down**
 
 **Purpose**: XWP will present daily commitments and issues asynchronously using Posts in a designated Slack channel.
 
@@ -42,7 +42,7 @@ All XWP team members will review others daily posts in a shared Slack channel an
 
 **Frequency**: Each XWP team member adds their daily standup or stand down post to the shared Slack channel on the same rhythm every day.
 
-#### **Sprint Review / User Acceptance Testing**
+### **Sprint Review / User Acceptance Testing**
 
 **Purpose**: The Sprint Review will be facilitated by the Project Manager \(XWP\) with any interested stakeholders from the client and will include videos from the XWP team demonstrating that the functionality from each user story has been completed.
 
@@ -52,7 +52,7 @@ In lieu of attending the meeting, XWP team members will record a video demo for 
 
 **Frequency**: The Sprint Review will occur on the Tuesday after the completion of a sprint and will be time boxed to 1 hour.
 
-#### **Retrospective**
+### **Retrospective**
 
 **Purpose**: The Retrospective will be facilitated by the Project Manager \(XWP\) and will include the XWP team covering the following questions:
 
@@ -67,7 +67,7 @@ Based on the answers to those questions, the XWP team will decide on actions to 
 
 **Frequency**: Occurs the Wednesday after each sprint and will be time boxed to 1 hour.
 
-#### **Bug Scrub**
+### **Bug Scrub**
 
 **Purpose**: This isn’t a physical meeting, but a recurring task for certain team members to review the list of bugs to see if any have been resolved since they were identified and as such can be marked as Resolved in JIRA.
 
@@ -77,13 +77,13 @@ Based on the answers to those questions, the XWP team will decide on actions to 
 
 **Frequency**: Bug Scrubs typically occur once a week initially and can change in frequency.
 
-#### **Code Releases**
+### **Code Releases**
 
 **Purpose**: All code that has passed Regression Testing is eligible to be deployed to Production and should be deployed by the client, hosting partner, or through automation. XWP will tag a release in GitHub and denote which JIRA user stories, defects, and any other plugin updates are included.
 
 **Frequency**: Code Deploy occurs on the second Monday after the last day of the sprint so that it’s before the Sprint Review and is not on a Friday.
 
-### **Story Point Reference**
+## **Story Point Reference**
 
 <table>
   <thead>
@@ -158,7 +158,7 @@ Based on the answers to those questions, the XWP team will decide on actions to 
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>### Issue Lifecycle
+</table>## Issue Lifecycle
 
 For plugin projects we generally just use GitHub issues, but for client projects and internal sites we almost always use [JIRA](https://www.atlassian.com/software/jira) for issue tracking.
 

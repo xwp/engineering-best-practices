@@ -2,7 +2,7 @@
 
 Data migrations are a necessary but often feared part of building applications on the web. Migrations can, and typically are, difficult. If planned properly, migrations can be fairly painless. The following are some general guidelines to keep in mind when dealing with a migration. Note that this is not a how-to guide on doing a migration, since all migrations are unique, but these are some general guidelines to follow.
 
-### Migration Plan <a id="migration-plan"></a>
+## Migration Plan
 
 The first step in any migration project is to document a detailed plan. A typical migration plan is expected to outline:
 
@@ -19,7 +19,7 @@ The first step in any migration project is to document a detailed plan. A typica
 
 Make sure to have the plan peer reviewed by **at least** one other engineer.
 
-### Writing Migration Scripts <a id="writing-migration-scripts"></a>
+## Writing Migration Scripts
 
 Now that we have a solid migration plan in place, we are ready to actually write the scripts that will handle the migration. All migrations will vary heavily at this step. Sometimes we can get WXR files and just use the WordPress importer \(typically using [WP CLI](https://wp-cli.org/commands/import/)\) to handle everything we need. Other times we’ll use the WordPress Importer then write a script to modify data once it’s in WordPress. Other times we’ll write scripts that handle the entire migration process for us.
 
@@ -27,7 +27,7 @@ All of these decisions should be part of the migration plan we put together, so 
 
 Another option is to use real-time event-driven data processing to create an extract, transform, and load \(ETL\) based platform for a highly scalable data migration. As an example, we previously built a solution that allows data to flow from a live PostgreSQL database to a WordPress MySQL database through the use of the REST API and stubbing out objects in a Firestore database. The flow of data was done in a performant and reliable manner that utilized parallel processing and fault tolerance by using Cloud Functions, Firestore, and App Engine to ingest, map, and transform data as each table is read. Essentially rebuilding the WordPress database in real-time, from a massive PostgreSQL database that contained decades of data, in just a few minutes.
 
-### Thou Shalt Not Forget <a id="thou-shalt-not-forget"></a>
+## Thou Shalt Not Forget
 
 The following are some general things to keep in mind when doing these migrations. Note that not all will apply in every scenario and there are items missing from this list, but this gives a good general overview of things to keep in mind.
 
@@ -61,7 +61,7 @@ The following are some general things to keep in mind when doing these migration
 
   We always need to make sure authors are brought over and assigned correctly. When creating authors, only create them once, so we don’t end up with duplicate authors. Once an author has been brought over the first time, check for and re-use that author each time we need it in the future. Some platforms have the ability to set multiple authors on a post, so make sure there’s a solution figured out for that if needed.
 
-### Potential Side Effects <a id="potential-side-effects"></a>
+## Potential Side Effects
 
 Even the most carefully planned migration can have issues. The following are some things that might occur if they’re not planned for and tested.
 
@@ -91,7 +91,7 @@ Even the most carefully planned migration can have issues. The following are som
 
   * Also, inevitably there will come a time when after a successful production migration has been done, some other piece of data is found that wasn’t originally thought of and now needs to be brought over. As long as an original data source was kept \(typically a database backup\), new migration scripts can be written and run to get the missing content.
 
-### Tips to speed up migrations <a id="tips-to-speed-up-migrations"></a>
+## Tips to speed up migrations
 
 * **Separate tasks.**
 
@@ -137,7 +137,7 @@ function stop_the_insanity() {
 
   If PHP 7 is an option, use it.
 
-#### Requirements for a successful migration <a id="requirements-for-a-successful-migration"></a>
+### Requirements for a successful migration
 
 * **Test all migration scripts.**
 

@@ -1,10 +1,10 @@
 # Automated Testing
 
-### Philosophy
+## Philosophy
 
 The number one line of defense for good quality code, that adheres to best practices and coding standards, is _automated testing_. Because your code must adhere to the coding standards for [PHP](../languages/php.md#code-style), [JavaScript](../languages/js/#code-style-and-documentation), [HTML](../languages/markup.md#following-wordpress-standards), and [CSS](../languages/css.md#follow-wordpress-standards) and pass a [peer code review](code-review.md) in our projects, it is very important that you learn how to setup and perform automated testing. Automated testing is used to to catch small but potentially critical issues, so don't write code without it.
 
-### wp-dev-lib
+## wp-dev-lib
 
 Our repos should always include the [`wp-dev-lib`](https://github.com/xwp/wp-dev-lib) which includes a [`pre-commit`](https://github.com/xwp/wp-dev-lib/#automate) hook that runs before a commit is made, blocking a commit when it encounters issues.
 
@@ -14,7 +14,7 @@ The `pre-commit` hook is not installed automatically when a Git repo is cloned. 
 
 Travis CI should also be configured to automatically run the PHPUnit tests and static analysis for the code in the pull request so GitHub can indicate whether the tests pass. Ask your friendly GitHub admin to setup the Travis CI GitHub App for you and then follow the directions found in the `wp-dev-lib` repository to configure it. `wp-dev-lib` can be installed with either Composer or NPM, which makes it simple to use in any project.
 
-### **Unit and Integration Testing**
+## **Unit and Integration Testing**
 
 Unit testing is the automated testing of units of source code against certain assertions. The goal of unit testing is to write test cases with assertions that test if a unit of code is truly working as intended. If an assertion fails, a potential issue is exposed, and code needs to be revised.
 

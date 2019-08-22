@@ -1,16 +1,16 @@
 # Quality Assurance
 
-### Philosophy
+## Philosophy
 
 Our approach is very much a team effort. Everyone on the delivery team is in some way responsible for doing at least a little QA. Writing user stories & acceptance criteria along with adding automated processes of continuous integration and delivery or deployment, plus mandatory peer code reviews all contribute to lessening the burden on QA to identify defects. QA should be the last line of defense and focused more on the user experience and to validate the intent of an issue was fulfilled, while also ensuring bugs don't make it to production.
 
-### Who does what
+## Who does what
 
 Since engineers will have a [local development environment](../tools.md#local-development), code reviewers will be able to QA the changes on their machines with confidence that it will work properly if pushed directly to production — with the caveat that content from the production database probably wouldn't be used in testing.
 
 As noted in [code review](code-review.md), when there is a dedicated QA team or person involved in a project, the code reviewer should not do in-depth validation that the changes satisfy the requirements since this is the QA Engineers responsibility. QA should also be equipped to do all the cross-browser and accessibility testing.
 
-### Preview
+## Preview
 
 Since the QA team most likely doesn't have a local development environment, and neither should they be expected to, it is critical for there to be an external staging environment available where code changes can be deployed for review before the code gets pushed to production.
 

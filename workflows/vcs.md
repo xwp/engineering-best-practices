@@ -7,13 +7,13 @@ description: >-
 
 # Version Control
 
-### Structure and Package Management <a id="structure-package-management"></a>
+## Structure and Package Management
 
 We structure our projects in such a way that we are not version controlling third party code, rather, they are included via a package manager. For PHP, we use [Composer](https://getcomposer.org/) to manage PHP dependencies \(also see [package managers](../tools.md#version-control)\) e.g. WordPress core itself, plugins, and themes. Dependency management structuring is explained more in the [Structure](https://10up.github.io/Engineering-Best-Practices/structure/#composer-based-project-structure) section.
 
 We also do not commit compiled files \(JS/CSS\). This saves us from having to deal with people forgetting to compile files and large merge conflicts. Instead, we generate compile files during deployment.
 
-### Git Workflows <a id="workflows"></a>
+## Git Workflows
 
 It is **critical** that you are comfortable with Git: read [the book](https://git-scm.com/book/en/v2)! We encourage people to use the command line for interacting with Git. GUI’s are permitted but will not be supported internally. For more information on Git:
 
@@ -22,7 +22,7 @@ It is **critical** that you are comfortable with Git: read [the book](https://gi
 * [Forking Projects \| GitHub Guides](https://guides.github.com/activities/forking/)
 * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
-#### Commits
+### Commits
 
 Commits should be small and independent items of work, containing changes limited to a distinct idea. Distinct commits are essential in keeping features separate, pushing specific features forward, or reversing or rolling back code if necessary.
 
@@ -30,7 +30,7 @@ Do not wait more than a day to push commits. **Push early and push often**_._ No
 
 Try to keep your commits as logically self-contained as possible. If you have made a lot of changes which you have not committed yet, you can step through the changes via `git add -p` to selectively stage chunks for committing. In this way you can group your changes into commits. Using `git add -p` is also just plain handy to stage changes for commit in general because it helps prevent accidentally committing something you do not intend. For the same reason, `git commit -a` should be avoided because you don't have the explicit step to review what you are committing. Remember you can do `git diff --staged` right before commit for one last review.
 
-#### **Commit Messages**
+### **Commit Messages**
 
 The first line of a commit message is a brief summary of the changeset, describing the expected result of the change or what is done to affect change.
 
@@ -78,7 +78,7 @@ Bonus points are given for starting the commit message with an applicable emoji 
 * `:bug:` 🐛 when fixing a bug
 * `:white_check_mark:` ✅ when adding tests
 
-#### Merges
+### Merges
 
 In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a feature is complete to merge `master` or `develop` back into it the branch. Merging should be done as a non-fast-forwards \(`--no-ff`\) to ensure a record of the merge exists. However, all merging should be done by means of pull requests, so you don't need to worry about non-fast-forward merges — this doesn't apply to the `preview` branch, which is a throw-away branch anyway.
 
@@ -88,34 +88,34 @@ When things are absolutely ready to go \(i.e. it has passed code review, QA and 
 
 When a merge is made into `master` and the project uses [semantic versioning](http://semver.org/), then the merge should be accompanied by a Git **tag**.
 
-#### Protecting the `master` Branch <a id="protecting-the-master-branch"></a>
+### Protecting the `master` Branch
 
 We recommend for all repositories to be configured so the `master` branch is protected to prevent direct pushes. All merges should be made through a pull request, which ensures all code changes are peer reviewed before merging to prevent unintentional code reversions. Additionally, protecting branches provides the following benefits:
 
 * Prevents the master branch from being accidentally deleted by other engineers
 * Prevents force-pushes to the branch, overwriting the history
 
-#### Themes
+### Themes
 
 All new development should take place on feature branches that branch off `master`. When a new feature or bugfix is complete, we will do a non-fast-forward merge from that branch to `staging` or `preview` to verify the feature or fix on the stage environment.
 
 When things are absolutely ready to go, we’ll deploy the feature or fix by performing a non-fast-forward merge from that branch to `master`
 
-**Branching**
+### **Branching**
 
 All theme projects will treat the `master` branch as the canonical source for live, production code. Feature branches will branch off `master` and should always have `master` merged back into them before requesting peer code review and before deploying to any staging environments.
 
 All staging branches will branch off `master` as well, and should be named `preview`, `staging` or `stage-{environment}` for consistency and clarity. Staging branches will never be merged into any other branches. The `master` branch can be merged into both staging and feature branches to keep them up-to-date.
 
-#### **Complex Feature Branches**
+### **Complex Feature Branches**
 
 In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to enable testing the feature as a cohesive unit and avoid merge conflicts when pushing to `staging` and `master` it is recommended to create a feature branch to act as a staging area. We do this by branching from `master` to create the primary feature branch, and then as necessary, create additional branches from the feature branch for distinct items of work. When individual items are complete, merge back to the feature branch. To pull work from `master`, merge `master` into the feature branch and then merge the feature branch into the individual branches. When all work has been merged back into the feature branch, the feature branch can then be merged into `staging` and `master` as an entire unit of work.
 
-#### **Working with WordPress.com VIP \(not Go\)**
+### **Working with WordPress.com VIP \(not Go\)**
 
 Sites hosted by WordPress.com VIP use SVN for version control and deployments. For development, however, we continue to use Git. We do not have SVN commits match 1:1 with the commits in Git, as Git commits are often far more granular than is normal for SVN. Instead, we aim for entire Git feature branch merges to correspond to a single SVN commit. In this way, commits to SVN are analogous Git [squashed commits](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Squashing-Commits).
 
-#### **Backporting VIP**
+### **Backporting VIP**
 
 In the event that VIP makes a change to the repository, we’ll capture the diff of their changeset and import it to our development repository by:
 
@@ -126,18 +126,18 @@ In the event that VIP makes a change to the repository, we’ll capture the diff
 * Merging the branch to `staging`, using a non-fast-forward merge
 * Merging the branch back to `master`, again using a non-fast-forward merge
 
-#### **Deleting or Archiving and Deleting Branches**
+### **Deleting or Archiving and Deleting Branches**
 
 This workflow will inevitably build up a large list of branches in the repository. To prevent a large number of unused branches living in the repository, we’ll delete or archive and delete them after feature development is complete.
 
-#### Deleting branches <a id="deleting-branches"></a>
+### Deleting branches
 
 When projects use non-ff merges to master, we can safely delete feature branches because all commits are preserved and can be located from the merge commit.
 
 * Move to another branch \(doesn’t matter which\): eg. `git checkout master`
 * Delete the branch \(both on local and remote\): `git branch -D branch-name; git push :branch-name`
 
-#### Archiving and Deleting branches <a id="archiving-and-deleting-branches"></a>
+### Archiving and Deleting branches
 
 When projects use squash merges to create a more streamlined history in master, we should archive branches before deleting them to preserve the commit history. Branch tag archives also prove a useful history of branches, in case a specific branch is needed later.
 
@@ -146,15 +146,15 @@ When projects use squash merges to create a more streamlined history in master, 
 * Delete the branch \(both on local and remote\): `git branch -D branch-name; git push :branch-name`
 * Push the archive tag: `git push origin archive/branch-name`
 
-#### Plugins
+### Plugins
 
 Unlike theme development, the `master` branch represents a stable, released, versioned product. Ongoing development will happen in feature branches branched off a `develop`branch, which is itself branched off `master`. This pattern is commonly referred to as [the Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow).
 
-#### **Branching**
+### **Branching**
 
 New features should be branched off `develop` and, once complete, merged back into `develop` using a non-fast-forward merge.
 
-#### **Deploying**
+### **Deploying**
 
 When `develop` is at a state where it’s ready to form a new release, create a new `release/<version>` branch off of `develop`. In this branch, you’ll bump version numbers, update documentation, and generally prepare your release. Once ready, merge your release branch \(using a non-fast-forward merge\) into `master` and tag the release:
 
@@ -168,7 +168,7 @@ Finally, merge `master` into `develop` so that `develop` includes all of the wor
 
 You can use the [`svn-push`](https://github.com/xwp/wp-dev-lib/blob/master/scripts/svn-push) script in [wp-dev-lib](https://github.com/xwp/wp-dev-lib) to facilitate the syncing of plugins to WordPress.org. This integration can even be [automated by Travis CI](https://github.com/xwp/wp-dev-lib/issues/106).
 
-#### **Semantic Versioning**
+### **Semantic Versioning**
 
 As we assign version numbers to our software, we follow [the Semantic Versioning pattern](http://semver.org/), wherein each version follows a MAJOR.MINOR.PATCH scheme:
 
@@ -180,7 +180,7 @@ Imagine we have written a new plugin. We might give the first public release ver
 
 Down the road, we decide to remove some functionality or change the way some functions are used. Since this would change how others interact with this code, he would declare this new release to be version **2.0.0**, hinting to consumers that there are breaking changes in the new version of his plugin.
 
-#### **Change Logs**
+### **Change Logs**
 
 If your plugin is being distributed, it’s strongly recommended that your repository contains a `CHANGELOG.md` file, written around [the Keep A Changelog standard](http://keepachangelog.com/).
 

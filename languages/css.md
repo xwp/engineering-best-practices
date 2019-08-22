@@ -1,20 +1,20 @@
 # CSS
 
-### Philosophy
+## Philosophy
 
 We value content and the experience users will have reading it. We write CSS with this in mind and don't sacrifice our clients' most important assets over the latest, shiniest, half-supported CSS features just for the sake of using them. CSS should help enhance content, not bury it under "cool" distractions.
 
 Our websites are built mobile first, using performant CSS. Well-structured CSS yields maintainability and better collaboration which ultimately yields better client experiences.
 
-### Syntax and Formatting
+## Syntax and Formatting
 
 Syntax and formatting are keys to a maintainable project. By keeping our code style consistent, we not only help ourselves debug faster but we're also lessening the burden on those who will have to maintain our code \(maybe ourselves too!\)
 
-#### Follow WordPress Standards
+### Follow WordPress Standards
 
 WordPress Core has [coding standards for CSS](https://make.wordpress.org/core/handbook/best-practices/coding-standards/css/). These should be followed for consistency across projects.
 
-#### CSS Syntax
+### CSS Syntax
 
 CSS syntax is not strict and will accept a lot of variations, but for the sake of legibility and fast debugging, we follow basic code styles:
 
@@ -112,7 +112,7 @@ Prefer:
 }
 ```
 
-#### Declaration ordering
+### Declaration ordering
 
 Declarations should be ordered alphabetically or by type \(Positioning, Box model, Typography, Visual\). Whichever order is chosen, it should be consistent across all files in the project.
 
@@ -123,7 +123,7 @@ If you're using Sass, use this ordering:
 3. @include \(to visually separate mixins and placeholders\) and media queries
 4. Nested selectors
 
-#### Nesting
+### Nesting
 
 Nesting has changed the lives of many, but like everything in life, abusing good things will ultimately be bad. Nesting makes the code more difficult to read and can create confusion. Too much nesting also adds unnecessary specificity, forcing us to add the same or greater specificity in overrides. We want to avoid selector nesting and over-specificity as much as possible.
 
@@ -134,7 +134,7 @@ If you're using PostCSS or Sass **nesting is required** in the following cases, 
 * component states
 * media queries
 
-#### Selector Naming
+### Selector Naming
 
 Selectors should be lowercase, and words should be separated with hyphens. Please avoid camelcase, but underscores are acceptable if they’re being used for [BEM](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) or another syntax pattern that requires them. The naming of selectors should be consistent and describe the functional purpose of the styles they’re applying.
 
@@ -156,11 +156,11 @@ Prefer:
 
 For components that could possibly conflict with plugins or third-party libraries, use vendor prefixes. Don’t use names that can be blocked by adblockers \(e.g. “advertisement”\). When in doubt, you can check a class name against [this list](https://easylist-downloads.adblockplus.org/easylist.txt) to see if it's likely to be blocked.
 
-### Documentation <a id="documentation"></a>
+## Documentation
 
 Code documentation serves two purposes: it makes maintenance easier and it makes us stop and think about our code. If the explanation is too complex, maybe the code is overly complex too. Documenting helps keep our code simple and maintainable.
 
-#### Commenting
+### Commenting
 
 We follow WordPress official commenting standards. Do not hesitate to be very verbose with your comments, especially when documenting a tricky part of your CSS. Use comment blocks to separate the different sections of a partial, and/or to describe what styles the partial covers:
 
@@ -187,7 +187,7 @@ li:nth-child(n+4):nth-child(-n+8) {
 }
 ```
 
-### Performance <a id="performance"></a>
+## Performance
 
 Let's be honest, CSS "speed" and performance is not as important as PHP or JavaScript performance. However, this doesn't mean we should ignore it. A sum of small improvements equals better experience for the user.
 
@@ -195,13 +195,13 @@ Three areas of concern are network requests, CSS specificity, and animation perf
 
 Performance best practices are not only for the browser experience, but for code maintenance as well.
 
-#### Network Requests
+### Network Requests
 
 * Limit the number of requests by concatenating CSS files and encoding sprites and font files to the CSS file.
 * Minify stylesheets
 * Use GZIP compression when possible Automate these tasks with a PHP or/and JavaScript build process.
 
-#### CSS Specificity
+### CSS Specificity
 
 Stylesheets should go from less specific rules to highly specific rules. We want our selectors specific enough so that we don't rely on code order, but not too specific so that they can be easily overridden.
 
@@ -219,7 +219,7 @@ Avoid:
 }
 ```
 
-#### Inheritance
+### Inheritance
 
 Fortunately, many CSS properties can be inherited from the parent. Take advantage of inheritance to avoid bloating your stylesheet but keep [specificity](css.md#css-specificity) in mind.
 
@@ -242,17 +242,17 @@ Prefer:
 }
 ```
 
-#### Reusable code
+### Reusable code
 
 Styles that can be shared, should be shared \(aka DRY, Don’t Repeat Yourself\). This will make our stylesheets less bloated and prevent the browser from doing the same calculations several times. Make good use of Sass placeholders.
 
-#### CSS over assets
+### CSS over assets
 
 Don't add an extra asset if a design element can be translated in the browser using CSS only. We value graceful degradation over additional HTTP requests.
 
 Very common examples include gradients and triangles.
 
-#### Animations
+### Animations
 
 It's a common belief that CSS animations are more performant than JavaScript animations. A few articles aimed to set the record straight \(linked below\).
 
@@ -284,9 +284,9 @@ Articles worth reading:
 * [CSS vs JavaScript Animations](https://developers.google.com/web/fundamentals/look-and-feel/animations/css-vs-javascript?hl=en)
 * [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
 
-### Accessibility <a id="accessibility"></a>
+## Accessibility
 
-#### Animation
+### Animation
 
 Not every animation brings pleasure to the end user. In some cases motion can trigger harmful reactions from users with vestibular disorders, epilepsy or even migraines.
 
@@ -308,11 +308,11 @@ Here is an example:
 
 Read more about [creating accessible animations](https://alistapart.com/blog/post/more-resources-for-accessible-animations).
 
-### Responsive websites <a id="responsive-websites"></a>
+## Responsive websites
 
 We build our websites mobile first. We do not rely on JavaScript libraries such as `respond.js` as it does not work well in certain environments. Instead, we leverage a natural, mobile-first build process and allow sites gracefully degrade.
 
-#### Min-width media queries
+### Min-width media queries
 
 A responsive website should be built with min-width media queries. This approach means that our media queries are consistent, readable and minimize selector overrides.
 
@@ -322,11 +322,11 @@ A responsive website should be built with min-width media queries. This approach
 
 Avoid mixing min-width and max-width media queries.
 
-#### Breakpoints
+### Breakpoints
 
 Working with build tools that utilize Sass or PostCSS processing, we can take advantages of reusability and avoid having an unmaintainable number of breakpoints. Using variables and reusable code blocks we can lighten the CSS load and ease maintainability.
 
-#### Media queries placement
+### Media queries placement
 
 In your stylesheet files, nest the media query within the component it modifies. **Do not** create size-based partials \(e.g. `_1024px.(s)css`, `_480px.(s)css`\): it will be frustrating to hunt for a specific selector through all the files when we have to maintain the project. Putting the media query inside the component will allow developers to immediately see all the different styles applied to an element.
 
@@ -363,26 +363,26 @@ Prefer:
 }
 ```
 
-#### IE8 and older browser support
+### IE8 and older browser support
 
 We prefer showing a fixed-width non-responsive desktop version to older IE users rather than showing a mobile version.
 
 * Use a feature detection to target older browsers.
 * Load a different stylesheet for older browsers.
 
-### Frameworks <a id="frameworks"></a>
+## Frameworks
 
-#### Grids
+### Grids
 
 Our preference is not to use a 3rd party grid system, use your best judgement and keep them simple! All too often we are faced with a design that isn’t built on a grid or purposefully breaks a loosely defined grid. Even if the designer had a grid in mind, there are often needs that require more creative solutions. For example: fixed-width content areas to accommodate advertising.
 
 Sometimes a more complex grid system is warranted and leveraging a 3rd party library will gain some efficiency. However, keep in mind that by adopting a grid system you are forcing all future collaborators on the project to learn this system.
 
-#### Resets
+### Resets
 
 [Normalize.css](https://necolas.github.io/normalize.css/) is our primary tool for CSS resets.
 
-### Further reading
+## Further reading
 
 [CSS: Just Try and Do a Good Job](https://css-tricks.com/just-try-and-do-a-good-job/)
 
