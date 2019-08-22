@@ -200,6 +200,8 @@ These are not easily maintainable and can be easily lost or cause unforeseen con
 
 It’s important that our clients and their customers are able to use the products that we create for them. Accessibility means creating a web that is accessible to all people: those with disabilities and those without. We must think about people with visual, auditory, physical, speech, cognitive and neurological disabilities and ensure that we deliver the best experience we possibly can to everyone. Accessibility best practices also make content more easily digestible by search engines. Increasingly, basic accessibility can even be a legal requirement. In all cases, an accessible web benefits everyone.
 
+Additional information can be found in the [Make WordPress Accessibility Handbook](https://make.wordpress.org/accessibility/handbook/), we encouraged you to read it — lots of quality content.
+
 ### Accessibility Standards
 
 At a minimum, all XWP projects should pass [WCAG 2.1 Level A Standards](https://www.w3.org/WAI/intro/wcag). A baseline compliance goal of Level A is due to [WCAG guideline 1.4.3](https://www.w3.org/WAI/WCAG20/quickref/#visual-audio-contrast-contrast) which requires a minimum contrast ratio on text and images, as XWP does not always control the design of a project.
@@ -283,6 +285,12 @@ Example:
 <main role="main">{ Main content }</main>
 <footer role="contentinfo">{ Site Footer }</footer>
 ```
+
+### wp.a11y.speak\(\)
+
+In certain situation it may be appropriate to use `wp.a11y.speak()`, which is a JavaScript method included into WordPress core as off version 4.2.
+
+When content changes dynamically in a web page, `wp.a11y.speak()` can announce a message using [aria-live](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Then users who depend on a screen reader will be notified of any change to the content on the page. You can read more about [`wp.a11y.speak()`](https://make.wordpress.org/accessibility/handbook/markup/wp-a11y-speak/) in the Make WordPress Accessibility Handbook.
 
 ### Automated Testing
 
