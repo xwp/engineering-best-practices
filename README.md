@@ -1,6 +1,10 @@
-# Introduction
+---
+description: >-
+  Welcome to the XWP Engineering Best Practices. Many engineers before you have
+  started on this same page and gone on to do the best work of their careers.
+---
 
-Welcome to the XWP Engineering Best Practices. Many engineers before you have started on this same page and gone on to do the best work of their careers.
+# Introduction
 
 ## Audience
 
@@ -25,3 +29,4 @@ We are constantly challenging ourselves and learning. Knowledge gives everyone a
 ## Contributing
 
 Please contribute via [pull requests on GitHub](https://github.com/xwp/engineering-best-practices) or if you're a member of the team you can also draft changes to the GitBook directly. This documentation was originally forked from [10up](https://github.com/10up/Engineering-Best-Practices) in 2015 and modified for XWP and then in 2019 was updated and converted to a GitBook. We want to thank those, both at 10up and previous XWP alum, that put the effort into creating these best practices — starting all the way back in 2011. Reinventing the wheel is not our goal, while diverging and maintaining our own set of best practices is. To those that came before us, we salute you.
+
