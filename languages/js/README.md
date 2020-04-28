@@ -116,7 +116,7 @@ This also allows you to build one component and import it into another.
 It's also worth noting that named exports can be imported by wrapping the exported function within curly braces:
 
 ```text
-import { example } from 'example/lib';2
+import { example } from 'example/lib';
 ```
 
 This is only possible if the exported component is a named export like so:
