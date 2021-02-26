@@ -314,6 +314,20 @@ For various reasons on a project, you may not be able to use a modern technique 
 
 Please see the [MDN XMLHttpRequest documentation](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) for an example of a basic Ajax call.
 
+### Using `@wordpress/api-fetch` for WordPress REST API
+
+When dealing with WordPress REST API it may be convenient to use the [`apiFetch`](https://developer.wordpress.org/block-editor/packages/packages-api-fetch/) utility. It is a think wrapper around the native `window.fetch` function.
+
+```js
+import apiFetch from '@wordpress/api-fetch';
+
+apiFetch( { path: '/wp/v2/posts' } ).then( posts => {
+    console.log( posts );
+} );
+```
+
+One of the benefits of using `apiFetch` over the regular `fetch` function is that the response JSON data can be automatically parsed before returning it from the Promise. Another nice thing about `apiFetch` is the set of built-in [middlewares](https://developer.wordpress.org/block-editor/packages/packages-api-fetch/#built-in-middlewares), i.e. the Nonce and the Root URL middlewares.
+
 ### When to Use a Client-side Data Request Library
 
 Sometimes a project may require a more robust solution for managing your requests, especially if you will be making many requests to various endpoints. While Fetch can do most \(and someday all\) of the things we need, there may be a few areas where it could fall short in your project. A few main items where Fetch may fall short:
