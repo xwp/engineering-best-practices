@@ -12,7 +12,7 @@ On all new projects you should be using up to date JavaScript methodologies comb
 
 Some older projects that have not yet been upgraded may not have the capability to use the most modern techniques, but it is still important to have processes in place that allow us to grow the technology stack as a project matures. In these cases, you should still follow best practice recommendations even if the newest patterns are not yet available to you.
 
-### **Using Classes**
+#### Using Classes
 
 Before ES6, classes in JavaScript were created by building a constructor function and adding properties by extending the prototype object. This created a fairly complex way to extend classes and deal with prototypal inheritance. Modern techniques allow us to create and extend classes directly and write cleaner code:
 
@@ -32,7 +32,7 @@ Classes in modern JavaScript offer a nicer syntax to access the standard prototy
 
 Classes will not always be the answer for creating modular code in your application, but you should consider them when you need to create discrete components or when those components need to inherit behaviors from other components, while still functioning as a single unit. For example, a utility function that searches a string for text may not be a good utilization of Classes, but an accordion menu with children components would.
 
-### **Using Arrow Functions**
+#### Using Arrow Functions
 
 Arrow functions are a great way to slim down easily executable code blocks. When using this style of function be sure not to over engineer a simple action just to make it smaller. For example, this is a good use of a simple multiline function being compressed into a single line:
 
@@ -56,7 +56,7 @@ Even though single argument arrow functions don't require parenthesis around the
 
 Something important to remember is that arrow functions are not always the answer. Their release addressed a very specific problem many engineers were facing with preserving the context of `this`. In a traditional function `this` is bound to different values depending on the context it is called. With arrow functions, it is bound to the code that contains the arrow function. Because arrow functions also have syntax benefits, as a general rule, use arrow functions unless you need a more traditional treatment of `this` \(like in an event listener\).
 
-### **Concatenating Strings and Templating**
+#### Concatenating Strings and Templating
 
 When dealing with strings in JavaScript, it is very common to need some form of concatenation along the way. Before ES6 we were concatenating string with the `+` operator:
 
@@ -74,7 +74,7 @@ const last = 'world';
 const msg = `I said, "${ first } ${ last }," to the crowd.`;
 ```
 
-### **Destructuring Arrays and Objects**
+#### Destructuring Arrays and Objects
 
 Destructuring is a JavaScript technique that allows you to easily assign values and properties from arrays and objects into specific variables. This direct mapping affords an easy way to access data from objects and arrays in a more convenient syntax.
 
@@ -100,7 +100,7 @@ console.log( d ); // 4
 
 Use destructuring whenever possible to slim down your code and improve overall readability.
 
-### **Componentizing Your Code**
+#### Componentizing Your Code
 
 Keeping different bits of functionality in your code reasonably separated is important to building and maintaining a scalable system over time. In the past we've had to accomplish this with our build systems leaning on concatenation as an abstraction layer to the project. Modern JavaScript techniques allow us to utilize [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) statements to break apart and reassemble your code into consumable chunks.
 
@@ -179,11 +179,11 @@ However, passing HTML strings to `innerHTML` and methods like it can expose your
 
 There are several measures you can take to circumvent this XSS vulnerability:
 
-### **Use textContent instead of innerHTML**
+#### Use textContent instead of innerHTML
 
 When setting the human-readable content of a single element, using `textContent` is safer than using `innerHTML`because it does not parse strings as HTML — meaning any malicious code passed to it will not be executed. Refer to [MDN's documentation on `textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) for more info.
 
-### **Use the DOM API to create and add elements**
+#### Use the DOM API to create and add elements
 
 When you need to create multiple DOM elements, use the `document.createElement` method to create new elements and the `Element` API to set attributes and append them to the document. Creating your own elements and attributes will ensure that only those you explicitly define will make their way into the DOM.
 
@@ -191,7 +191,7 @@ Note that appending new elements to the DOM is a relatively expensive operation,
 
 Refer to MDN's documentation on [`document.createElement`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) and the [`Element` API](https://developer.mozilla.org/en-US/docs/Web/API/Element) for more info.
 
-### **Sanitize HTML strings before adding to the DOM**
+#### Sanitize HTML strings before adding to the DOM
 
 In general, using the `Element` API is the preferred best practice to safely create and add DOM elements. However, it tends to result in much more verbose code compared to HTML-parsing methods like `innerHTML`. This can become painful if you need to dynamically create a large number of new elements. In these cases, the convenience of methods like `innerHTML` can be extremely tempting.
 
@@ -274,19 +274,19 @@ document.getElementById( 'menu' ).addEventListener( 'click', ( e ) => {
 
 You may be wondering why we don't just add one listener to the `<body>` for all our events. Well, we want the event to _bubble up the DOM as little as possible_ for [performance reasons](https://jsperf.com/event-delegation-distance). This would also be pretty messy code to write.
 
-### Debounce, Throttle, and requestAnimationFrame
+### Debounce, Throttle, and `requestAnimationFrame`
 
 Browser events such as scrolling, resizing, and cursor movements happen as fast as possible and can cause performance issues. By debouncing, throttling, or using requestAnimationFrame on our functions, we can increase performance by controlling the rate at which an event listener calls them.
 
-### **Debouncing**
+#### Debouncing
 
 Debouncing a function will prevent it from being called again until a defined amount of time has passed, i.e., execute this function if 200ms has passed since it was last called. A common use case would be when resizing a browser window; we can apply classes or move elements after the resize has happened.
 
-### **Throttling**
+#### Throttling
 
 Throttling a function will cause it to only be called a maximum number of times over a defined period of time, i.e., only execute this function once every 50ms. A common use case would be when scrolling a browser window; we may want an element to show up as we scroll down the page, but killing performance by checking the scroll position constantly isn't necessary. Debouncing wouldn't work in this example because we don't want to wait for the user to stop scrolling.
 
-### **requestAnimationFrame**
+#### `requestAnimationFrame`
 
 requestAnimationFrame is similar to throttling, but it's a browser native API and tries to always throttle to 60fps. Its very name helps us know when it's best to use: while animating things. This would be the case when our JavaScript function is updating element positions, sizes, or anything else that's "painting" to the screen.
 
@@ -334,13 +334,13 @@ Certain codebases may already have such libraries in place. Many legacy projects
 
 When constructing a page that contains a lot of client-side data requests you will want to consider concatenating your requests into a single Ajax call. This will help you avoid piling up requests or sending them through callbacks and nested promises when parts of the data depend on other parts.
 
-### **GraphQL**
+### GraphQL
 
 [GraphQL](https://graphql.org/) is an open source data query and manipulation language. It provides an alternative to REST because it allows for a consistent way to make declarative queries. We first define the data structure\(s\) we need, then request the data, and return only the data that was requested. This creates an environment of smaller, more targeted calls to an API. It also allows us to concatenate multiple calls into single data requests, reducing the overhead and time to load.
 
 An essential part of a GraphQL API is an API schema. GraphQL requires a human-readable schema which describes the types which are available, and how they relate to one another. While writing a schema is reasonably straightforward, utilizing the standardized nature of WordPress’s database could save time. It may well be possible to reuse a schema from other projects, such as generated by a plugin like, [WPGraphQL](https://github.com/wp-graphql/wp-graphql).
 
-### **WPGraphQL**
+### WPGraphQL
 
 If you are choosing to use GraphQL on a WordPress project, it is recommended to use the WPGraphQL plugin. This plugin will return WordPress data in JSON format through a GraphQL endpoint - in many cases you won’t need to write the schema yourself. This will give you all the benefits of concatenating your data requests as well as easy access to your data as it is output by WordPress. You can retrieve your data by passing a query directly into a simple fetch request:
 
