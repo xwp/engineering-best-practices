@@ -16,7 +16,7 @@ Some older projects that have not yet been upgraded may not have the capability 
 
 Before ES6, classes in JavaScript were created by building a constructor function and adding properties by extending the prototype object. This created a fairly complex way to extend classes and deal with prototypal inheritance. Modern techniques allow us to create and extend classes directly and write cleaner code:
 
-```text
+```js
 class BasicExample {
 	constructor( el ) {
 		super(); // if you're extending
@@ -38,7 +38,7 @@ Arrow functions are a great way to slim down easily executable code blocks. When
 
 Multi-line:
 
-```text
+```js
 const init = ( msg ) => {
 	console.log( msg );
 };
@@ -46,7 +46,7 @@ const init = ( msg ) => {
 
 Single line:
 
-```text
+```js
 const init = ( msg ) => console.log( msg );
 ```
 
@@ -60,7 +60,7 @@ Something important to remember is that arrow functions are not always the answe
 
 When dealing with strings in JavaScript, it is very common to need some form of concatenation along the way. Before ES6 we were concatenating string with the `+` operator:
 
-```text
+```js
 var first = 'hello';
 var last = 'world';
 var msg = 'I said, "' + first + ' ' + last + '" to the crowd.';
@@ -68,7 +68,7 @@ var msg = 'I said, "' + first + ' ' + last + '" to the crowd.';
 
 Modern techniques give us something called, "template literals", which let us concatenate strings in a much more straightforward manner utilizing the back tick and some basic templating:
 
-```text
+```js
 const first = 'hello';
 const last = 'world';
 const msg = `I said, "${first} ${last}," to the crowd.`;
@@ -80,7 +80,7 @@ Destructuring is a JavaScript technique that allows you to easily assign values 
 
 The old way:
 
-```text
+```js
 var arr = [1, 2, 3, 4];
 var a = arr[0];
 var b = arr[1];
@@ -90,7 +90,7 @@ var d = arr[3];
 
 The new way:
 
-```text
+```js
 const [a, b, c, d] = [1, 2, 3, 4];
 console.log( a ); // 1
 console.log( b ); // 2
@@ -106,7 +106,7 @@ Keeping different bits of functionality in your code reasonably separated is imp
 
 When you're building your project, be sure to lean on imports to wire your application together. As of right now, we do still need a build system to process the code so it can be consumed by a browser, but using this modern technique will make sure our code is well structured as the project ages. You can also use `import` statements to load parts of an external library you may need for any given component. The code below will give you an example:
 
-```text
+```js
 // Only loading in the map method from lodash, because that's all we need!
 import map from 'lodash/map';
 ```
@@ -115,13 +115,13 @@ This also allows you to build one component and import it into another.
 
 It's also worth noting that named exports can be imported by wrapping the exported function within curly braces:
 
-```text
+```js
 import { example } from 'example/lib';
 ```
 
 This is only possible if the exported component is a named export like so:
 
-```text
+```js
 export const example = 66;
 ```
 
@@ -131,7 +131,7 @@ Adding methods or properties to the `window` object or the global namespace shou
 
 When a script is not wrapped in a closure, the current context or `this` is actually `window`:
 
-```text
+```js
 console.log( this === window ); // true
 
 for ( var i = 0; i < 9; i++ ) {
@@ -146,7 +146,7 @@ console.log( window.i === i ); // true
 
 When we put our code inside a closure, our variables are private to that closure unless we expose them:
 
-```text
+```js
 ( function() {
 
     for ( var i = 0; i < 9; i++ ) {
@@ -167,7 +167,7 @@ Notice how `i` was not exposed to the `window` object.
 
 In JavaScript, we often have to insert new elements with dynamic attributes and content into the DOM. A common way to do this is to use the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) method like so:
 
-```text
+```js
 const someElement = document.getElementById( 'someElement' );
 const someUrl = 'https://someurl.com/';
 const someContent = 'Some content';
@@ -211,7 +211,7 @@ JavaScript libraries should only be loaded on the page when needed. React + Reac
 
 Not only should you only load the libraries you need, but using import statements, you should only load the _parts_ of the libraries you need. For example, if you're using [Lodash](https://lodash.com/), it can be very large to load the entire system, especially if you're not using all of it. You should always utilize import statements to target relevant parts of an external library to make sure you're loading only what you need. The code block below will illustrate this point:
 
-```text
+```js
 import map from 'lodash/map';
 import tail from 'lodash/tail';
 import times from 'lodash/times';
@@ -226,7 +226,7 @@ It's a common JavaScript mistake to reselect something unnecessarily. For exampl
 
 Uncached:
 
-```text
+```js
 const hideButton = document.querySelector( '.hide-button' );
 
 hideButton.addEventListener( 'click', () => {
@@ -237,7 +237,7 @@ hideButton.addEventListener( 'click', () => {
 
 Cached:
 
-```text
+```js
 const menu = document.getElementById( 'menu' );
 const hideButton = document.querySelector( '.hide-button' );
 
@@ -252,7 +252,7 @@ Notice how, in cached versions, we are pulling the menu selection out of the eve
 
 Event delegation is the act of adding one event listener to a parent node to listen for events bubbling up from its children. This is much more performant than adding one event listener for each child element. Here is an example:
 
-```text
+```js
 document.getElementById( 'menu' ).addEventListener( 'click', ( e ) => {
 
     const currentTarget = e.currentTarget;
@@ -344,7 +344,7 @@ An essential part of a GraphQL API is an API schema. GraphQL requires a human-re
 
 If you are choosing to use GraphQL on a WordPress project, it is recommended to use the WPGraphQL plugin. This plugin will return WordPress data in JSON format through a GraphQL endpoint - in many cases you won’t need to write the schema yourself. This will give you all the benefits of concatenating your data requests as well as easy access to your data as it is output by WordPress. You can retrieve your data by passing a query directly into a simple fetch request:
 
-```text
+```js
 fetch( '/graphql', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
