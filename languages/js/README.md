@@ -71,7 +71,7 @@ Modern techniques give us something called, "template literals", which let us co
 ```js
 const first = 'hello';
 const last = 'world';
-const msg = `I said, "${first} ${last}," to the crowd.`;
+const msg = `I said, "${ first } ${ last }," to the crowd.`;
 ```
 
 ### **Destructuring Arrays and Objects**
@@ -81,7 +81,7 @@ Destructuring is a JavaScript technique that allows you to easily assign values 
 The old way:
 
 ```js
-var arr = [1, 2, 3, 4];
+var arr = [ 1, 2, 3, 4 ];
 var a = arr[0];
 var b = arr[1];
 var c = arr[2];
@@ -91,7 +91,7 @@ var d = arr[3];
 The new way:
 
 ```js
-const [a, b, c, d] = [1, 2, 3, 4];
+const [ a, b, c, d ] = [ 1, 2, 3, 4 ];
 console.log( a ); // 1
 console.log( b ); // 2
 console.log( c ); // 3
@@ -348,7 +348,7 @@ If you are choosing to use GraphQL on a WordPress project, it is recommended to 
 fetch( '/graphql', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: "[your query string goes here]" }),
+    body: JSON.stringify( { query: "[your query string goes here]" } ),
 } ).then( res => res.json() );
 ```
 
