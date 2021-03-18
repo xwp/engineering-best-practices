@@ -67,7 +67,6 @@ There are a variety of solutions out there to get a local development environmen
   * 🌎 Uses Composer autoloader for using any of the popular PHP packages anywhere in the codebase.
   * 👩‍💻 Provides a local development environment based on Docker that can be run inside Vagrant without having to install Docker on the host machine.
   * 🚀 Includes automated build and deploy pipelines to WordPress VIP Go.
-* **WordPress VIP Classic** For classic VIP sites we have a private repository called `wordpress-vip` that provided a good starting place for those project. It's based on VVV 2.0+ but is not used much anymore now that new sites are setup on VIP Go. Any clients still on the legacy system will already have a development environment available to you when you onboard to the project.
 * **VVV** [Varying Vagrant Vagrants](https://varyingvagrantvagrants.org/) \(VVV\) use to be our standard Vagrant setup for client sites and local development. However, over the past few years has become used much less due to its slow provisioning.
 
 ## Scaffolding
@@ -139,4 +138,8 @@ We’re also a fan of a few browser tools that lend us a hand when it comes to t
 We use visual regression testing to ensure code changes don’t have unforeseen repercussions. This provides a helpful visual aid to check against CSS changes, plugin updates, and third-party script updates.
 
 * [BackstopJS](https://github.com/garris/BackstopJS) - A tool used to run visual regression tests that compares known reference states against updates.
+
+## VPN
+
+Sometimes access to client and vendor resources is restricted to specific IP addresses so we use the [Outline VPN client](https://getoutline.org/) and our own self hosted Outline server to provide teams with fixed IP addresses. Please reach out to Kaspars to request access.
 
