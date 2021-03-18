@@ -143,3 +143,7 @@ We use visual regression testing to ensure code changes don’t have unforeseen 
 
 Sometimes access to client and vendor resources is restricted to specific IP addresses so we use the [Outline VPN client](https://getoutline.org/) and our own self hosted Outline server to provide teams with fixed IP addresses. Please reach out to Kaspars to request access.
 
+## Secure Messaging
+
+For exchanging sensitive information between teams, clients and vendors we suggest using [Keybase](https://keybase.io) chat. Alternatively, if your Keybase account is associated with a PGP key, the message can be encrypt with your public key via [this form](https://keybase.io/encrypt) and sent using any traditional channel such as email or Slack. Use `https://keybase.io/encrypt#kaspars` where `kaspars` is your Keybase username to prefill the form with the correct recipient.
+
