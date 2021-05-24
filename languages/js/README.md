@@ -12,11 +12,11 @@ On all new projects you should be using up to date JavaScript methodologies comb
 
 Some older projects that have not yet been upgraded may not have the capability to use the most modern techniques, but it is still important to have processes in place that allow us to grow the technology stack as a project matures. In these cases, you should still follow best practice recommendations even if the newest patterns are not yet available to you.
 
-### **Using Classes**
+#### Using Classes
 
 Before ES6, classes in JavaScript were created by building a constructor function and adding properties by extending the prototype object. This created a fairly complex way to extend classes and deal with prototypal inheritance. Modern techniques allow us to create and extend classes directly and write cleaner code:
 
-```text
+```js
 class BasicExample {
 	constructor( el ) {
 		super(); // if you're extending
@@ -32,13 +32,13 @@ Classes in modern JavaScript offer a nicer syntax to access the standard prototy
 
 Classes will not always be the answer for creating modular code in your application, but you should consider them when you need to create discrete components or when those components need to inherit behaviors from other components, while still functioning as a single unit. For example, a utility function that searches a string for text may not be a good utilization of Classes, but an accordion menu with children components would.
 
-### **Using Arrow Functions**
+#### Using Arrow Functions
 
 Arrow functions are a great way to slim down easily executable code blocks. When using this style of function be sure not to over engineer a simple action just to make it smaller. For example, this is a good use of a simple multiline function being compressed into a single line:
 
 Multi-line:
 
-```text
+```js
 const init = ( msg ) => {
 	console.log( msg );
 };
@@ -46,7 +46,7 @@ const init = ( msg ) => {
 
 Single line:
 
-```text
+```js
 const init = ( msg ) => console.log( msg );
 ```
 
@@ -56,11 +56,11 @@ Even though single argument arrow functions don't require parenthesis around the
 
 Something important to remember is that arrow functions are not always the answer. Their release addressed a very specific problem many engineers were facing with preserving the context of `this`. In a traditional function `this` is bound to different values depending on the context it is called. With arrow functions, it is bound to the code that contains the arrow function. Because arrow functions also have syntax benefits, as a general rule, use arrow functions unless you need a more traditional treatment of `this` \(like in an event listener\).
 
-### **Concatenating Strings and Templating**
+#### Concatenating Strings and Templating
 
 When dealing with strings in JavaScript, it is very common to need some form of concatenation along the way. Before ES6 we were concatenating string with the `+` operator:
 
-```text
+```js
 var first = 'hello';
 var last = 'world';
 var msg = 'I said, "' + first + ' ' + last + '" to the crowd.';
@@ -68,20 +68,20 @@ var msg = 'I said, "' + first + ' ' + last + '" to the crowd.';
 
 Modern techniques give us something called, "template literals", which let us concatenate strings in a much more straightforward manner utilizing the back tick and some basic templating:
 
-```text
+```js
 const first = 'hello';
 const last = 'world';
-const msg = `I said, "${first} ${last}," to the crowd.`;
+const msg = `I said, "${ first } ${ last }," to the crowd.`;
 ```
 
-### **Destructuring Arrays and Objects**
+#### Destructuring Arrays and Objects
 
 Destructuring is a JavaScript technique that allows you to easily assign values and properties from arrays and objects into specific variables. This direct mapping affords an easy way to access data from objects and arrays in a more convenient syntax.
 
 The old way:
 
-```text
-var arr = [1, 2, 3, 4];
+```js
+var arr = [ 1, 2, 3, 4 ];
 var a = arr[0];
 var b = arr[1];
 var c = arr[2];
@@ -90,8 +90,8 @@ var d = arr[3];
 
 The new way:
 
-```text
-const [a, b, c, d] = [1, 2, 3, 4];
+```js
+const [ a, b, c, d ] = [ 1, 2, 3, 4 ];
 console.log( a ); // 1
 console.log( b ); // 2
 console.log( c ); // 3
@@ -100,13 +100,13 @@ console.log( d ); // 4
 
 Use destructuring whenever possible to slim down your code and improve overall readability.
 
-### **Componentizing Your Code**
+#### Componentizing Your Code
 
 Keeping different bits of functionality in your code reasonably separated is important to building and maintaining a scalable system over time. In the past we've had to accomplish this with our build systems leaning on concatenation as an abstraction layer to the project. Modern JavaScript techniques allow us to utilize [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) statements to break apart and reassemble your code into consumable chunks.
 
 When you're building your project, be sure to lean on imports to wire your application together. As of right now, we do still need a build system to process the code so it can be consumed by a browser, but using this modern technique will make sure our code is well structured as the project ages. You can also use `import` statements to load parts of an external library you may need for any given component. The code below will give you an example:
 
-```text
+```js
 // Only loading in the map method from lodash, because that's all we need!
 import map from 'lodash/map';
 ```
@@ -115,13 +115,13 @@ This also allows you to build one component and import it into another.
 
 It's also worth noting that named exports can be imported by wrapping the exported function within curly braces:
 
-```text
+```js
 import { example } from 'example/lib';
 ```
 
 This is only possible if the exported component is a named export like so:
 
-```text
+```js
 export const example = 66;
 ```
 
@@ -131,7 +131,7 @@ Adding methods or properties to the `window` object or the global namespace shou
 
 When a script is not wrapped in a closure, the current context or `this` is actually `window`:
 
-```text
+```js
 console.log( this === window ); // true
 
 for ( var i = 0; i < 9; i++ ) {
@@ -146,7 +146,7 @@ console.log( window.i === i ); // true
 
 When we put our code inside a closure, our variables are private to that closure unless we expose them:
 
-```text
+```js
 ( function() {
 
     for ( var i = 0; i < 9; i++ ) {
@@ -167,7 +167,7 @@ Notice how `i` was not exposed to the `window` object.
 
 In JavaScript, we often have to insert new elements with dynamic attributes and content into the DOM. A common way to do this is to use the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) method like so:
 
-```text
+```js
 const someElement = document.getElementById( 'someElement' );
 const someUrl = 'https://someurl.com/';
 const someContent = 'Some content';
@@ -179,11 +179,11 @@ However, passing HTML strings to `innerHTML` and methods like it can expose your
 
 There are several measures you can take to circumvent this XSS vulnerability:
 
-### **Use textContent instead of innerHTML**
+#### Use textContent instead of innerHTML
 
 When setting the human-readable content of a single element, using `textContent` is safer than using `innerHTML`because it does not parse strings as HTML — meaning any malicious code passed to it will not be executed. Refer to [MDN's documentation on `textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) for more info.
 
-### **Use the DOM API to create and add elements**
+#### Use the DOM API to create and add elements
 
 When you need to create multiple DOM elements, use the `document.createElement` method to create new elements and the `Element` API to set attributes and append them to the document. Creating your own elements and attributes will ensure that only those you explicitly define will make their way into the DOM.
 
@@ -191,7 +191,7 @@ Note that appending new elements to the DOM is a relatively expensive operation,
 
 Refer to MDN's documentation on [`document.createElement`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) and the [`Element` API](https://developer.mozilla.org/en-US/docs/Web/API/Element) for more info.
 
-### **Sanitize HTML strings before adding to the DOM**
+#### Sanitize HTML strings before adding to the DOM
 
 In general, using the `Element` API is the preferred best practice to safely create and add DOM elements. However, it tends to result in much more verbose code compared to HTML-parsing methods like `innerHTML`. This can become painful if you need to dynamically create a large number of new elements. In these cases, the convenience of methods like `innerHTML` can be extremely tempting.
 
@@ -211,7 +211,7 @@ JavaScript libraries should only be loaded on the page when needed. React + Reac
 
 Not only should you only load the libraries you need, but using import statements, you should only load the _parts_ of the libraries you need. For example, if you're using [Lodash](https://lodash.com/), it can be very large to load the entire system, especially if you're not using all of it. You should always utilize import statements to target relevant parts of an external library to make sure you're loading only what you need. The code block below will illustrate this point:
 
-```text
+```js
 import map from 'lodash/map';
 import tail from 'lodash/tail';
 import times from 'lodash/times';
@@ -226,7 +226,7 @@ It's a common JavaScript mistake to reselect something unnecessarily. For exampl
 
 Uncached:
 
-```text
+```js
 const hideButton = document.querySelector( '.hide-button' );
 
 hideButton.addEventListener( 'click', () => {
@@ -237,7 +237,7 @@ hideButton.addEventListener( 'click', () => {
 
 Cached:
 
-```text
+```js
 const menu = document.getElementById( 'menu' );
 const hideButton = document.querySelector( '.hide-button' );
 
@@ -252,7 +252,7 @@ Notice how, in cached versions, we are pulling the menu selection out of the eve
 
 Event delegation is the act of adding one event listener to a parent node to listen for events bubbling up from its children. This is much more performant than adding one event listener for each child element. Here is an example:
 
-```text
+```js
 document.getElementById( 'menu' ).addEventListener( 'click', ( e ) => {
 
     const currentTarget = e.currentTarget;
@@ -274,19 +274,19 @@ document.getElementById( 'menu' ).addEventListener( 'click', ( e ) => {
 
 You may be wondering why we don't just add one listener to the `<body>` for all our events. Well, we want the event to _bubble up the DOM as little as possible_ for [performance reasons](https://jsperf.com/event-delegation-distance). This would also be pretty messy code to write.
 
-### Debounce, Throttle, and requestAnimationFrame
+### Debounce, Throttle, and `requestAnimationFrame`
 
 Browser events such as scrolling, resizing, and cursor movements happen as fast as possible and can cause performance issues. By debouncing, throttling, or using requestAnimationFrame on our functions, we can increase performance by controlling the rate at which an event listener calls them.
 
-### **Debouncing**
+#### Debouncing
 
 Debouncing a function will prevent it from being called again until a defined amount of time has passed, i.e., execute this function if 200ms has passed since it was last called. A common use case would be when resizing a browser window; we can apply classes or move elements after the resize has happened.
 
-### **Throttling**
+#### Throttling
 
 Throttling a function will cause it to only be called a maximum number of times over a defined period of time, i.e., only execute this function once every 50ms. A common use case would be when scrolling a browser window; we may want an element to show up as we scroll down the page, but killing performance by checking the scroll position constantly isn't necessary. Debouncing wouldn't work in this example because we don't want to wait for the user to stop scrolling.
 
-### **requestAnimationFrame**
+#### `requestAnimationFrame`
 
 requestAnimationFrame is similar to throttling, but it's a browser native API and tries to always throttle to 60fps. Its very name helps us know when it's best to use: while animating things. This would be the case when our JavaScript function is updating element positions, sizes, or anything else that's "painting" to the screen.
 
@@ -314,6 +314,20 @@ For various reasons on a project, you may not be able to use a modern technique 
 
 Please see the [MDN XMLHttpRequest documentation](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) for an example of a basic Ajax call.
 
+### Using `@wordpress/api-fetch` for WordPress REST API
+
+When dealing with WordPress REST API it may be convenient to use the [`apiFetch`](https://developer.wordpress.org/block-editor/packages/packages-api-fetch/) utility. It is a thin wrapper around the native `window.fetch` function.
+
+```js
+import apiFetch from '@wordpress/api-fetch';
+
+apiFetch( { path: '/wp/v2/posts' } ).then( posts => {
+    console.log( posts );
+} );
+```
+
+One of the benefits of using `apiFetch` over the regular `fetch` function is that the response JSON data can be automatically parsed before returning it from the Promise. Another nice thing about `apiFetch` is the set of built-in [middlewares](https://developer.wordpress.org/block-editor/packages/packages-api-fetch/#built-in-middlewares), i.e. the Nonce and the Root URL middlewares.
+
 ### When to Use a Client-side Data Request Library
 
 Sometimes a project may require a more robust solution for managing your requests, especially if you will be making many requests to various endpoints. While Fetch can do most \(and someday all\) of the things we need, there may be a few areas where it could fall short in your project. A few main items where Fetch may fall short:
@@ -334,21 +348,21 @@ Certain codebases may already have such libraries in place. Many legacy projects
 
 When constructing a page that contains a lot of client-side data requests you will want to consider concatenating your requests into a single Ajax call. This will help you avoid piling up requests or sending them through callbacks and nested promises when parts of the data depend on other parts.
 
-### **GraphQL**
+### GraphQL
 
 [GraphQL](https://graphql.org/) is an open source data query and manipulation language. It provides an alternative to REST because it allows for a consistent way to make declarative queries. We first define the data structure\(s\) we need, then request the data, and return only the data that was requested. This creates an environment of smaller, more targeted calls to an API. It also allows us to concatenate multiple calls into single data requests, reducing the overhead and time to load.
 
 An essential part of a GraphQL API is an API schema. GraphQL requires a human-readable schema which describes the types which are available, and how they relate to one another. While writing a schema is reasonably straightforward, utilizing the standardized nature of WordPress’s database could save time. It may well be possible to reuse a schema from other projects, such as generated by a plugin like, [WPGraphQL](https://github.com/wp-graphql/wp-graphql).
 
-### **WPGraphQL**
+### WPGraphQL
 
 If you are choosing to use GraphQL on a WordPress project, it is recommended to use the WPGraphQL plugin. This plugin will return WordPress data in JSON format through a GraphQL endpoint - in many cases you won’t need to write the schema yourself. This will give you all the benefits of concatenating your data requests as well as easy access to your data as it is output by WordPress. You can retrieve your data by passing a query directly into a simple fetch request:
 
-```text
+```js
 fetch( '/graphql', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: "[your query string goes here]" }),
+    body: JSON.stringify( { query: "[your query string goes here]" } ),
 } ).then( res => res.json() );
 ```
 
@@ -387,4 +401,3 @@ There are many JavaScript libraries available today. Many of them directly compe
 [Vue](https://vuejs.org/) - Implementing Vue on a project allows us to take advantage of the statefulness built into something like React, but apply it on a much more lightweight and smaller scale as to not bog down performance by loading in a heavy library. [Learn more about how we use Vue](vue.md).
 
 [Backbone](http://backbonejs.org/) - Provides a framework for building complex JavaScript applications. Backbone is based on the usage of models, views, and collections. WordPress core relies heavily on Backbone especially in the media library and Customizer. Backbone requires Underscore and a DOM manipulation library.
-
