@@ -316,7 +316,7 @@ Please see the [MDN XMLHttpRequest documentation](https://developer.mozilla.org/
 
 ### Using `@wordpress/api-fetch` for WordPress REST API
 
-When dealing with WordPress REST API it may be convenient to use the [`apiFetch`](https://developer.wordpress.org/block-editor/packages/packages-api-fetch/) utility. It is a think wrapper around the native `window.fetch` function.
+When dealing with WordPress REST API it may be convenient to use the [`apiFetch`](https://developer.wordpress.org/block-editor/packages/packages-api-fetch/) utility. It is a thin wrapper around the native `window.fetch` function.
 
 ```js
 import apiFetch from '@wordpress/api-fetch';
@@ -401,4 +401,3 @@ There are many JavaScript libraries available today. Many of them directly compe
 [Vue](https://vuejs.org/) - Implementing Vue on a project allows us to take advantage of the statefulness built into something like React, but apply it on a much more lightweight and smaller scale as to not bog down performance by loading in a heavy library. [Learn more about how we use Vue](vue.md).
 
 [Backbone](http://backbonejs.org/) - Provides a framework for building complex JavaScript applications. Backbone is based on the usage of models, views, and collections. WordPress core relies heavily on Backbone especially in the media library and Customizer. Backbone requires Underscore and a DOM manipulation library.
-
