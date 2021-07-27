@@ -141,7 +141,11 @@ We use visual regression testing to ensure code changes don’t have unforeseen 
 
 ## VPN
 
-Sometimes access to client and vendor resources is restricted to specific IP addresses so we use the [Outline VPN client](https://getoutline.org/) and our own self hosted Outline server to provide teams with fixed IP addresses. Please reach out to Kaspars to request access.
+Sometimes access to client and vendor resources is restricted to specific IP addresses so we use self-hosted [Outline VPN servers](https://getoutline.org/) to provide teams with fixed IP addresses in several geographical locations around the world. Please reach out to Kaspars or Derek in the `#technology` Slack channel to request access.
+
+After installing and configuring [the Outline VPN client](https://getoutline.org/) and connecting to one of the servers, use a service like [ifconfig.io](https://ifconfig.io/) to confirm the IP address of the VPN endpoint. This IP address can be provided to the client or vendor for inclusion in the appropriate allow-list.
+
+Note that all network traffic from your device to the public internet is routed through the VPN so please keep it connected only when necessary. 
 
 ## Secure Messaging
 
