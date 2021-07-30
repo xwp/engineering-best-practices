@@ -77,11 +77,13 @@ There are a variety of solutions out there to get a local development environmen
 
 ## Task Runners
 
-[Grunt](http://gruntjs.com/) - Grunt is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification. Grunt is our default task runner and has a great community of plugins and solutions we use for on company and client projects.
+[Npm Scripts](https://docs.npmjs.com/cli/v7/using-npm/scripts) are bundled with Node and can be defined in `package.json` of the project which make them really fast to configure and setup. These scripts can call Node package binaries for the project or serve as wrappers for Grunt, Gulp or Webpack tasks.
 
-[Gulp](http://gulpjs.com/) - Gulp is also a task runner build on Node that offers a similar suite of plugins and solutions to Grunt. The biggest difference is Gulp allows you direct access to the [stream](https://nodejs.org/api/stream.html) of information from your source files and allows you to modify this data directly.
+[Grunt](http://gruntjs.com/) is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification. Grunt is our default task runner and has a great community of plugins and solutions we use for on company and client projects.
 
-[Webpack](https://webpack.github.io/) - Webpack is a bundler for JS/CSS. It’s extremely useful when building larger JavaScript applications \(i.e. React.js\).
+[Gulp](http://gulpjs.com/) is also a task runner build on Node that offers a similar suite of plugins and solutions to Grunt. The biggest difference is Gulp allows you direct access to the [stream](https://nodejs.org/api/stream.html) of information from your source files and allows you to modify this data directly.
+
+[Webpack](https://webpack.github.io/) is a bundler for JS/CSS. It’s extremely useful when building larger JavaScript applications \(i.e. React.js\).
 
 ## Package/Dependency Managers
 
