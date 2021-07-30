@@ -143,7 +143,7 @@ We use visual regression testing to ensure code changes don’t have unforeseen 
 
 ## VPN
 
-Sometimes access to client and vendor resources is restricted to specific IP addresses so we use self-hosted [Outline VPN servers](https://getoutline.org/) to provide teams with fixed IP addresses in several geographical locations around the world. Please reach out to Kaspars or Derek in the `#technology` Slack channel to request access.
+Sometimes access to client and vendor resources is restricted to specific IP addresses so we use self-hosted [Outline VPN servers](https://getoutline.org/) on Google Cloud Platform to provide teams with fixed IP addresses in several geographical locations around the world—currently Montréal, Netherlands, Oregon, Singapore, and Sydney. Please reach out to Derek or Kaspars in the `#technology` Slack channel to request access. Credentials will be sent securely through direct message on Keybase.
 
 After installing and configuring [the Outline VPN client](https://getoutline.org/) and connecting to one of the servers, use a service like [ifconfig.io](https://ifconfig.io/) to confirm the IP address of the VPN endpoint. This IP address can be provided to the client or vendor for inclusion in the appropriate allow-list.
 
@@ -151,5 +151,5 @@ Note that all network traffic from your device to the public internet is routed 
 
 ## Secure Messaging
 
-For exchanging sensitive information between teams, clients and vendors we suggest using [Keybase](https://keybase.io) chat. Alternatively, if your Keybase account is associated with a PGP key, the message can be encrypt with your public key via [this form](https://keybase.io/encrypt) and sent using any traditional channel such as email or Slack. Use `https://keybase.io/encrypt#kaspars` where `kaspars` is your Keybase username to prefill the form with the correct recipient.
+For exchanging sensitive information between teams, clients, and vendors we suggest using [Keybase](https://keybase.io) chat—which supports end-to-end encryption. Alternatively, if your Keybase account is associated with a PGP key, the message can be encrypted with your public key via [this form](https://keybase.io/encrypt) and sent using any traditional channel such as email or Slack. Use `https://keybase.io/encrypt#kaspars` where `kaspars` is your Keybase username to prefill the form with the correct recipient.
 
