@@ -158,7 +158,9 @@ Based on the answers to those questions, the XWP team will decide on actions to 
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>## Issue Lifecycle
+</table>
+
+## Issue Lifecycle
 
 For plugin projects we generally just use GitHub issues, but for client projects and internal sites we almost always use [JIRA](https://www.atlassian.com/software/jira) for issue tracking.
 

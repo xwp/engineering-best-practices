@@ -18,13 +18,13 @@ Before ES6, classes in JavaScript were created by building a constructor functio
 
 ```text
 class BasicExample {
-	constructor( el ) {
-		super(); // if you're extending
-	}
+    constructor( el ) {
+        super(); // if you're extending
+    }
 
-	init() {
-		console.log( 'Hello world.' )
-	}
+    init() {
+        console.log( 'Hello world.' )
+    }
 }
 ```
 
@@ -40,7 +40,7 @@ Multi-line:
 
 ```text
 const init = ( msg ) => {
-	console.log( msg );
+    console.log( msg );
 };
 ```
 

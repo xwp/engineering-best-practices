@@ -1,3 +1,7 @@
+---
+description: 'Best practices for using automated tooling to test, build and deploy projects.'
+---
+
 # Deployments
 
 Most of our hosting partners offer Git repositories for deploying code to their infrastructure. 
@@ -51,6 +55,32 @@ The command generates two new files, if `key_name` was specified as the key name
 #### Machine Users for Projects with Multiple Private Dependencies
 
 For projects with multiple private dependencies it might be easier to use a dedicated GitHub user since GitHub deploy keys can't be re-used on multiple GitHub repositories. These are sometimes called "machine users" since they are only a convenience for the deployment as the user can be added to all relevant private repositories with the necessary permissions. For example, the public part of the SSH key is added to the [SSH keys of a machine user](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) `machine-user` on GitHub and then the `machine-user` is [invited to all the necessary repositories](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository) so that any client authenticating with the key is now recognized as the `machine-user` with its access permissions.
+
+### Source and Release Repositories
+
+While our hosting partners provide Git repositories for tracking the production code, sometimes it is useful to keep a local source repository in our GitHub organization and use the host repository only as the release target.
+
+Using a local source repository provides the following benefits:
+
+* Add and remove project contributors without giving them access to the production environments.
+* Track development files and limit what is deployed to the publicly accessible release repository.
+* Use any automation workflow when developing, testing and deploying the project.
+
+Both Pantheon and WP VIP offer ways to hide files from public access through either special "protected" directories --`/private` [on WP VIP](https://docs.wpvip.com/technical-references/vip-codebase/private-directory/) and [private paths](https://pantheon.io/docs/private-paths) or [dedicated `/web` sub-directory](https://pantheon.io/docs/nested-docroot) on Pantheon. It is unknown how to do this on WP Engine.
+
+Note that VIP Go supports [using branches with `-built` suffix for tracking the release files](https://docs.wpvip.com/technical-references/development-workflow/automated-build-and-deploy/#h-pushing-code-to-branches) so the non-built branches can be used similar to a local source repository. This is a feature that must be enabled by VIP support after you've created the necessary branches -- `master-built` for production and `develop-built` for staging.
+
+#### Deploy to a Different Release Repository
+
+Here is an illustration of the build and deployment process when a project is deployed to a release repository which is different from the source repository. A dedicated SSH key-pair is used to authenticate the automation tooling with both repositories for read and write access.
+
+![CI automation pulling and building from a source repository and deploying to a dedicated release repository.](../.gitbook/assets/deploy-different-release-repository.svg)
+
+#### Deploy to a Branch in the Same Source Repository
+
+The workflow is very similar when the same repository is used for both development and deployments:
+
+![CI automation pulling and pushing to different branches in the same project repository.](../.gitbook/assets/deploy-same-site-repository.svg)
 
 ### Platform Specific Instructions
 
