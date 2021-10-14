@@ -86,3 +86,63 @@ The workflow is very similar when the same repository is used for both developme
 
 * See the [VIP Go site template](https://github.com/xwp/vip-go-site) for [WordPress VIP](https://wpvip.com/) specific instructions.
 
+#### Instructions for WPEngine
+We’ll be using an [official GitHub Action for WP Engine Site Deployments](https://github.com/marketplace/actions/deploy-wordpress-to-wp-engine). 
+
+**Step #1: Prepare the config file in a project root:**
+1. In the root of your local WordPress project/repo create a folder `.github/workflows` 
+2. Inside the folder create a file `main.yml`
+ 
+![image](https://user-images.githubusercontent.com/5646904/137308183-91ae7aeb-2e48-4500-a238-f451f0435740.png)
+
+3. Copy the [default content](https://github.com/marketplace/actions/deploy-wordpress-to-wp-engine#simple-mainyml) of `main.yml` there
+
+**Step #2: Set up the magic! Branches —> environments sync:**
+1. You’ll need to know your branches names and your environments names from WPEngine. Environments names are marked in WPEngine like this 
+
+![image](https://user-images.githubusercontent.com/5646904/137308401-c6b795b7-ed9e-4de3-9151-707f89ed9170.png)
+
+2. Now you only need to match them. For example, there are 3 branches and 3 environments each branch should be synced to. Then config will be looking like this:
+```
+# Branches & Environments
+DEV_BRANCH: devbranch
+DEV_ENV: bigbolderdevs
+
+STG_BRANCH: staging
+STG_ENV: bboldbstaging
+
+PRD_BRANCH: master
+PRD_ENV: boldbaking
+```
+
+Adjust to your values!
+
+
+**Step #3: Final thing: connect GitHub and WPEngine**
+We’ll generate a pair of SSH keys, the private key will go to GitHub, the public key will go to WPEngine.
+1. On your computer generate an SSH keys pair as described above
+2. Copy-paste the contents of a private key (the one, that doesn’t have .pub extension) to Github.
+  1. Head to the GitHub repo of the Project. Then Settings -> Secrets -> New repository secret ![image](https://user-images.githubusercontent.com/5646904/137309307-8981e7c7-7c85-4097-b132-95b1b4589d2c.png)
+  * If you don’t see this section that might be because you don’t have an administrator role in this repo
+  2. The name should match what you have in the config file! If you didn’t change it there, then it’s “WPE_SSHG_KEY_PRIVATE” ![image](https://user-images.githubusercontent.com/5646904/137309366-8c2c678c-bc47-4141-a88c-303baddc3e3d.png)
+3. Copy-paste the contents of a public key to WP Engine: Your profile > SSH > Create SSH key 
+![image](https://user-images.githubusercontent.com/5646904/137309529-9506d20f-f3f8-4c50-a700-9c8f4ee66ac7.png)
+
+That’s it!
+
+**The final thing:**
+After you do you next commit your config file will be pushed to the repo; settings will be applied; and site code on WPEngine will be updated automatically. 
+You can see the process real-time in GitHub repo! Under Actions tab:
+![image](https://user-images.githubusercontent.com/5646904/137309670-77dd700a-65ac-497a-9332-0bce772aeb20.png)
+
+There is a [video tutorial](https://wpengine-2.wistia.com/medias/crj1lp3qke) also.
+Further improvement of config -- to add code quality check.
+
+
+
+ 
+
+
+
+
+
