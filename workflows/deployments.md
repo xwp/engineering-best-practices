@@ -98,21 +98,20 @@ We’ll be using an [official GitHub Action for WP Engine Site Deployments](http
 3. Copy the [default content](https://github.com/marketplace/actions/deploy-wordpress-to-wp-engine#simple-mainyml) of `main.yml` there
 
 **Step #2: Set up the magic! Branches —> environments sync:**
-1. You’ll need to know your branches names and your environments names from WPEngine. Environments names are marked in WPEngine like this 
-
-![image](https://user-images.githubusercontent.com/5646904/137308401-c6b795b7-ed9e-4de3-9151-707f89ed9170.png)
+1. You’ll need to know your branches names and your environments names from WPEngine. Environments names can be found in Sites section in WPEngine dashboard, they are marked like this:
+![image](https://user-images.githubusercontent.com/5646904/137896635-658137b3-e66c-41ad-9c0e-63d5f9c93f6b.png)
 
 2. Now you only need to match them. For example, there are 3 branches and 3 environments each branch should be synced to. Then config will be looking like this:
 ```
 # Branches & Environments
 DEV_BRANCH: devbranch
-DEV_ENV: bigbolderdevs
+DEV_ENV: devenvironment
 
-STG_BRANCH: staging
-STG_ENV: bboldbstaging
+STG_BRANCH: stagingbranch
+STG_ENV: stagingenvironment
 
-PRD_BRANCH: master
-PRD_ENV: boldbaking
+PRD_BRANCH: prodbranch
+PRD_ENV: prodenvironment
 ```
 
 Adjust to your values!
