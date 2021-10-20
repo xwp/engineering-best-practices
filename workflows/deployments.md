@@ -24,11 +24,11 @@ In reality, it could look like the following sequence of scripts:
 
 All tooling to run the build and deploy process should be engineered in a way that is agnostic to the automation platform used for running the checks and deployments. This ensures that the whole process can be verified and tested locally, and ported to different automation systems without changing the core functionality. The main concern of the automation platform is to setup the platform-level dependencies such as the correct version of PHP, Node.js and Docker to ensure that the scripts bundled with the project can run.
 
-### Access Management for Deployments
+## Access Management for Deployments
 
 Automated build and deploy tooling needs access both to the source code and the deploy target repositories. In case of Git repositories the access is managed via SSH keys where the private part of the key is known only to the party accessing the code while the matching public key is added to the repositories.
 
-#### Unique SSH Keys
+### Unique SSH Keys
 
 It is important that the SSH key pair is limited only to the repositories that are needed for the specific project and that the keys are not reused between projects. This ensures that a compromised key can't impact the workflows of other projects.
 
@@ -52,11 +52,11 @@ The command generates two new files, if `key_name` was specified as the key name
 * `key_name` is the private part \(secret\) of the key which should be added to the automation platform \(Travis CI, GitHub Action, Circle CI\) that needs access to the protected resources -- source code and the deployment target repositories. See the setup instructions for [GitHub Actions](https://github.com/marketplace/actions/checkout#usage), [Travis CI](https://docs.travis-ci.com/user/private-dependencies/#using-an-existing-key) and [Circle CI](https://circleci.com/docs/2.0/add-ssh-key/).
 * `key_name.pub` is the matching public key which should be added to all Git repositories that should be accesible by the computer possessing the private key such as the source and deployment repositories. See instructions for [VIP Go \(same as any GitHub repository\)](https://docs.github.com/en/developers/overview/managing-deploy-keys), [Pantheon](https://pantheon.io/docs/ssh-keys) and [WP Engine](https://wpengine.com/support/git/#Add_SSH_Key_to_User_Portal).
 
-#### Machine Users for Projects with Multiple Private Dependencies
+### Machine Users for Projects with Multiple Private Dependencies
 
 For projects with multiple private dependencies it might be easier to use a dedicated GitHub user since GitHub deploy keys can't be re-used on multiple GitHub repositories. These are sometimes called "machine users" since they are only a convenience for the deployment as the user can be added to all relevant private repositories with the necessary permissions. For example, the public part of the SSH key is added to the [SSH keys of a machine user](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) `machine-user` on GitHub and then the `machine-user` is [invited to all the necessary repositories](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository) so that any client authenticating with the key is now recognized as the `machine-user` with its access permissions.
 
-### Source and Release Repositories
+## Source and Release Repositories
 
 While our hosting partners provide Git repositories for tracking the production code, sometimes it is useful to keep a local source repository in our GitHub organization and use the host repository only as the release target.
 
@@ -70,73 +70,74 @@ Both Pantheon and WP VIP offer ways to hide files from public access through eit
 
 Note that VIP Go supports [using branches with `-built` suffix for tracking the release files](https://docs.wpvip.com/technical-references/development-workflow/automated-build-and-deploy/#h-pushing-code-to-branches) so the non-built branches can be used similar to a local source repository. This is a feature that must be enabled by VIP support after you've created the necessary branches -- `master-built` for production and `develop-built` for staging.
 
-#### Deploy to a Different Release Repository
+### Deploy to a Different Release Repository
 
 Here is an illustration of the build and deployment process when a project is deployed to a release repository which is different from the source repository. A dedicated SSH key-pair is used to authenticate the automation tooling with both repositories for read and write access.
 
 ![CI automation pulling and building from a source repository and deploying to a dedicated release repository.](../.gitbook/assets/deploy-different-release-repository.svg)
 
-#### Deploy to a Branch in the Same Source Repository
+### Deploy to a Branch in the Same Source Repository
 
 The workflow is very similar when the same repository is used for both development and deployments:
 
 ![CI automation pulling and pushing to different branches in the same project repository.](../.gitbook/assets/deploy-same-site-repository.svg)
 
-### Platform Specific Instructions
+## Platform Specific Instructions
 
-* See the [VIP Go site template](https://github.com/xwp/vip-go-site) for [WordPress VIP](https://wpvip.com/) specific instructions.
+### WordPress VIP
 
-#### Instructions for WPEngine
-We’ll be using an [official GitHub Action for WP Engine Site Deployments](https://github.com/marketplace/actions/deploy-wordpress-to-wp-engine). 
+See the [VIP Go site template](https://github.com/xwp/vip-go-site) for [WordPress VIP](https://wpvip.com/) specific instructions.
 
-**Step #1: Prepare the config file in a project root:**
-1. In the root of your local WordPress project/repo create a folder `.github/workflows` 
-2. Inside the folder create a file `main.yml`
- 
-![image](https://user-images.githubusercontent.com/5646904/137308183-91ae7aeb-2e48-4500-a238-f451f0435740.png)
+### WP Engine
 
-3. Copy the [default content](https://github.com/marketplace/actions/deploy-wordpress-to-wp-engine#simple-mainyml) of `main.yml` there
+We’ll be using the [official GitHub Action for WP Engine site deployments](https://github.com/marketplace/actions/deploy-wordpress-to-wp-engine). 
 
-**Step #2: Set up the magic! Branches —> environments sync:**
-1. You’ll need to know your branches names and your environments names from WPEngine. Environments names can be found in Sites section in WPEngine dashboard, they are marked like this:
-![image](https://user-images.githubusercontent.com/5646904/137896635-658137b3-e66c-41ad-9c0e-63d5f9c93f6b.png)
+#### Step 1: Setup the GitHub Action for Deployments
 
-2. Now you only need to match them. For example, there are 3 branches and 3 environments each branch should be synced to. Then config will be looking like this:
-```
-# Branches & Environments
-DEV_BRANCH: devbranch
-DEV_ENV: devenvironment
+1. In the root of your project repository create a folder `.github/workflows`.
 
-STG_BRANCH: stagingbranch
-STG_ENV: stagingenvironment
+2. Inside the folder create a file `main.yml` with the [suggested content](https://github.com/marketplace/actions/deploy-wordpress-to-wp-engine#simple-mainyml).
 
-PRD_BRANCH: prodbranch
-PRD_ENV: prodenvironment
-```
+#### Step 2: Configure the GitHub Action
 
-Adjust to your values!
+1. You’ll need to know your branches names and your environments names from WPEngine. Environments names can be found in "Sites" section in [WP Engine dashboard](https://my.wpengine.com/sites), they are marked like this:
 
+    ![List of environments](../.gitbook/assets/wpengine-site-environments.png)
 
-**Step #3: Final thing: connect GitHub and WPEngine**
-We’ll generate a pair of SSH keys, the private key will go to GitHub, the public key will go to WPEngine.
-1. On your computer generate an SSH keys pair as described above
-2. Copy-paste the contents of a private key (the one, that doesn’t have .pub extension) to Github.
-  1. Head to the GitHub repo of the Project. Then Settings -> Secrets -> New repository secret ![image](https://user-images.githubusercontent.com/5646904/137309307-8981e7c7-7c85-4097-b132-95b1b4589d2c.png)
-  * If you don’t see this section that might be because you don’t have an administrator role in this repo
-  2. The name should match what you have in the config file! If you didn’t change it there, then it’s “WPE_SSHG_KEY_PRIVATE” ![image](https://user-images.githubusercontent.com/5646904/137309366-8c2c678c-bc47-4141-a88c-303baddc3e3d.png)
-3. Copy-paste the contents of a public key to WP Engine: Your profile > SSH > Create SSH key 
-![image](https://user-images.githubusercontent.com/5646904/137309529-9506d20f-f3f8-4c50-a700-9c8f4ee66ac7.png)
+2. Now you only need to match them. For example, there are three branches and three environments each branch should be synced to:
 
-That’s it!
+    ```
+    DEV_BRANCH: devbranch
+    DEV_ENV: sitedev
 
-**The final thing:**
-After you do you next commit your config file will be pushed to the repo; settings will be applied; and site code on WPEngine will be updated automatically. 
-You can see the process real-time in GitHub repo! Under Actions tab:
+    STG_BRANCH: stagebranch
+    STG_ENV: sitestage
+
+    PRD_BRANCH: prodbranch
+    PRD_ENV: siteprod
+    ```
+
+#### Step 3: Give GitHub Action Deploy Access to WP Engine
+
+1. Generate an SSH keys pair as described in the "Access Management for Deployments" section above.
+
+2. Add the contents of the private key (the one, that doesn’t have `.pub` extension) as a repository secret `WPE_SSHG_KEY_PRIVATE`. Head to the GitHub repository of the project under "Settings > Secrets > New repository secret". If you don’t see this section, that might be because you don’t have the necessary permissions for the repository.
+
+    ![GitHub repository settings for adding action secrets](https://user-images.githubusercontent.com/5646904/137309307-8981e7c7-7c85-4097-b132-95b1b4589d2c.png)
+
+    The secret name should match the name in the `main.yml` configuration file! The default name is `WPE_SSHG_KEY_PRIVATE`:
+  
+    ![Add new Action secret to the repository](https://user-images.githubusercontent.com/5646904/137309366-8c2c678c-bc47-4141-a88c-303baddc3e3d.png)
+
+3. Add the contents of the public key to WP Engine under "Git push" of each environment:
+
+    ![SSH keys for repository](../.gitbook/assets/wpengine-environment-settings-ssh-deploy-keys.png)
+
+Committing these changes to the repository will trigger a GitHub action which will push the code to the appropriate WPEngine environment. You can see the process real-time in GitHub repo under the "Actions" tab:
+
 ![image](https://user-images.githubusercontent.com/5646904/137309670-77dd700a-65ac-497a-9332-0bce772aeb20.png)
 
 There is a [video tutorial](https://wpengine-2.wistia.com/medias/crj1lp3qke) also.
-Further improvement of config -- to add code quality check.
-
 
 
  
