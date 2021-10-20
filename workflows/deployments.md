@@ -129,13 +129,13 @@ We’ll be using the [official GitHub Action for WP Engine site deployments](htt
   
     ![Add new Action secret to the repository](https://user-images.githubusercontent.com/5646904/137309366-8c2c678c-bc47-4141-a88c-303baddc3e3d.png)
 
-3. Add the contents of the public key to WP Engine under "Git push" of each environment:
+3. Add the contents of the public key to your [WP Engine user profile](https://my.wpengine.com/ssh_keys) (instead of the ["Git push" section for each environment](https://wpengine.com/support/git/#Add_Existing_Git_User_to_Another_Environment) since the action [doesn't use the Git workflow](https://github.com/wpengine/github-action-wpe-site-deploy/blob/341ea21dfd5a340a4c808e9eafc9d2ebdb018904/entrypoint.sh#L43-L44)):
 
-    ![SSH keys for repository](../.gitbook/assets/wpengine-environment-settings-ssh-deploy-keys.png)
+    ![SSH keys for repository](../.gitbook/assets/wpengine-user-profile-ssh-key-add.png)
 
 Committing these changes to the repository will trigger a GitHub action which will push the code to the appropriate WPEngine environment. You can see the process real-time in GitHub repo under the "Actions" tab:
 
-![image](https://user-images.githubusercontent.com/5646904/137309670-77dd700a-65ac-497a-9332-0bce772aeb20.png)
+![List of GitHub action history](https://user-images.githubusercontent.com/5646904/137309670-77dd700a-65ac-497a-9332-0bce772aeb20.png)
 
 There is a [video tutorial](https://wpengine-2.wistia.com/medias/crj1lp3qke) also.
 
