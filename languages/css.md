@@ -14,6 +14,11 @@ Syntax and formatting are keys to a maintainable project. By keeping our code st
 
 WordPress Core has [coding standards for CSS](https://make.wordpress.org/core/handbook/best-practices/coding-standards/css/). These should be followed for consistency across projects.
 
+### Architecture
+
+It's preferred to follow the [ITCSS Architecture](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/). 
+There's also a [short introductory course on Skillshare](https://skl.sh/harry).
+
 ### CSS Syntax
 
 CSS syntax is not strict and will accept a lot of variations, but for the sake of legibility and fast debugging, we follow basic code styles:
@@ -362,13 +367,6 @@ Prefer:
 	color: orange;
 }
 ```
-
-### IE8 and older browser support
-
-We prefer showing a fixed-width non-responsive desktop version to older IE users rather than showing a mobile version.
-
-* Use a feature detection to target older browsers.
-* Load a different stylesheet for older browsers.
 
 ## Frameworks
 
