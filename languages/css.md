@@ -97,7 +97,7 @@ section {
 }
 ```
 
-If you don't need to set all the values, don't use shorthand notation.
+If you don't need to set all the values, use shorthand notation.
 
 Avoid:
 
