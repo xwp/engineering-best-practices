@@ -77,36 +77,36 @@ Bonus points are given for starting the commit message with an applicable emoji 
 
 ### Merges
 
-In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a feature is complete to merge `master` or `develop` back into it the branch. Merging should be done as a non-fast-forwards (`--no-ff`) to ensure a record of the merge exists. However, all merging should be done by means of pull requests, so you don't need to worry about non-fast-forward merges — this doesn't apply to the `preview` branch, which is a throw-away branch anyway.
+In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a feature is complete to merge `main` or `develop` back into it the branch. Merging should be done as a non-fast-forwards (`--no-ff`) to ensure a record of the merge exists. However, all merging should be done by means of pull requests, so you don't need to worry about non-fast-forward merges — this doesn't apply to the `preview` branch, which is a throw-away branch anyway.
 
-If your commits haven't been pushed yet for others to see, it can be a good idea to update your branch from `master` by means of `git rebase master`. This prevents your branch from getting cluttered with merge commits from `master`. Be careful if you rebase commits after having pushed to a remote, as if others have the feature branch on their machines, they will likely get ugly merge conflicts when they try to update their feature branch. This is because `git-rebase` rewrites the history. (These same cautions go for using `git commit --amend`.)
+If your commits haven't been pushed yet for others to see, it can be a good idea to update your branch from `main` by means of `git rebase main`. This prevents your branch from getting cluttered with merge commits from `main`. Be careful if you rebase commits after having pushed to a remote, as if others have the feature branch on their machines, they will likely get ugly merge conflicts when they try to update their feature branch. This is because `git-rebase` rewrites the history. (These same cautions go for using `git commit --amend`.)
 
 When things are absolutely ready to go (i.e. it has passed code review, QA and UAT), we'll then merge the pull request.
 
-When a merge is made into `master` and the project uses [semantic versioning](http://semver.org), then the merge should be accompanied by a Git **tag**.
+When a merge is made into `main` and the project uses [semantic versioning](http://semver.org), then the merge should be accompanied by a Git **tag**.
 
-### Protecting the `master` Branch
+### Protecting the `main` Branch
 
-We recommend for all repositories to be configured so the `master` branch is protected to prevent direct pushes. All merges should be made through a pull request, which ensures all code changes are peer reviewed before merging to prevent unintentional code reversions. Additionally, protecting branches provides the following benefits:
+We recommend for all repositories to be configured so the `main` branch is protected to prevent direct pushes. All merges should be made through a pull request, which ensures all code changes are peer reviewed before merging to prevent unintentional code reversions. Additionally, protecting branches provides the following benefits:
 
-* Prevents the master branch from being accidentally deleted by other engineers
+* Prevents the main branch from being accidentally deleted by other engineers
 * Prevents force-pushes to the branch, overwriting the history
 
 ### Themes
 
-All new development should take place on feature branches that branch off `master`. When a new feature or bugfix is complete, we will do a non-fast-forward merge from that branch to `staging` or `preview` to verify the feature or fix on the stage environment.
+All new development should take place on feature branches that branch off `main`. When a new feature or bugfix is complete, we will do a non-fast-forward merge from that branch to `staging` or `preview` to verify the feature or fix on the stage environment.
 
-When things are absolutely ready to go, we’ll deploy the feature or fix by performing a non-fast-forward merge from that branch to `master`
+When things are absolutely ready to go, we’ll deploy the feature or fix by performing a non-fast-forward merge from that branch to `main`
 
 ### **Branching**
 
-All theme projects will treat the `master` branch as the canonical source for live, production code. Feature branches will branch off `master` and should always have `master` merged back into them before requesting peer code review and before deploying to any staging environments.
+All theme projects will treat the `main` branch as the canonical source for live, production code. Feature branches will branch off `main` and should always have `main` merged back into them before requesting peer code review and before deploying to any staging environments.
 
-All staging branches will branch off `master` as well, and should be named `preview`, `staging` or `stage-{environment}` for consistency and clarity. Staging branches will never be merged into any other branches. The `master` branch can be merged into both staging and feature branches to keep them up-to-date.
+All staging branches will branch off `main` as well, and should be named `preview`, `staging` or `stage-{environment}` for consistency and clarity. Staging branches will never be merged into any other branches. The `main` branch can be merged into both staging and feature branches to keep them up-to-date.
 
 ### **Complex Feature Branches**
 
-In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to enable testing the feature as a cohesive unit and avoid merge conflicts when pushing to `staging` and `master` it is recommended to create a feature branch to act as a staging area. We do this by branching from `master` to create the primary feature branch, and then as necessary, create additional branches from the feature branch for distinct items of work. When individual items are complete, merge back to the feature branch. To pull work from `master`, merge `master` into the feature branch and then merge the feature branch into the individual branches. When all work has been merged back into the feature branch, the feature branch can then be merged into `staging` and `master` as an entire unit of work.
+In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to enable testing the feature as a cohesive unit and avoid merge conflicts when pushing to `staging` and `main` it is recommended to create a feature branch to act as a staging area. We do this by branching from `main` to create the primary feature branch, and then as necessary, create additional branches from the feature branch for distinct items of work. When individual items are complete, merge back to the feature branch. To pull work from `main`, merge `main` into the feature branch and then merge the feature branch into the individual branches. When all work has been merged back into the feature branch, the feature branch can then be merged into `staging` and `main` as an entire unit of work.
 
 ### **Deleting or Archiving and Deleting Branches**
 
@@ -114,23 +114,23 @@ This workflow will inevitably build up a large list of branches in the repositor
 
 ### Deleting branches
 
-When projects use non-ff merges to master, we can safely delete feature branches because all commits are preserved and can be located from the merge commit.
+When projects use non-ff merges to main, we can safely delete feature branches because all commits are preserved and can be located from the merge commit.
 
-* Move to another branch (doesn’t matter which): eg. `git checkout master`
+* Move to another branch (doesn’t matter which): eg. `git checkout main`
 * Delete the branch (both on local and remote): `git branch -D branch-name; git push :branch-name`
 
 ### Archiving and Deleting branches
 
-When projects use squash merges to create a more streamlined history in master, we should archive branches before deleting them to preserve the commit history. Branch tag archives also prove a useful history of branches, in case a specific branch is needed later.
+When projects use squash merges to create a more streamlined history in main, we should archive branches before deleting them to preserve the commit history. Branch tag archives also prove a useful history of branches, in case a specific branch is needed later.
 
-* Move to another branch (doesn’t matter which): eg. `git checkout master`
+* Move to another branch (doesn’t matter which): eg. `git checkout main`
 * Archive the branch: `git tag archive/branch-name branch-name`
 * Delete the branch (both on local and remote): `git branch -D branch-name; git push :branch-name`
 * Push the archive tag: `git push origin archive/branch-name`
 
 ### Plugins
 
-Unlike theme development, the `master` branch represents a stable, released, versioned product. Ongoing development will happen in feature branches branched off a `develop`branch, which is itself branched off `master`. This pattern is commonly referred to as [the Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow).
+Unlike theme development, the `main` branch represents a stable, released, versioned product. Ongoing development will happen in feature branches branched off a `develop`branch, which is itself branched off `main`. This pattern is commonly referred to as [the Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow).
 
 ### **Branching**
 
@@ -138,7 +138,7 @@ New features should be branched off `develop` and, once complete, merged back in
 
 ### **Deploying**
 
-When `develop` is at a state where it’s ready to form a new release, create a new `release/<version>` branch off of `develop`. In this branch, you’ll bump version numbers, update documentation, and generally prepare your release. Once ready, merge your release branch (using a non-fast-forward merge) into `master` and tag the release:
+When `develop` is at a state where it’s ready to form a new release, create a new `release/<version>` branch off of `develop`. In this branch, you’ll bump version numbers, update documentation, and generally prepare your release. Once ready, merge your release branch (using a non-fast-forward merge) into `main` and tag the release:
 
 ```
 git tag -a <version> -m "Tagging <version>"
@@ -146,9 +146,9 @@ git tag -a <version> -m "Tagging <version>"
 
 > **Note:** Once a version is tagged and released, the tag must never be removed. If there is a problem with the project requiring a re-deployment, create a new version and tag to reflect the change.
 
-Finally, merge `master` into `develop` so that `develop` includes all of the work that was done in your release branch and is aware of the current state of `master`.
+Finally, merge `main` into `develop` so that `develop` includes all of the work that was done in your release branch and is aware of the current state of `main`.
 
-You can use the [`svn-push`](https://github.com/xwp/wp-dev-lib/blob/master/scripts/svn-push) script in [wp-dev-lib](https://github.com/xwp/wp-dev-lib) to facilitate the syncing of plugins to WordPress.org. This integration can even be [automated by Travis CI](https://github.com/xwp/wp-dev-lib/issues/106).
+You can use the [`svn-push`](https://github.com/xwp/wp-dev-lib/blob/main/scripts/svn-push) script in [wp-dev-lib](https://github.com/xwp/wp-dev-lib) to facilitate the syncing of plugins to WordPress.org. This integration can even be [automated by Travis CI](https://github.com/xwp/wp-dev-lib/issues/106).
 
 ### **Semantic Versioning**
 
