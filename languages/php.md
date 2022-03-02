@@ -8,7 +8,7 @@ There are drastically different constraints when developing a high-traffic Enter
 
 ### Efficient Database Queries
 
-When querying the database in WordPress, you should generally use a [`WP_Query`](https://codex.wordpress.org/Class_Reference/WP_Query) object. `WP_Query`objects take a number of useful arguments and do things behind-the-scenes that other database access methods such as [`get_posts()`](https://developer.wordpress.org/reference/functions/get_posts/) do not.
+When querying the database in WordPress, you should generally use a [`WP_Query`](https://developer.wordpress.org/reference/classes/wp_query/) object. `WP_Query`objects take a number of useful arguments and do things behind-the-scenes that other database access methods such as [`get_posts()`](https://developer.wordpress.org/reference/functions/get_posts/) do not.
 
 Here are a few key points:
 
@@ -90,9 +90,9 @@ Here are a few key points:
 
   See [WordPress VIP](https://wpvip.com/documentation/performance-improvements-by-removing-usage-of-post__not_in/).
 
-* A [taxonomy](https://codex.wordpress.org/Taxonomies) is a tool that lets us group or classify posts.
+* A [taxonomy](https://wordpress.org/support/article/taxonomies/) is a tool that lets us group or classify posts.
 
-  [Post meta](https://codex.wordpress.org/Custom_Fields) lets us store unique information about specific posts. As such the way post meta is stored does not facilitate efficient post lookups. Generally, looking up posts by post meta should be avoided \(sometimes it can’t\). If you have to use one, make sure that it’s not the main query and that it’s cached.
+  [Post meta](https://wordpress.org/support/article/custom-fields/) lets us store unique information about specific posts. As such the way post meta is stored does not facilitate efficient post lookups. Generally, looking up posts by post meta should be avoided \(sometimes it can’t\). If you have to use one, make sure that it’s not the main query and that it’s cached.
 
 * Passing `cache_results => false` to `WP_Query` is usually not a good idea.
 
@@ -130,7 +130,7 @@ As outlined above, `get_posts()` and `WP_Query`, apart from some slight nuances,
 * It creates a new `WP_Query` object with the parameters you specify.
 * It replaces the existing main query loop with a new instance of `WP_Query`.
 
-As noted in the [WordPress Codex \(along with a useful query flow chart\)](https://codex.wordpress.org/Function_Reference/query_posts), `query_posts()` isn’t meant to be used by plugins or themes. Due to replacing and possibly re-running the main query, `query_posts()` is not performant and certainly not an acceptable way of changing the main query.
+As noted in the [WordPress Documentation \(along with a useful query flow chart\)](https://developer.wordpress.org/reference/functions/query_posts/), `query_posts()` isn’t meant to be used by plugins or themes. Due to replacing and possibly re-running the main query, `query_posts()` is not performant and certainly not an acceptable way of changing the main query.
 
 ### **Build arrays that encourage lookup by key instead of search by value**
 
@@ -161,7 +161,7 @@ Caching is simply the act of storing computed data somewhere for later use, and 
 
 Object caching is the act of caching data or objects for later use. In the context of WordPress, objects are cached in memory so they can be retrieved quickly.
 
-In WordPress, the object cache functionality provided by [`WP_Object_Cache`](https://developer.wordpress.org/reference/classes/wp_object_cache/), and the [Transients API](https://codex.wordpress.org/Transients_API) are great solutions for improving performance on long-running queries, complex functions, or similar.
+In WordPress, the object cache functionality provided by [`WP_Object_Cache`](https://developer.wordpress.org/reference/classes/wp_object_cache/), and the [Transients API](https://developer.wordpress.org/apis/handbook/transients/) are great solutions for improving performance on long-running queries, complex functions, or similar.
 
 On a regular WordPress install, the difference between transients and the object cache is that transients are persistent and would write to the options table, while the object cache only persists for the particular page load.
 
@@ -285,7 +285,7 @@ AJAX stands for Asynchronous JavaScript and XML. Often, we use JavaScript on the
 
 WordPress [provides an API](https://codex.wordpress.org/AJAX_in_Plugins) to register AJAX endpoints on `wp-admin/admin-ajax.php`. However, WordPress does not cache queries within the administration panel for obvious reasons. Therefore, if you send requests to an admin-ajax.php endpoint, you are bootstrapping WordPress and running un-cached queries. Used properly, this is totally fine. However, this can take down a website if used on the frontend.
 
-For this reason, front-facing endpoints should be written by using the [Rewrite Rules API](http://codex.wordpress.org/Rewrite_API) and hooking early into the WordPress request process.
+For this reason, front-facing endpoints should be written by using the [Rewrite Rules API](https://developer.wordpress.org/apis/handbook/rewrite/) and hooking early into the WordPress request process.
 
 Here is a simple example of how to structure your endpoints:
 
@@ -356,18 +356,18 @@ We can store data using options, post meta, post types, object cache, and taxono
 
 There are a number of performance considerations for each WordPress storage vehicle:
 
-* [Options](https://codex.wordpress.org/Options_API) - The options API is a simple key-value storage system backed by a MySQL table. This API is meant to store things like settings and not variable amounts of data.
+* [Options](https://developer.wordpress.org/apis/handbook/options/) - The options API is a simple key-value storage system backed by a MySQL table. This API is meant to store things like settings and not variable amounts of data.
 
   Site performance, especially on large websites, can be negatively affected by a large options table. It’s recommended to regularly monitor and keep this table under 500 rows. The “autoload” field should only be set to ‘yes’ for values that need to be loaded into memory on each page load.
 
   Caching plugins can also be negatively affected by a large `wp_options` table. Popular caching plugins such as [Memcached](https://wordpress.org/plugins/memcached/) place a 1MB limit on individual values stored in cache. A large options table can easily exceed this limit, severely slowing each page load.
 
-* [Post Meta or Custom Fields](https://codex.wordpress.org/Custom_Fields) - Post meta is an API meant for storing information specific to a post. For example, if we had a custom post type, “Product”, “serial number” would be information appropriate for post meta. Because of this, it usually doesn’t make sense to search for groups of posts based on post meta.
-* [Taxonomies and Terms](https://codex.wordpress.org/Taxonomies) - Taxonomies are essentially groupings. If we have a classification that spans multiple posts, it is a good fit for a taxonomy term. For example, if we had a custom post type, “Car”, “Nissan” would be a good term since multiple cars are made by Nissan. Taxonomy terms can be efficiently searched across as opposed to post meta.
-* [Custom Post Types](https://codex.wordpress.org/Post_Types) - WordPress has the notion of “post types”. “Post” is a post type which can be confusing. We can register custom post types to store all sorts of interesting pieces of data. If we have a variable amount of data to store such as a product, a custom post type might be a good fit.
-* [Object Cache](https://codex.wordpress.org/Class_Reference/WP_Object_Cache) - See the “[Caching](php.md#caching)” section.
+* [Post Meta or Custom Fields](https://wordpress.org/support/article/custom-fields/) - Post meta is an API meant for storing information specific to a post. For example, if we had a custom post type, “Product”, “serial number” would be information appropriate for post meta. Because of this, it usually doesn’t make sense to search for groups of posts based on post meta.
+* [Taxonomies and Terms](https://wordpress.org/support/article/taxonomies/) - Taxonomies are essentially groupings. If we have a classification that spans multiple posts, it is a good fit for a taxonomy term. For example, if we had a custom post type, “Car”, “Nissan” would be a good term since multiple cars are made by Nissan. Taxonomy terms can be efficiently searched across as opposed to post meta.
+* [Custom Post Types](https://wordpress.org/support/article/post-types/) - WordPress has the notion of “post types”. “Post” is a post type which can be confusing. We can register custom post types to store all sorts of interesting pieces of data. If we have a variable amount of data to store such as a product, a custom post type might be a good fit.
+* [Object Cache](https://developer.wordpress.org/reference/classes/wp_object_cache/) - See the “[Caching](php.md#caching)” section.
 
-While it is possible to use WordPress’ [Filesystem API](https://codex.wordpress.org/Filesystem_API) to interact with a huge variety of storage endpoints, using the filesystem to store and deliver data outside of regular asset uploads should be avoided as this methods conflict with most modern / secure hosting solutions.
+While it is possible to use WordPress’ [Filesystem API](https://developer.wordpress.org/apis/handbook/filesystem/) to interact with a huge variety of storage endpoints, using the filesystem to store and deliver data outside of regular asset uploads should be avoided as this methods conflict with most modern / secure hosting solutions.
 
 ### Database Writes
 
@@ -376,7 +376,7 @@ Writing information to the database is at the core of any website you build. Her
 * Generally, do not write to the database on frontend pages as doing so can result in major performance issues and race conditions.
 * When multiple threads \(or page requests\) read or write to a shared location in memory and the order of those read or writes is unknown, you have what is known as a [race condition](https://en.wikipedia.org/wiki/Race_condition).
 * Store information in the correct place. See the “Appropriate Data Storage” section.
-* Certain options are “autoloaded” or put into the object cache on each page load. When [creating or updating options](https://codex.wordpress.org/Options_API), you can pass an `$autoload` argument to [`add_option()`](https://developer.wordpress.org/reference/functions/add_option/). If your option is not going to get used often, it shouldn’t be autoloaded. As of WordPress 4.2, [`update_option()`](https://developer.wordpress.org/reference/functions/update_option/)supports configuring autoloading directly by passing an optional `$autoload` argument. Using this third parameter is preferable to using a combination of [`delete_option()`](https://developer.wordpress.org/reference/functions/delete_option/) and `add_option()` to disable autoloading for existing options.
+* Certain options are “autoloaded” or put into the object cache on each page load. When [creating or updating options](https://developer.wordpress.org/apis/handbook/options/), you can pass an `$autoload` argument to [`add_option()`](https://developer.wordpress.org/reference/functions/add_option/). If your option is not going to get used often, it shouldn’t be autoloaded. As of WordPress 4.2, [`update_option()`](https://developer.wordpress.org/reference/functions/update_option/)supports configuring autoloading directly by passing an optional `$autoload` argument. Using this third parameter is preferable to using a combination of [`delete_option()`](https://developer.wordpress.org/reference/functions/delete_option/) and `add_option()` to disable autoloading for existing options.
 
 ## Design Patterns
 
@@ -507,7 +507,7 @@ In terms of [Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-o
 
 The implementation of a custom plugin should be decoupled from its use in a Theme. Disabling the plugin should not result in any errors in the Theme code. Similarly switching the Theme should not result in any errors in the Plugin code.
 
-The best way to implement this is with the use of [add\_theme\_support](https://developer.wordpress.org/reference/functions/add_theme_support/) and [current\_theme\_supports](https://codex.wordpress.org/Function_Reference/current_theme_supports).
+The best way to implement this is with the use of [add\_theme\_support](https://developer.wordpress.org/reference/functions/add_theme_support/) and [current\_theme\_supports](https://developer.wordpress.org/reference/functions/current_theme_supports/).
 
 Consider a plugin that adds a custom javascript file to the `page` post type. The Theme should register support for this feature using `add_theme_support`,
 
@@ -516,7 +516,7 @@ Consider a plugin that adds a custom javascript file to the `page` post type. Th
 add_theme_support( 'custom-js-feature' );
 ```
 
-And the plugin should check that the current theme has indicated support for this feature before adding the script to the page, using [current\_theme\_supports](https://codex.wordpress.org/Function_Reference/current_theme_supports),
+And the plugin should check that the current theme has indicated support for this feature before adding the script to the page, using [current\_theme\_supports](https://developer.wordpress.org/reference/functions/current_theme_supports/),
 
 ```text
 <?php
@@ -580,7 +580,7 @@ Since `update_option()` is storing in the database, the value must be sanitized 
 
 ### **Raw SQL Preparation and Sanitization**
 
-There are times when dealing directly with SQL can’t be avoided. WordPress provides us with [`$wpdb`](https://codex.wordpress.org/Class_Reference/wpdb).
+There are times when dealing directly with SQL can’t be avoided. WordPress provides us with [`$wpdb`](https://developer.wordpress.org/reference/classes/wpdb/).
 
 Special care must be taken to ensure queries are properly prepared and sanitized:
 
@@ -789,15 +789,15 @@ To make this easier, the WordPress API includes functions that translate and esc
 
 ### **For use in HTML**
 
-1. [esc\_html\_\_](https://codex.wordpress.org/Function_Reference/esc_html_2): Returns a translated and escaped string
-2. [esc\_html\_e](https://codex.wordpress.org/Function_Reference/esc_html_e): Echoes a translated and escaped string
-3. [esc\_html\_x](https://codex.wordpress.org/Function_Reference/esc_html_x): Returns a translated and escaped string, _passing a context_ to the translation function
+1. [esc\_html\_\_](https://developer.wordpress.org/reference/functions/esc_html__/): Returns a translated and escaped string
+2. [esc\_html\_e](https://developer.wordpress.org/reference/functions/esc_html_e/): Echoes a translated and escaped string
+3. [esc\_html\_x](https://developer.wordpress.org/reference/functions/esc_html_x/): Returns a translated and escaped string, _passing a context_ to the translation function
 
 ### **For use in attributes**
 
-1. [esc\_attr\_\_](https://codex.wordpress.org/Function_Reference/esc_attr_2): Returns a translated and escaped string
-2. [esc\_attr\_e](https://codex.wordpress.org/Function_Reference/esc_attr_e): Echoes a translated and escaped string
-3. [esc\_attr\_x](https://codex.wordpress.org/Function_Reference/esc_attr_x): Returns a translated and escaped string, _passing a context_ to the translation function
+1. [esc\_attr\_\_](https://developer.wordpress.org/reference/functions/esc_attr__/): Returns a translated and escaped string
+2. [esc\_attr\_e](https://developer.wordpress.org/reference/functions/esc_attr_e/): Echoes a translated and escaped string
+3. [esc\_attr\_x](https://developer.wordpress.org/reference/functions/esc_attr_x/): Returns a translated and escaped string, _passing a context_ to the translation function
 
 ## Code Style & Documentation
 
@@ -952,7 +952,7 @@ $my_class_name .= 'something naughty';
 echo '<div class="test ' . esc_attr( $my_class_name ) . '">test</div>';
 ```
 
-Even better, [use WordPress’ `get_template_part()` function as a basic template engine](http://codex.wordpress.org/Function_Reference/get_template_part#Passing_Variables_to_Template). Make your template file consist mostly of HTML, with `<?php ?>` tags just where you need to escape and output. The resulting file will be as readable as a heredoc/nowdoc block, but can still perform late escaping within the template itself.
+Even better, [use WordPress’ `get_template_part()` function as a basic template engine](https://developer.wordpress.org/reference/functions/get_template_part/). Make your template file consist mostly of HTML, with `<?php ?>` tags just where you need to escape and output. The resulting file will be as readable as a heredoc/nowdoc block, but can still perform late escaping within the template itself.
 
 ## Avoid Sessions
 
