@@ -2,8 +2,8 @@
 description: Best practices for using local development environment.
 ---
 - [WP-ENV](#wp-env)
-  - [WP-ENV requirements:](#wp-env-requirements)
-  - [WP-ENV installation:](#wp-env-installation)
+  - [WP-ENV requirements](#wp-env-requirements)
+  - [WP-ENV installation](#wp-env-installation)
   - [WP-ENV usage](#wp-env-usage)
   - [WP-ENV configuration](#wp-env-configuration)
 - [Docker images](#docker-images)
@@ -14,11 +14,11 @@ description: Best practices for using local development environment.
 # WP-ENV
 
 [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) provides easy mechanism for spinning WordPress instance on your local machine. It allows us to develop and test plugins and themes, and it is easy to use.
-## WP-ENV requirements:
+## WP-ENV requirements
 
 - [Docker](https://www.docker.com)
 - [Node.js](https://nodejs.org)
-## WP-ENV installation:
+## WP-ENV installation
 
 To be able to use `wp-env` we need to install it.
 
