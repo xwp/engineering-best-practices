@@ -1,14 +1,24 @@
 ---
 description: Best practices for using local development environment.
 ---
+- [WP-ENV](#wp-env)
+  - [WP-ENV requirements:](#wp-env-requirements)
+  - [WP-ENV installation:](#wp-env-installation)
+  - [WP-ENV usage](#wp-env-usage)
+  - [WP-ENV configuration](#wp-env-configuration)
+- [Docker images](#docker-images)
+  - [Docker images requirements:](#docker-images-requirements)
+  - [Docker images configuration](#docker-images-configuration)
+  - [Running local development environment](#running-local-development-environment)
+  - [Accessing local development environment](#accessing-local-development-environment)
 # WP-ENV
 
 [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) provides easy mechanism for spinning WordPress instance on your local machine. It allows us to develop and test plugins and themes, and it is easy to use.
-## Requirements:
+## WP-ENV requirements:
 
 - [Docker](https://www.docker.com)
 - [Node.js](https://nodejs.org)
-## Installation:
+## WP-ENV installation:
 
 To be able to use `wp-env` we need to install it.
 
@@ -19,7 +29,7 @@ We can install it globally by running:
 or locally inside our project folder by running:
 
 ```npm i @wordpress/env --save-dev```
-## Usage
+## WP-ENV usage
 
 After ensuring that our Docker is running, several commands could be used for `wp-env` manipulation as follows:
 
@@ -30,7 +40,7 @@ After ensuring that our Docker is running, several commands could be used for `w
 
 Once the console reports that wp-env is successfully running, we will see the url to access it (by default it is http://localhost:8888). Default login credentials are username: **admin**, password: **admin**.
 
-## Configuration
+## WP-ENV configuration
 
 To be able to customize `wp-env` we can use `.wp-env.json` in the directory where we run the `wp-env` from.
 Bellow is an example of .wp-env.json file which defines:
@@ -59,7 +69,7 @@ Bellow is an example of .wp-env.json file which defines:
 
 Working with Docker images is the best way to gain in-depth control of the development environment and to be able to replicate deployment environment on our local host. In this tutorial, we will reference [Pantheon site template](https://github.com/xwp/pantheon-site), where we create all WordPress files and store it in `web` folder.
 
-## Requirements:
+## Docker images requirements:
 
 - [Docker](https://www.docker.com)
 - [Node.js](https://nodejs.org)
@@ -73,7 +83,7 @@ brew install git docker php@7.4 composer node@14 mkcert
 ```
 The WordPress core installer package  `johnpbloch/wordpress-core-installer`  isn't compatible with Composer Plugin API version 2 so we require Composer version 1 which you can install by running  `composer self-update --1`.
 
-## Configuration
+## Docker images configuration
 
 The first thing to define is [docker-compose.yml](https://github.com/compose-spec/compose-spec/blob/master/spec.md) file. We created one example of such file https://github.com/xwp/pantheon-site/blob/main/docker-compose.yml that contains multiple services that are actively used within the development environment. Those services include:
 - [NGINX](https://www.nginx.com/) - web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache
