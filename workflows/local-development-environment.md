@@ -1,33 +1,24 @@
-
 ---
-
 description: Best practices for using local development environment.
-
 ---
-
 # WP-ENV
 
-
-[wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) provides easy mechanism for spinning WordPress instance on your local machine. It allows developing and testing plugins and themes, and it is easy to use.
-
-## Requiremens:
+[wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) provides easy mechanism for spinning WordPress instance on your local machine. It allows us to develop and test plugins and themes, and it is easy to use.
+## Requirements:
 
 - [Docker](https://www.docker.com)
 - [Node.js](https://nodejs.org)
-
-## Instalation:
+## Installation:
 
 To be able to use `wp-env` we need to install it.
 
 We can install it globally by running:
 
-	npm -g i @wordpress/env
+```npm -g i @wordpress/env```
 
-or locally by running:
+or locally inside our project folder by running:
 
-	npm i @wordpress/env --save-dev
-
-
+```npm i @wordpress/env --save-dev```
 ## Usage
 
 After ensuring that our Docker is running, several commands could be used for `wp-env` manipulation as follows:
@@ -41,44 +32,42 @@ Once the console reports that wp-env is successfully running, we will see the ur
 
 ## Configuration
 
-We can add it to our package.json scripts to:
+To be able to customize `wp-env` we can use `.wp-env.json` in the directory where we run the `wp-env` from.
+Bellow is an example of .wp-env.json file which defines:
 
-	"scripts": {
-		"env":"wp-env"
-	}
-
-To be able to customise `wp-env` we can use `.wp-env.json` in the directory where we run the `wp-env` from.
-Bellow is an example of .wp-env.json file that defines:
-
-- php version 7.4 is used,
-- the WP files will be stored into /tools/wordpress folder
-- defines mapping of the plugins
-- defines themes from current folder to be used.
 ```
 {
  	"phpVersion": "7.4",
   	"core": "./tools/wordpress",
-  	"plugins": [],
-  	"mappings": {
-  		"wp-content/plugins": "../../plugins"
-  	},
-  	"themes": [
-  		"."
-  	]
+	"port": 4013,
+    "mappings": {
+        "wp-content/mu-plugins": "./path/to/local/mu-plugins",
+        "wp-content/themes": "./path/to/local/themes",
+        "wp-content/plugins": "./path/to/local/plugins"
+    }
 }
 ```
+
+- *phpVersion* - php version to 7.4,
+- *core* - WP files will be stored into /tools/wordpress folder
+- *port* - custom port number
+- *plugins* - all plugins in the `plugins` key are activated by default
+- *themes* - a list of themes to install in the environment.
+- *mappings* - the mapping allows you to mount a directory to any location in the wordpress install, so you could even mount a subdirectory. Note: Plugins and themes defined here will not be activated by default.
+
 # Docker images
 
-We can have indepth controll of the environment we use, to be able to replicate deployment environment on our local host. In this tutorial, we will use repository for [Pantheon site template](https://github.com/xwp/pantheon-site).
+Working with Docker images is the best way to gain in-depth control of the development environment and to be able to replicate deployment environment on our local host. In this tutorial, we will reference [Pantheon site template](https://github.com/xwp/pantheon-site), where we create all WordPress files and store it in `web` folder.
 
-## Requiremens:
+## Requirements:
 
 - [Docker](https://www.docker.com)
 - [Node.js](https://nodejs.org)
 - [Composer](https://getcomposer.org)
-- [mkcert](https://github.com/FiloSottile/mkcert)  for simple local TLS setup.
+- [mkcert](https://github.com/FiloSottile/mkcert) for simple local TLS setup.
 
-Use a package manager like  [Homebrew](https://brew.sh/)  to install project dependencies:
+Use a package manager like  [Homebrew](https://brew.sh/) to install project dependencies:
+
 ```
 brew install git docker php@7.4 composer node@14 mkcert
 ```
@@ -86,7 +75,7 @@ The WordPress core installer package  `johnpbloch/wordpress-core-installer`  isn
 
 ## Configuration
 
-The first thing to define is [docker-compose.yml](https://github.com/compose-spec/compose-spec/blob/master/spec.md) file. We created one example of such file https://github.com/xwp/pantheon-site/blob/main/docker-compose.yml that contains multiple services that provide us with the development environment. Those services include:
+The first thing to define is [docker-compose.yml](https://github.com/compose-spec/compose-spec/blob/master/spec.md) file. We created one example of such file https://github.com/xwp/pantheon-site/blob/main/docker-compose.yml that contains multiple services that are actively used within the development environment. Those services include:
 - [NGINX](https://www.nginx.com/) - web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache
 - [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) - Create a local DNS server that maps the development URL to this environment.
 - [MKCert](https://github.com/FiloSottile/mkcert) - simple tool for making locally-trusted development certificates
@@ -95,15 +84,13 @@ The first thing to define is [docker-compose.yml](https://github.com/compose-spe
 - [Redis](https://redis.io/) - an open source (BSD licensed), in-memory data structure store, used as a database, cache, and message broker
 - [WordPress](https://hub.docker.com/_/wordpress)
 
-Docker can build images automatically by reading the instructions from a `Dockerfile`. Example of such files could be find in https://github.com/xwp/pantheon-site/tree/main/tools/docker.
+Docker can build images automatically by reading the instructions from a `Dockerfile`. Example of such files could be find in https://github.com/xwp/pantheon-site/tree/main/tools/docker. Those files are called from docker-compose.yml file.
 
-## Running the environment
+## Running local development environment
 
-In this project, we install WordPress inside `/web/` folder. That is configured inside `composer.json` and `wp-cli.yml` file.
+In this project, we install WordPress inside `/web/` folder. You can choose the folder name as you see fit. It is configured in `composer.json` and `wp-cli.yml` files.
 
-To run the environment the user first needs to run:
-
- - `npm install` - which installs all the scripts. This will trigger post-install `composer install` and install WordPress inside `/web/` directory.
+To be able to start the development environment, the user first needs to run `npm install`, which installs all necessary scripts. After installing `node modules`, this will trigger post-install `composer install` and install WordPress inside `/web/` directory.
 
 After this is done, several other commands could be used:
 
@@ -112,14 +99,14 @@ After this is done, several other commands could be used:
 - `npm run stop-all` - retrieve all running container IDs and pass those to docker stop
 - `npm run clean` - delete temporary folders
 
-**Note:** Our themes and plugins should be stored inside `wp-content` folder, which will be linked with dev folder `/web/` after initialisaion. None of the file changes should be done inside `/web/` folder as it is temporary folder and will be recreated every time you run `npm run clean` and `npm install`.
+**Note:** Our themes and plugins should be stored inside `wp-content` folder in the root folder, which will be linked with `/web/wp-content/` after initialization. None of the file changes should be done inside `/web/` folder as it is temporary folder and will be recreated every time you run `npm run clean` and `npm install`.
 
-## Accessing local environent
+## Accessing local development environment
 
-With specific domains (instead of `localhost`) we get reliable autocomplete, browser history and links to project locations. On the other hand`localhost` doesn’t support subdomains so we can’t reliably test a multisite instance, for example.
+In this project, we do not use localhost, but we use real domains. With specific domains (instead of `localhost`) we get reliable autocomplete, browser history and links to project locations. On the other hand `localhost` doesn’t support subdomains so we can’t reliably test a multisite instance, for example.
 
-To allow using valid ssl certificates and running multisite environment on our localhost, we use inhouse domain `wpenn.net` which points to our localhost. This allows us to use any subdomain in our project (`*.wpenv.net`), which will be defined in `DEV_HOSTNAME` environment variable inside [.env.example](https://github.com/xwp/pantheon-site/blob/main/.env.example) file.
+To allow using valid ssl certificates and running multisite environment on our localhost, we use in-house domain `wpenv.net` or `wpenv.dev` which points to our localhost. This allows us to use any subdomain in our project (`*.wpenv.net` or `*.wpenv.dev`), which will be defined in `DEV_HOSTNAME` environment variable inside [.env.example](https://github.com/xwp/pantheon-site/blob/main/.env.example) file.
 
-Once the development environment is started with `npm run start`, and all of the images are running, we will be able to access it via `xwp.wpenv.net` (or any other domain if defined otherwise), and it will be accessable via https protocol.
+Once the development environment is started with `npm run start`, and all of the images are running, we will be able to access it via `xwp.wpenv.net` (or any other domain if defined otherwise), and it will be accessible via https protocol.
 
 
