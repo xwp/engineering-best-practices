@@ -11,6 +11,7 @@
   * [PHP](languages/php.md)
 * [Workflows](workflows/README.md)
   * [Deployments](workflows/deployments.md)
+  * [Local development environment](workflows/local-development-environment.md)
   * [Agile Scrum](workflows/agile-scrum.md)
   * [Version Control](workflows/vcs.md)
   * [Automated Testing](workflows/automated-testing.md)
