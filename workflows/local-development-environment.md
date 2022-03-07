@@ -113,10 +113,11 @@ After this is done, several other commands could be used:
 
 ## Accessing local development environment
 
+* [Default local environment](https://xwp.wpenv.net/)
+* [PhpMyAdmin](https://mysql.xwp.wpenv.net/)
+
 In this project, we do not use localhost, but we use real domains. With specific domains (instead of `localhost`) we get reliable autocomplete, browser history and links to project locations. On the other hand `localhost` doesn’t support subdomains so we can’t reliably test a multisite instance, for example.
 
 To allow using valid ssl certificates and running multisite environment on our localhost, we use in-house domain `wpenv.net` or `wpenv.dev` which points to our localhost. This allows us to use any subdomain in our project (`*.wpenv.net` or `*.wpenv.dev`), which will be defined in `DEV_HOSTNAME` environment variable inside [.env.example](https://github.com/xwp/pantheon-site/blob/main/.env.example) file.
 
 Once the development environment is started with `npm run start`, and all of the images are running, we will be able to access it via `xwp.wpenv.net` (or any other domain if defined otherwise), and it will be accessible via https protocol.
-
-
