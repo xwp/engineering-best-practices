@@ -262,6 +262,14 @@ For that reason, it’s best to make the code that repopulates the cache availab
 
 In some cases, it might be necessary to create multiple objects depending on the parameters a function is called with. In these cases, it’s usually a good idea to create a cache key which includes a representation of the variable parameters. A simple solution for this would be appending an md5 hash of the serialized parameters to the key name.
 
+### **The “Query Cache”**
+Query caching is another advantage of using the WP_Query API as results of the query are stored in memory for faster response, reducing load on the database.
+The WP_Query API provides cache parameters that allows you disable caching of unnecessary information, which are set to true by default:
+* cache_results (boolean) – Post information cache.
+* update_post_meta_cache (boolean) – Post meta information cache.
+* update_post_term_cache (boolean) – Post term information cache.
+if persistent caching is enabled on the site, these parameters are set to false by default since there is no need to update the cache every page load when a persistent cache exists.
+
 ### **Page Caching**
 
 Page caching in the context of web development refers to storing a requested location’s entire output to serve in the event of subsequent requests to the same location.
